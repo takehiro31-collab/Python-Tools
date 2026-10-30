@@ -1,0 +1,999 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 要確認: 店名「〇〇工務店」・地域名「〇〇市」・ドメイン「example.jp」はすべて仮置き。確定後に一括置換する -->
+<title>〇〇市のリフォーム・外構工事｜〇〇工務店</title>
+<meta name="description" content="〇〇市の工務店です。水回り・内装リフォームから外構工事まで、地元の職人が現地調査・お見積りから施工まで担当します。補助金のご相談・お見積りは無料です。">
+<link rel="canonical" href="https://example.jp/">
+<meta name="theme-color" content="#7A4B26">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="〇〇工務店">
+<meta property="og:title" content="〇〇市のリフォーム・外構工事｜〇〇工務店">
+<meta property="og:description" content="水回り・内装・外壁・外構から小さな修理まで。〇〇市の地元工務店です。現地調査とお見積りは無料。">
+<meta property="og:url" content="https://example.jp/">
+<!-- 要確認: OGP画像（1200×630、自社施工写真）を用意して差し替え -->
+<meta property="og:image" content="https://example.jp/og/top.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- 要確認: favicon / apple-touch-icon / manifest を公開時に追加 -->
+<!-- 要確認: Search Console 確認タグ・GA4 タグは公開時に追加（測定ID未定） -->
+
+<!-- 要確認: JSON-LD の住所・電話・座標・営業時間・許可番号・創業日・代表者名・SNS URL は、画面表示（フッター等）およびGoogleビジネスプロフィールと同じ表記で確定させる。画像URLは実ファイルに差し替え -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://example.jp/#website",
+      "url": "https://example.jp/",
+      "name": "〇〇工務店",
+      "inLanguage": "ja",
+      "publisher": { "@id": "https://example.jp/#organization" }
+    },
+    {
+      "@type": "GeneralContractor",
+      "@id": "https://example.jp/#organization",
+      "name": "〇〇工務店",
+      "alternateName": "株式会社〇〇工務店",
+      "url": "https://example.jp/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://example.jp/images/logo.png",
+        "width": 512,
+        "height": 512
+      },
+      "image": [
+        "https://example.jp/images/shop-front-1x1.jpg",
+        "https://example.jp/images/shop-front-4x3.jpg",
+        "https://example.jp/images/shop-front-16x9.jpg"
+      ],
+      "description": "〇〇市で水回り・内装・外壁・外構のリフォームと小さな修理を手がける地域密着の工務店です。",
+      "telephone": "+81-000-00-0000",
+      "email": "info@example.jp",
+      "priceRange": "1万円〜",
+      "address": {
+        "@type": "PostalAddress",
+        "postalCode": "000-0000",
+        "addressRegion": "〇〇県",
+        "addressLocality": "〇〇市",
+        "streetAddress": "〇〇町1-2-3",
+        "addressCountry": "JP"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 35.00000,
+        "longitude": 139.00000
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "08:00:00",
+          "closes": "18:00:00"
+        }
+      ],
+      "specialOpeningHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "opens": "00:00:00",
+          "closes": "00:00:00",
+          "validFrom": "2026-12-29",
+          "validThrough": "2027-01-04"
+        }
+      ],
+      "areaServed": [
+        { "@type": "City", "name": "〇〇市" },
+        { "@type": "City", "name": "△△市" },
+        { "@type": "City", "name": "□□町" }
+      ],
+      "knowsAbout": ["水回りリフォーム", "内装リフォーム", "外壁・屋根塗装", "外構工事", "バリアフリーリフォーム", "住宅の小修理"],
+      "sameAs": [
+        "https://www.google.com/maps?cid=0000000000000000000",
+        "https://www.instagram.com/example_koumuten/"
+      ],
+      "founder": {
+        "@type": "Person",
+        "@id": "https://example.jp/#founder",
+        "name": "〇〇 〇〇",
+        "jobTitle": "代表"
+      },
+      "foundingDate": "2005-04-01",
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "建設業許可",
+          "name": "〇〇県知事許可（般-00）第00000号"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --bg:#F0EEE9; --surface:#FFFFFF; --text:#2B2622; --muted:#5C5149;
+  --wood:#7A4B26; --wood-soft:#EADFD2; --green:#3F5E45; --green-soft:#E1E8DF;
+  --cta:#A84A18; --cta-dark:#8A3C12; --navy:#1E3A5F; --line:#D8D0C4;
+  --radius:12px; --space:clamp(56px,9vw,112px);
+  --font-head:"BIZ UDPGothic","Hiragino Maru Gothic ProN","Hiragino Sans","Noto Sans JP","Yu Gothic","YuGothic",Meiryo,sans-serif;
+  --font-body:"BIZ UDPGothic","Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic","YuGothic",Meiryo,sans-serif;
+  --header-h:64px; --bar-h:64px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{font-size:100%;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);
+  font-size:clamp(1.0625rem,1rem + .3vw,1.125rem);line-height:1.8;letter-spacing:.04em;overflow-wrap:anywhere}
+h1,h2,h3{font-family:var(--font-head);line-height:1.4;letter-spacing:.02em;margin:0 0 .5em;font-weight:700}
+h2{font-size:clamp(1.5rem,1.2rem + 1.4vw,2.125rem)}
+h3{font-size:clamp(1.1875rem,1.1rem + .4vw,1.375rem)}
+p{margin:0 0 1em}
+img,svg{max-width:100%;height:auto;display:block}
+a{color:var(--wood);text-decoration:underline;text-underline-offset:.2em}
+a:hover{color:var(--cta-dark)}
+:focus-visible{outline:3px solid var(--cta);outline-offset:3px;border-radius:4px}
+.container{width:min(1120px,100% - 32px);margin-inline:auto}
+.sr-only{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:8px;top:-100px;background:var(--surface);padding:12px 16px;z-index:100}
+.skip:focus{top:8px}
+section{padding-block:var(--space);scroll-margin-top:calc(var(--header-h) + 8px)}
+section:nth-of-type(even){background:var(--surface)}
+.lead{font-size:1.06em;color:var(--text);max-width:40em;margin-bottom:1.75em}
+.sec-label{display:block;font-size:.875rem;color:var(--wood);font-weight:700;letter-spacing:.12em;margin-bottom:.25em}
+.note{font-size:.9375rem;color:var(--muted);line-height:1.7}
+.num{font-variant-numeric:tabular-nums}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:48px;padding:12px 24px;
+  border-radius:999px;background:var(--cta);color:#fff;font-weight:700;text-decoration:none;border:2px solid var(--cta);
+  line-height:1.4;text-align:center}
+.btn:hover{background:var(--cta-dark);border-color:var(--cta-dark);color:#fff}
+.btn--line{background:var(--green);border-color:var(--green)}
+.btn--line:hover{background:#2F4834;border-color:#2F4834}
+.btn--ghost{background:var(--surface);color:var(--wood);border-color:var(--wood)}
+.btn--ghost:hover{background:var(--wood-soft);color:var(--wood)}
+.btn small{font-weight:400;font-size:.8125rem;opacity:.95}
+.btn-row{display:flex;flex-wrap:wrap;gap:12px}
+.ico{width:1.25em;height:1.25em;flex:none;fill:currentColor}
+
+/* header */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(240,238,233,.97);border-bottom:1px solid var(--line)}
+.header-in{display:flex;align-items:center;gap:12px;min-height:var(--header-h)}
+.logo{display:flex;align-items:center;gap:8px;color:var(--text);text-decoration:none;font-family:var(--font-head);font-weight:700;font-size:1.125rem;line-height:1.2;min-height:48px;flex:none}
+.logo svg{width:36px;height:36px}
+.logo small{display:block;font-size:.6875rem;color:var(--muted);font-weight:400;letter-spacing:.02em}
+.gnav{margin-left:auto}
+.gnav ul{display:flex;gap:0;list-style:none;margin:0;padding:0}
+.gnav a{display:flex;align-items:center;min-height:48px;padding:0 8px;white-space:nowrap;color:var(--text);text-decoration:none;font-size:.9375rem;font-weight:700}
+.gnav a:hover{color:var(--wood);text-decoration:underline}
+.header-tel{display:flex;flex-direction:column;align-items:flex-end;text-decoration:none;color:var(--wood);line-height:1.2;min-height:48px;justify-content:center;flex:none}
+.header-tel strong{font-size:1.25rem;display:flex;align-items:center;gap:4px}
+.header-tel small{font-size:.75rem;color:var(--muted)}
+.header-cta{flex:none}
+.menu-btn{display:none;min-width:48px;min-height:48px;border:2px solid var(--wood);border-radius:10px;background:var(--surface);color:var(--wood);font:inherit;font-size:.75rem;font-weight:700;line-height:1;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:4px}
+.menu-btn span.bars{display:block;width:20px;height:2px;background:currentColor;box-shadow:0 -6px 0 currentColor,0 6px 0 currentColor;margin:8px 0 6px}
+@media (max-width:1079px){
+  .gnav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--surface);border-bottom:1px solid var(--line);margin:0}
+  .gnav.is-open{display:block}
+  .gnav ul{flex-direction:column;padding:8px 16px 16px}
+  .gnav a{border-bottom:1px solid var(--line);font-size:1.0625rem}
+  .menu-btn{display:flex}
+  .header-tel{margin-left:auto}
+  .header-cta{display:none}
+}
+@media (max-width:420px){
+  .logo small{display:none}
+  .logo{font-size:1rem}
+  .logo svg{width:30px;height:30px}
+  .header-tel strong{font-size:1.0625rem}
+  .header-tel small{font-size:.6875rem}
+  .header-in{gap:8px}
+}
+
+/* hero */
+.hero{padding-block:clamp(32px,6vw,72px) clamp(40px,6vw,80px);background:linear-gradient(180deg,#F7F3EC 0%,var(--bg) 100%)}
+.hero-grid{display:grid;gap:clamp(24px,4vw,48px);align-items:center}
+@media (min-width:880px){.hero-grid{grid-template-columns:1.05fr 1fr}}
+.hero-area{display:inline-block;background:var(--green-soft);color:var(--green);font-weight:700;font-size:.9375rem;padding:4px 14px;border-radius:999px;margin-bottom:12px}
+.hero h1{font-size:clamp(1.75rem,1.2rem + 2.6vw,2.75rem);margin-bottom:.4em}
+.hero h1 .accent{color:var(--wood)}
+.hero-points{list-style:none;padding:0;margin:0 0 24px;display:grid;gap:6px}
+.hero-points li{padding-left:1.6em;position:relative}
+.hero-points li::before{content:"";position:absolute;left:.2em;top:.55em;width:.9em;height:.5em;border-left:3px solid var(--green);border-bottom:3px solid var(--green);transform:rotate(-45deg)}
+.hero-tel{display:inline-flex;flex-direction:column;text-decoration:none;color:var(--text);background:var(--surface);border:2px solid var(--wood);border-radius:var(--radius);padding:10px 20px;margin-bottom:12px;min-height:48px}
+.hero-tel strong{font-size:clamp(1.5rem,1.2rem + 1.4vw,2rem);color:var(--wood);display:flex;align-items:center;gap:6px;line-height:1.3}
+.hero-tel small{font-size:.875rem;color:var(--muted)}
+.hero-figure{margin:0;border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 24px rgba(43,38,34,.12);background:#E8E0D2}
+.hero-figure img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.hero-figure figcaption{font-size:.875rem;color:var(--muted);background:var(--surface);padding:8px 14px}
+.updated{font-size:.875rem;color:var(--muted);margin-top:16px}
+
+/* badges */
+.badges{list-style:none;margin:0;padding:0;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr))}
+.badges li{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:2px}
+.badges .b-label{font-size:.875rem;color:var(--muted);font-weight:700}
+.badges .b-value{font-family:var(--font-head);font-size:1.25rem;font-weight:700;color:var(--wood);line-height:1.4;font-variant-numeric:tabular-nums}
+.badges .b-sub{font-size:.875rem;color:var(--muted);line-height:1.6}
+
+/* strengths */
+.cards3{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.strength{background:var(--surface);border-radius:var(--radius);padding:24px;border-top:6px solid var(--wood)}
+.strength .no{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--wood);color:#fff;font-weight:700;margin-bottom:12px;font-size:1.125rem}
+
+/* service menu */
+.menu-grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr))}
+.svc{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+.svc img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#E8E0D2}
+.svc-body{padding:20px;display:flex;flex-direction:column;flex:1}
+.svc h3 a{color:var(--text);text-decoration:none}
+.svc h3 a:hover{text-decoration:underline}
+.svc h3 a::after{content:" →";color:var(--wood)}
+.svc .tag{display:inline-block;font-size:.8125rem;font-weight:700;color:var(--green);background:var(--green-soft);border-radius:999px;padding:2px 10px;margin-bottom:8px;align-self:flex-start}
+.price-list{margin:auto 0 0;padding:12px 0 0;border-top:1px dashed var(--line);display:grid;gap:4px}
+.price-list div{display:flex;flex-wrap:wrap;justify-content:space-between;gap:0 12px}
+.price-list dt{color:var(--muted);font-size:.9375rem}
+.price-list dd{margin:0;font-weight:700;font-variant-numeric:tabular-nums;color:var(--text)}
+.price-note{margin-top:20px;background:var(--surface);border-left:4px solid var(--wood);padding:12px 16px;border-radius:0 8px 8px 0}
+
+/* works */
+.works-grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr))}
+.work{background:var(--surface);border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column}
+section:nth-of-type(even) .work{background:var(--bg)}
+.work img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#E8E0D2}
+.work-body{padding:20px;display:flex;flex-direction:column;flex:1}
+.work .cat{font-size:.8125rem;font-weight:700;color:#fff;background:var(--wood);border-radius:999px;padding:2px 10px;align-self:flex-start;margin-bottom:8px}
+.work .cat--ext{background:var(--green)}
+.work dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:0 0 16px;font-size:.9375rem}
+.work dt{color:var(--muted)}
+.work dd{margin:0;font-weight:700;font-variant-numeric:tabular-nums}
+.work .more{margin-top:auto;display:inline-flex;align-items:center;min-height:48px;font-weight:700}
+
+/* before-after */
+.ba-wrap{max-width:820px;margin-inline:auto}
+.ba{position:relative;--pos:50%;border-radius:var(--radius);overflow:hidden;background:#ddd;touch-action:pan-y}
+.ba img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.ba .after{position:absolute;inset:0;clip-path:inset(0 0 0 var(--pos))}
+.ba .after img{height:100%}
+.ba input[type=range]{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;-webkit-appearance:none;appearance:none}
+.ba .handle{position:absolute;top:0;bottom:0;left:var(--pos);width:4px;margin-left:-2px;background:#fff;pointer-events:none;box-shadow:0 0 0 1px rgba(0,0,0,.25)}
+.ba .handle::after{content:"◀ ▶";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;color:var(--wood);border-radius:999px;padding:8px 10px;font-size:.875rem;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.25);letter-spacing:0}
+.ba .lbl{position:absolute;top:12px;background:rgba(43,38,34,.85);color:#fff;font-size:.875rem;font-weight:700;padding:4px 12px;border-radius:999px;pointer-events:none}
+.ba .lbl--b{left:12px}.ba .lbl--a{right:12px;background:var(--cta)}
+.ba:has(input:focus-visible){outline:3px solid var(--cta);outline-offset:4px}
+.ba-cap{margin-top:12px}
+.no-js .ba .after{position:static;clip-path:none}
+.no-js .ba input,.no-js .ba .handle{display:none}
+
+/* voices */
+.voices{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+.voice{margin:0;background:var(--bg);border-radius:var(--radius);padding:24px;border:1px solid var(--line)}
+.voice blockquote{margin:0 0 12px;position:relative;padding-top:20px}
+.voice blockquote::before{content:"“";position:absolute;top:-14px;left:-4px;font-size:3rem;color:var(--wood);line-height:1}
+.voice figcaption{font-size:.9375rem;color:var(--muted)}
+.voice figcaption small{display:block;margin-top:4px;font-size:.875rem}
+
+/* subsidy */
+.subsidy-grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.sub-card{background:var(--surface);border-radius:var(--radius);padding:24px;border:1px solid var(--line)}
+section:nth-of-type(even) .sub-card{background:var(--bg)}
+.sub-card .big{font-family:var(--font-head);font-size:1.5rem;color:var(--cta);font-weight:700;font-variant-numeric:tabular-nums;line-height:1.4;margin-bottom:.4em}
+.sub-card ul{padding-left:1.2em;margin:0 0 12px}
+.alert{background:#FFF4E5;border:2px solid var(--cta);border-radius:8px;padding:10px 14px;font-weight:700;font-size:.9375rem;margin-bottom:12px}
+
+/* flow */
+.steps{list-style:none;margin:0 0 28px;padding:0;counter-reset:step;display:grid;gap:0}
+.steps li{counter-increment:step;position:relative;padding:0 0 24px 64px;border-left:3px solid var(--wood);margin-left:22px}
+.steps li:last-child{border-left-color:transparent;padding-bottom:0}
+.steps li::before{content:counter(step);position:absolute;left:-24px;top:0;width:44px;height:44px;border-radius:50%;background:var(--wood);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:1.125rem}
+.steps h3{margin-bottom:.25em;padding-top:6px}
+.steps p{margin:0}
+.steps .term{display:inline-block;font-size:.875rem;color:var(--green);font-weight:700}
+@media (min-width:960px){
+  .steps{grid-template-columns:repeat(6,1fr);gap:16px}
+  .steps li{border-left:0;border-top:3px solid var(--wood);margin:22px 0 0;padding:36px 0 0}
+  .steps li:last-child{border-top-color:var(--wood)}
+  .steps li::before{left:0;top:-24px}
+}
+
+/* greeting */
+.greet{display:grid;gap:28px;align-items:start}
+@media (min-width:800px){.greet{grid-template-columns:280px 1fr}}
+.greet figure{margin:0;text-align:center}
+.greet figure img{width:220px;height:220px;border-radius:50%;margin:0 auto 12px;border:6px solid var(--surface);box-shadow:0 4px 16px rgba(43,38,34,.12)}
+.greet figcaption{font-size:.9375rem;color:var(--muted)}
+.greet figcaption strong{display:block;color:var(--text);font-size:1.125rem}
+.greet .sign{text-align:right;font-weight:700}
+.profile{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;font-size:.9375rem;background:var(--bg);border-radius:8px;padding:16px;margin:0}
+section:nth-of-type(odd) .profile{background:var(--surface)}
+.profile dt{color:var(--muted)}
+.profile dd{margin:0}
+
+/* area */
+.area{display:grid;gap:28px;align-items:start}
+@media (min-width:800px){.area{grid-template-columns:1fr 1fr}}
+.area figure{margin:0}
+.area figure img{border-radius:var(--radius);width:100%;aspect-ratio:4/3;object-fit:cover;background:#E1E8DF}
+.area figcaption{font-size:.875rem;color:var(--muted);margin-top:6px}
+.towns{list-style:none;padding:0;margin:0 0 16px;display:flex;flex-wrap:wrap;gap:8px}
+.towns li{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px 14px;font-size:.9375rem}
+section:nth-of-type(even) .towns li{background:var(--bg)}
+
+/* faq */
+.faq{display:grid;gap:12px;max-width:880px}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+section:nth-of-type(even) .faq details{background:var(--bg)}
+.faq summary{cursor:pointer;min-height:48px;padding:14px 52px 14px 20px;position:relative;list-style:none;display:flex;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:1.5rem;color:var(--wood);font-weight:700}
+.faq details[open] summary::after{content:"−"}
+.faq summary h3{margin:0;font-size:1.0625rem;line-height:1.6}
+.faq summary h3::before{content:"Q. ";color:var(--wood)}
+.faq .ans{padding:0 20px 16px}
+.faq .ans p{margin:0}
+.faq .ans p::before{content:"A. ";font-weight:700;color:var(--green)}
+
+/* news */
+.news{list-style:none;padding:0;margin:0 0 20px;border-top:1px solid var(--line)}
+.news li{border-bottom:1px solid var(--line)}
+.news a{display:grid;grid-template-columns:auto auto 1fr;gap:4px 16px;align-items:center;padding:12px 4px;min-height:48px;color:var(--text);text-decoration:none}
+.news a:hover .ttl{text-decoration:underline;color:var(--wood)}
+.news time{color:var(--muted);font-variant-numeric:tabular-nums;font-size:.9375rem}
+.news .kind{font-size:.8125rem;font-weight:700;border:1px solid var(--wood);color:var(--wood);border-radius:999px;padding:0 10px}
+@media (max-width:600px){.news a{grid-template-columns:auto 1fr}.news .ttl{grid-column:1/-1}}
+
+/* final cta */
+.final-cta{background:var(--wood)!important;color:#fff}
+.final-cta h2{color:#fff}
+.final-cta .lead,.final-cta p{color:#fff}
+.final-cta a:not(.btn){color:#fff}
+.cta-box{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.cta-item{background:var(--surface);color:var(--text);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;gap:8px}
+.cta-item h3{margin:0;font-size:1.125rem}
+.cta-item p{color:var(--muted)!important;margin:0;font-size:.9375rem}
+.cta-item .btn{margin-top:auto;width:100%}
+.cta-item .tel-big{font-size:1.5rem;font-weight:700}
+
+/* footer */
+.site-footer{background:#2B2622;color:#F0EEE9;padding-block:48px 32px;font-size:.9375rem}
+.site-footer a{color:#F5E6D6}
+.site-footer a:hover{color:#fff}
+.foot-grid{display:grid;gap:32px;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.site-footer h2{font-size:1.125rem;color:#fff;margin-bottom:.75em}
+.site-footer address{font-style:normal;line-height:1.9}
+.site-footer dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px}
+.site-footer dd{margin:0}
+.site-footer dt{color:#CFC6BB}
+.foot-nav{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+.foot-nav a{display:flex;align-items:center;min-height:44px}
+.copy{border-top:1px solid #5C5149;margin-top:32px;padding-top:16px;color:#CFC6BB;font-size:.875rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
+
+/* sp fixed cta bar */
+.cta-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:repeat(3,1fr);background:var(--surface);border-top:1px solid var(--line);box-shadow:0 -4px 12px rgba(43,38,34,.12);padding:6px 6px calc(6px + env(safe-area-inset-bottom));gap:6px}
+.cta-bar a{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:56px;border-radius:10px;text-decoration:none;color:#fff;font-weight:700;font-size:.9375rem;line-height:1.25;background:var(--cta)}
+.cta-bar a small{font-size:.6875rem;font-weight:400}
+.cta-bar a.line{background:var(--green)}
+.cta-bar a.form{background:var(--navy)}
+@media (max-width:767px){body{padding-bottom:calc(var(--bar-h) + 12px + env(safe-area-inset-bottom))}}
+@media (min-width:768px){.cta-bar{display:none}}
+
+/* hover lift */
+@media (prefers-reduced-motion:no-preference){
+  .svc,.work{transition:transform .2s ease,box-shadow .2s ease}
+  .svc:hover,.work:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(43,38,34,.12)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body class="no-js">
+<a class="skip" href="#main">本文へスキップ</a>
+
+<!-- ===== ヘッダー ===== -->
+<header class="site-header">
+  <div class="container header-in">
+    <a class="logo" href="/" aria-label="〇〇工務店 トップページ">
+      <!-- 要確認: ロゴデータ未支給のため仮のSVG -->
+      <svg viewBox="0 0 40 40" width="36" height="36" aria-hidden="true"><rect width="40" height="40" rx="9" fill="#7A4B26"/><path d="M8 21 20 10l12 11v11H24v-7h-8v7H8z" fill="#F0EEE9"/></svg>
+      <span>〇〇工務店<small>〇〇市の内装・リフォーム・外構</small></span>
+    </a>
+    <nav class="gnav" id="gnav" aria-label="メインメニュー">
+      <ul>
+        <li><a href="#menu">工事メニュー</a></li>
+        <li><a href="#works">施工事例</a></li>
+        <li><a href="#subsidy">補助金</a></li>
+        <li><a href="#flow">流れ</a></li>
+        <li><a href="#greeting">会社案内</a></li>
+        <li><a href="#area">エリア</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <a class="header-tel" href="tel:0000000000">
+      <strong><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg><span class="num">0000-00-0000</span></strong>
+      <small>受付 8:00〜18:00（日祝休）</small>
+    </a>
+    <a class="btn header-cta" href="/contact/">無料見積り</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="gnav"><span class="bars" aria-hidden="true"></span>メニュー</button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ===== ヒーロー ===== -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container hero-grid">
+    <div>
+      <span class="hero-area">〇〇市・△△市・□□町に対応</span>
+      <h1 id="hero-title"><span class="accent">〇〇市</span>のリフォーム・内装・外構なら〇〇工務店</h1>
+      <p>水回り・クロス張替えから外壁塗装、カーポートや駐車場、網戸1枚の修理まで。地元の職人が、現地調査からお見積り・施工・アフター点検まで担当します。</p>
+      <ul class="hero-points">
+        <li>現地調査・お見積りは<strong>無料</strong>（〇〇市と近隣エリア）</li>
+        <li>内訳付きの見積書。追加費用は<strong>必ず事前にご相談</strong></li>
+        <li>補助金・介護保険の<strong>申請もお手伝い</strong></li>
+      </ul>
+      <a class="hero-tel" href="tel:0000000000">
+        <small>お電話でのご相談・お見積りのご依頼</small>
+        <strong><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg><span class="num">0000-00-0000</span></strong>
+        <small>受付 8:00〜18:00（日曜・祝日休み）</small>
+      </a>
+      <div class="btn-row">
+        <a class="btn" href="/contact/">無料見積りを依頼する</a>
+        <!-- 要確認: LINE公式アカウントの友だち追加URL -->
+        <a class="btn btn--line" href="https://lin.ee/XXXXXXX" rel="noopener">LINEで写真を送って相談</a>
+      </div>
+      <p class="updated">最終更新日：<time datetime="2026-10-30">2026年10月30日</time></p>
+    </div>
+    <figure class="hero-figure">
+      <!-- 要確認: 自社施工写真（リビング内装リフォーム施工後など）に差し替え。AVIF/WebP＋preload を設定 -->
+      <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Cdefs%3E%3ClinearGradient id='s' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23F7EFE2'/%3E%3Cstop offset='1' stop-color='%23E6D6BF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='600' fill='url(%23s)'/%3E%3Crect y='430' width='800' height='170' fill='%23B88A5E'/%3E%3Cg stroke='%23A2764C' stroke-width='3'%3E%3Cline x1='0' y1='470' x2='800' y2='470'/%3E%3Cline x1='0' y1='515' x2='800' y2='515'/%3E%3Cline x1='0' y1='560' x2='800' y2='560'/%3E%3C/g%3E%3Crect x='470' y='70' width='250' height='260' rx='6' fill='%23CFE3EA' stroke='%23FFFFFF' stroke-width='12'/%3E%3Cline x1='595' y1='70' x2='595' y2='330' stroke='%23FFFFFF' stroke-width='8'/%3E%3Crect x='80' y='330' width='300' height='100' rx='18' fill='%233F5E45'/%3E%3Crect x='95' y='290' width='270' height='60' rx='18' fill='%234E7357'/%3E%3Crect x='420' y='360' width='120' height='70' rx='8' fill='%237A4B26'/%3E%3Ccircle cx='160' cy='160' r='46' fill='%23F3C98B'/%3E%3Crect x='150' y='200' width='20' height='90' fill='%237A4B26'/%3E%3C/svg%3E" width="800" height="600" fetchpriority="high" decoding="async" alt="〇〇市の戸建て住宅 リビング内装リフォーム施工後のイメージ（写真差し替え予定）">
+      <figcaption>〇〇市 戸建てのリビング内装リフォーム（イメージ）</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===== 信頼バッジ ===== -->
+<section id="trust" aria-labelledby="trust-title">
+  <div class="container">
+    <span class="sec-label">TRUST</span>
+    <h2 id="trust-title">安心してご依頼いただくための登録・実績</h2>
+    <p class="lead">〇〇工務店は建設業許可を持ち、リフォーム瑕疵保険の登録事業者です。許可番号・登録先は第三者のサイトでも確認できます。</p>
+    <!-- 要確認: 許可の有無・許可番号・業種、瑕疵保険の保険法人名と登録番号、創業年、施工実績の件数と数え方 -->
+    <ul class="badges">
+      <li><span class="b-label">建設業許可</span><span class="b-value">〇〇県知事許可</span><span class="b-sub">（般-00）第00000号<br>建築工事業・内装仕上工事業</span></li>
+      <li><span class="b-label">リフォーム瑕疵保険</span><span class="b-value">登録事業者</span><span class="b-sub">〇〇保険法人 登録番号 000000<br><a href="https://www.kashihoken.or.jp/" rel="noopener">登録を確認する</a></span></li>
+      <li><span class="b-label">創業</span><span class="b-value">2005年</span><span class="b-sub">〇〇市〇〇町で21年</span></li>
+      <li><span class="b-label">施工実績</span><span class="b-value">〇〇〇件</span><span class="b-sub">※2005年4月〜2026年9月、自社施工のリフォーム・外構工事件数</span></li>
+      <li><span class="b-label">工事保証</span><span class="b-value">最長5年</span><span class="b-sub">工事内容により1〜5年。1か月・1年点検あり</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 3つの強み ===== -->
+<section id="strengths" aria-labelledby="str-title">
+  <div class="container">
+    <span class="sec-label">STRENGTHS</span>
+    <h2 id="str-title">〇〇工務店が選ばれる3つの理由</h2>
+    <p class="lead">相談した人がそのまま現場に来ること、見積りの中身がわかること、困ったときにすぐ来られる距離にいること。この3つを大切にしています。</p>
+    <div class="cards3">
+      <article class="strength">
+        <span class="no" aria-hidden="true">1</span>
+        <h3>相談から施工まで同じ担当者</h3>
+        <p>現地調査に伺った代表・職人が、そのまま工事まで担当します。下請けへの丸投げはしないので、お伝えいただいたご要望がきちんと現場に届きます。</p>
+      </article>
+      <article class="strength">
+        <span class="no" aria-hidden="true">2</span>
+        <h3>内訳がわかる見積書</h3>
+        <p>本体・工事費・処分費・諸経費を項目ごとに記載します。工事中に追加が必要になった場合は、必ず着手前に理由と金額をご説明します。相見積りも歓迎です。</p>
+      </article>
+      <article class="strength">
+        <span class="no" aria-hidden="true">3</span>
+        <h3>地元だから、すぐ伺えます</h3>
+        <p>〇〇市内なら水漏れなどの急な不具合にも当日〜翌日に伺える範囲で動いています。引き渡し後も1か月・1年点検でお住まいを見守ります。</p>
+        <!-- 要確認: 駆けつけ目安・点検時期 -->
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 工事メニュー ===== -->
+<section id="menu" aria-labelledby="menu-title">
+  <div class="container">
+    <span class="sec-label">MENU</span>
+    <h2 id="menu-title">工事メニューと費用の目安</h2>
+    <p class="lead">水回り・内装・外壁・外構・バリアフリーから小さな修理まで、1軒まるごと相談できます。下の金額は一般的な工事費込みの目安で、現地調査のあと内訳付きでお見積りします。</p>
+    <!-- 要確認: 下記の価格は一般的な相場を元にした仮の目安。自社の実績価格に差し替え、改定日を更新すること -->
+    <div class="menu-grid">
+      <article class="svc">
+        <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%23DCE8EC'/%3E%3Crect x='60' y='190' width='330' height='120' rx='30' fill='%23FFFFFF' stroke='%2399B6C0' stroke-width='6'/%3E%3Crect x='440' y='60' width='120' height='180' rx='10' fill='%23FFFFFF' stroke='%2399B6C0' stroke-width='6'/%3E%3Ccircle cx='500' cy='280' r='10' fill='%237A4B26'/%3E%3C/svg%3E" width="640" height="360" loading="lazy" decoding="async" alt="水回りリフォームのイメージ（ユニットバス）">
+        <div class="svc-body">
+          <span class="tag">浴室・トイレ・キッチン・洗面</span>
+          <h3><a href="/menu/water/">水回りリフォーム</a></h3>
+          <p>ユニットバス交換、トイレ交換、システムキッチン、給湯器まで。</p>
+          <dl class="price-list">
+            <div><dt>トイレ交換</dt><dd>15万〜40万円</dd></div>
+            <div><dt>ユニットバス交換</dt><dd>70万〜150万円</dd></div>
+            <div><dt>システムキッチン交換</dt><dd>50万〜150万円</dd></div>
+          </dl>
+        </div>
+      </article>
+      <article class="svc">
+        <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%23F3ECE0'/%3E%3Cg fill='%23E6DACA'%3E%3Crect x='0' width='40' height='260'/%3E%3Crect x='80' width='40' height='260'/%3E%3Crect x='160' width='40' height='260'/%3E%3Crect x='240' width='40' height='260'/%3E%3Crect x='320' width='40' height='260'/%3E%3Crect x='400' width='40' height='260'/%3E%3Crect x='480' width='40' height='260'/%3E%3Crect x='560' width='40' height='260'/%3E%3C/g%3E%3Crect y='260' width='640' height='100' fill='%23B88A5E'/%3E%3Crect x='250' y='200' width='160' height='60' rx='8' fill='%237A4B26'/%3E%3C/svg%3E" width="640" height="360" loading="lazy" decoding="async" alt="内装リフォームのイメージ（クロスとフローリング）">
+        <div class="svc-body">
+          <span class="tag">クロス・床・和室→洋室</span>
+          <h3><a href="/menu/interior/">内装・クロス張替え</a></h3>
+          <p>壁紙・天井・フローリングの張替え、和室から洋室への変更。</p>
+          <dl class="price-list">
+            <div><dt>クロス張替え（6畳 壁・天井）</dt><dd>5万〜8万円</dd></div>
+            <div><dt>フローリング（6畳）</dt><dd>10万〜30万円</dd></div>
+          </dl>
+        </div>
+      </article>
+      <article class="svc">
+        <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%23DCE6EE'/%3E%3Cpath d='M140 160 320 60l180 100z' fill='%235C5149'/%3E%3Crect x='170' y='160' width='300' height='170' fill='%23F0E6D6'/%3E%3Crect x='210' y='200' width='60' height='60' fill='%23CFE3EA'/%3E%3Crect x='370' y='200' width='60' height='60' fill='%23CFE3EA'/%3E%3Crect x='295' y='250' width='50' height='80' fill='%237A4B26'/%3E%3Crect y='330' width='640' height='30' fill='%239DB08F'/%3E%3C/svg%3E" width="640" height="360" loading="lazy" decoding="async" alt="外壁・屋根塗装のイメージ（2階建て住宅）">
+        <div class="svc-body">
+          <span class="tag">塗装・カバー工法・雨漏り</span>
+          <h3><a href="/menu/exterior-wall/">外壁・屋根</a></h3>
+          <p>外壁・屋根の塗装、屋根のカバー工法、雨どい・雨漏りの補修。</p>
+          <dl class="price-list">
+            <div><dt>外壁塗装（30坪・2階建て）</dt><dd>60万〜140万円</dd></div>
+            <div><dt>屋根塗装</dt><dd>25万〜80万円</dd></div>
+          </dl>
+        </div>
+      </article>
+      <article class="svc">
+        <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%23E1E8DF'/%3E%3Crect y='250' width='640' height='110' fill='%23C9C4BA'/%3E%3Crect x='120' y='90' width='360' height='16' fill='%23726A60'/%3E%3Crect x='130' y='106' width='12' height='144' fill='%23726A60'/%3E%3Crect x='458' y='106' width='12' height='144' fill='%23726A60'/%3E%3Cg fill='%233F5E45'%3E%3Ccircle cx='560' cy='190' r='44'/%3E%3Crect x='552' y='220' width='16' height='40'/%3E%3C/g%3E%3C/svg%3E" width="640" height="360" loading="lazy" decoding="async" alt="外構工事のイメージ（カーポートと土間コンクリート）">
+        <div class="svc-body">
+          <span class="tag">カーポート・駐車場・フェンス</span>
+          <h3><a href="/menu/exterior/">外構・エクステリア</a></h3>
+          <p>カーポート、土間コンクリート、フェンス、ウッドデッキ、門まわり。</p>
+          <dl class="price-list">
+            <div><dt>カーポート（1台用）</dt><dd>15万円〜</dd></div>
+            <div><dt>土間コンクリート（車1台分 約15㎡）</dt><dd>15万〜25万円</dd></div>
+          </dl>
+        </div>
+      </article>
+      <article class="svc">
+        <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%23F3ECE0'/%3E%3Crect x='80' y='60' width='200' height='250' fill='%23E6DACA' stroke='%23B9A58C' stroke-width='6'/%3E%3Crect x='310' y='150' width='260' height='12' rx='6' fill='%237A4B26'/%3E%3Crect x='320' y='162' width='8' height='40' fill='%237A4B26'/%3E%3Crect x='552' y='162' width='8' height='40' fill='%237A4B26'/%3E%3Crect y='310' width='640' height='50' fill='%23B88A5E'/%3E%3C/svg%3E" width="640" height="360" loading="lazy" decoding="async" alt="バリアフリーリフォームのイメージ（手すりと引き戸）">
+        <div class="svc-body">
+          <span class="tag">手すり・段差解消・引き戸</span>
+          <h3><a href="/menu/barrier-free/">バリアフリー・介護リフォーム</a></h3>
+          <p>介護保険の住宅改修（上限20万円）の申請をケアマネジャーと連携してお手伝いします。</p>
+          <dl class="price-list">
+            <div><dt>手すりの設置（1本）</dt><dd>5千円〜6万円</dd></div>
+            <div><dt>段差の解消</dt><dd>5万〜30万円</dd></div>
+          </dl>
+        </div>
+      </article>
+      <article class="svc">
+        <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%23EDE7DC'/%3E%3Crect x='170' y='50' width='300' height='260' fill='none' stroke='%237A4B26' stroke-width='10'/%3E%3Cg stroke='%23B9A58C' stroke-width='2'%3E%3Cline x1='180' y1='90' x2='460' y2='90'/%3E%3Cline x1='180' y1='130' x2='460' y2='130'/%3E%3Cline x1='180' y1='170' x2='460' y2='170'/%3E%3Cline x1='180' y1='210' x2='460' y2='210'/%3E%3Cline x1='180' y1='250' x2='460' y2='250'/%3E%3C/g%3E%3Ccircle cx='520' cy='260' r='34' fill='%23A84A18'/%3E%3C/svg%3E" width="640" height="360" loading="lazy" decoding="async" alt="小さな修理のイメージ（網戸の張替え）">
+        <div class="svc-body">
+          <span class="tag">網戸・建具・水栓・ちょっとした不具合</span>
+          <h3><a href="/menu/repair/">小さな修理</a></h3>
+          <p>網戸の張替え、ドアや引き戸の調整、蛇口の交換など。まとめてのご依頼で出張費を抑えられます。</p>
+          <dl class="price-list">
+            <div><dt>網戸の張替え（1枚）</dt><dd>1,500円〜</dd></div>
+            <div><dt>ドア・引き戸の調整</dt><dd>1万円前後〜</dd></div>
+            <div><dt>出張費（〇〇市内）</dt><dd>無料</dd></div>
+          </dl>
+          <!-- 要確認: 出張費・最低料金 -->
+        </div>
+      </article>
+    </div>
+    <p class="price-note note">価格は<time datetime="2026-10">2026年10月</time>時点の<strong>目安（税込・工事費込み）</strong>です。建物の状態・広さ・商品のグレードで変わり、現地調査のあと確定します。表示の「〜」の上限はお見積りでご確認ください。</p>
+  </div>
+</section>
+
+<!-- ===== 施工事例 ===== -->
+<section id="works" aria-labelledby="works-title">
+  <div class="container">
+    <span class="sec-label">WORKS</span>
+    <h2 id="works-title">最新の施工事例</h2>
+    <p class="lead">〇〇市と近隣で手がけた工事を、地域・工期・費用まで公開しています。ご自宅に近い条件の事例を見ると、費用のイメージがつかみやすくなります。</p>
+    <!-- 要確認: 事例はすべて仮。実際の事例（町名まで・費用・工期・施工年月）と写真、掲載同意に差し替え -->
+    <div class="works-grid">
+      <article class="work">
+        <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23E4EEF1'/%3E%3Crect x='30' y='150' width='230' height='110' rx='24' fill='%23FFFFFF' stroke='%2399B6C0' stroke-width='5'/%3E%3Crect x='290' y='40' width='80' height='130' rx='8' fill='%23FFFFFF' stroke='%2399B6C0' stroke-width='5'/%3E%3Crect x='280' y='200' width='100' height='8' rx='4' fill='%237A4B26'/%3E%3C/svg%3E" width="400" height="300" loading="lazy" decoding="async" alt="〇〇市△△町 浴室 施工後 ユニットバス">
+        <div class="work-body">
+          <span class="cat">水回り</span>
+          <h3>築30年の在来浴室をユニットバスへ</h3>
+          <dl>
+            <dt>地域</dt><dd>〇〇市△△町</dd>
+            <dt>工期</dt><dd>5日（<time datetime="2026-09">2026年9月</time>）</dd>
+            <dt>費用</dt><dd>約120万円（税込）</dd>
+            <dt>工事種別</dt><dd>浴室・脱衣所の床とクロス</dd>
+          </dl>
+          <a class="more" href="/works/2026-001/">この事例を詳しく見る</a>
+        </div>
+      </article>
+      <article class="work">
+        <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23F5EFE5'/%3E%3Crect x='240' y='40' width='120' height='140' fill='%23CFE3EA' stroke='%23FFFFFF' stroke-width='8'/%3E%3Crect y='210' width='400' height='90' fill='%23C49A6C'/%3E%3Crect x='40' y='160' width='150' height='50' rx='10' fill='%233F5E45'/%3E%3C/svg%3E" width="400" height="300" loading="lazy" decoding="async" alt="〇〇市□□町 6畳和室を洋室に変更 施工後">
+        <div class="work-body">
+          <span class="cat">内装・クロス</span>
+          <h3>6畳の和室をフローリングの洋室に</h3>
+          <dl>
+            <dt>地域</dt><dd>〇〇市□□町</dd>
+            <dt>工期</dt><dd>4日（<time datetime="2026-08">2026年8月</time>）</dd>
+            <dt>費用</dt><dd>約38万円（税込）</dd>
+            <dt>工事種別</dt><dd>床・クロス・押入れ→収納</dd>
+          </dl>
+          <a class="more" href="/works/2026-002/">この事例を詳しく見る</a>
+        </div>
+      </article>
+      <article class="work">
+        <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23E1E8DF'/%3E%3Crect y='200' width='400' height='100' fill='%23CBC6BD'/%3E%3Crect x='60' y='70' width='260' height='14' fill='%23726A60'/%3E%3Crect x='70' y='84' width='10' height='116' fill='%23726A60'/%3E%3Crect x='300' y='84' width='10' height='116' fill='%23726A60'/%3E%3Ccircle cx='355' cy='160' r='30' fill='%233F5E45'/%3E%3C/svg%3E" width="400" height="300" loading="lazy" decoding="async" alt="△△市 カーポートと駐車場の土間コンクリート 施工後">
+        <div class="work-body">
+          <span class="cat cat--ext">外構</span>
+          <h3>カーポート設置と駐車場のコンクリート舗装</h3>
+          <dl>
+            <dt>地域</dt><dd>△△市</dd>
+            <dt>工期</dt><dd>6日（<time datetime="2026-07">2026年7月</time>）</dd>
+            <dt>費用</dt><dd>約85万円（税込）</dd>
+            <dt>工事種別</dt><dd>カーポート2台用・土間約30㎡</dd>
+          </dl>
+          <a class="more" href="/works/2026-003/">この事例を詳しく見る</a>
+        </div>
+      </article>
+    </div>
+    <p style="margin-top:24px"><a class="btn btn--ghost" href="/works/">施工事例をすべて見る</a></p>
+  </div>
+</section>
+
+<!-- ===== ビフォーアフター ===== -->
+<section id="before-after" aria-labelledby="ba-title">
+  <div class="container">
+    <span class="sec-label">BEFORE / AFTER</span>
+    <h2 id="ba-title">ビフォーアフターで見る仕上がり</h2>
+    <p class="lead">同じ角度から撮った工事前と工事後を、つまみを左右に動かして見比べられます。キーボードの矢印キーでも操作できます。</p>
+    <!-- 要確認: 同じ画角の施工前・施工後写真（表札・ナンバー等はぼかし）に差し替え -->
+    <div class="ba-wrap">
+      <div class="ba" id="ba">
+        <img class="before" src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23A79C8C'/%3E%3Cg stroke='%238C8273' stroke-width='3'%3E%3Cpath d='M0 75H800M0 150H800M0 225H800M0 300H800M0 375H800'/%3E%3Cpath d='M100 0V420M200 0V420M300 0V420M400 0V420M500 0V420M600 0V420M700 0V420'/%3E%3C/g%3E%3Crect y='420' width='800' height='180' fill='%23786E62'/%3E%3Crect x='80' y='300' width='380' height='180' rx='6' fill='%23C2B8A8' stroke='%235C5149' stroke-width='6'/%3E%3Ccircle cx='600' cy='200' r='22' fill='%236A6054'/%3E%3Ccircle cx='160' cy='120' r='14' fill='%23574E44' opacity='.6'/%3E%3Ccircle cx='520' cy='90' r='10' fill='%23574E44' opacity='.6'/%3E%3C/svg%3E" width="800" height="600" loading="lazy" decoding="async" alt="施工前：タイル張りの在来浴室。目地が黒ずみ、浴槽が高く段差がある">
+        <div class="after">
+          <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23EEF4F6'/%3E%3Crect x='560' y='60' width='160' height='240' rx='10' fill='%23FFFFFF' stroke='%2399B6C0' stroke-width='6'/%3E%3Crect y='440' width='800' height='160' fill='%23D6E2E6'/%3E%3Crect x='70' y='300' width='420' height='170' rx='50' fill='%23FFFFFF' stroke='%2399B6C0' stroke-width='8'/%3E%3Crect x='540' y='330' width='200' height='12' rx='6' fill='%237A4B26'/%3E%3Crect x='620' y='210' width='12' height='120' rx='6' fill='%237A4B26'/%3E%3C/svg%3E" width="800" height="600" loading="lazy" decoding="async" alt="施工後：明るいユニットバス。またぎやすい浴槽と手すりを設置">
+        </div>
+        <span class="lbl lbl--b" aria-hidden="true">施工前</span>
+        <span class="lbl lbl--a" aria-hidden="true">施工後</span>
+        <span class="handle" aria-hidden="true"></span>
+        <input type="range" min="0" max="100" value="50" step="1" aria-label="施工前と施工後の比較（左：施工前、右：施工後）" aria-valuetext="施工前と施工後を半分ずつ表示">
+      </div>
+      <p class="ba-cap note">〇〇市△△町　在来浴室からユニットバスへの交換（工期5日・約120万円 税込）　<a href="/works/2026-001/">この事例の詳細</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== お客様の声 ===== -->
+<section id="voice" aria-labelledby="voice-title">
+  <div class="container">
+    <span class="sec-label">VOICE</span>
+    <h2 id="voice-title">お客様の声</h2>
+    <p class="lead">工事後のアンケートでいただいた声を、ご本人の同意を得て、手を加えずに掲載しています。良い声だけを選んではいません。</p>
+    <!-- 要確認: 実際のアンケート原文・掲載同意書（媒体・範囲・期間・撤回方法・謝礼の有無）を取得してから掲載 -->
+    <div class="voices">
+      <figure class="voice">
+        <blockquote cite="/works/2026-001/">
+          <p>冬のお風呂が寒くてつらかったのですが、交換してから暖かくなりました。最初に来てくれた社長さんが最後まで来てくれたので、話が早くて安心でした。</p>
+        </blockquote>
+        <figcaption>〇〇市△△町 O様（60代）／浴室リフォーム・<time datetime="2026-09">2026年9月</time> <a href="/works/2026-001/">この事例を見る</a>
+          <small>※施工後アンケート（謝礼なし）より、ご本人の同意を得て掲載</small></figcaption>
+      </figure>
+      <figure class="voice">
+        <blockquote cite="/works/2026-003/">
+          <p>雨の日の乗り降りが楽になりました。見積りの段階で、土を処分する費用まで書いてあったので、ほかの会社と比べやすかったです。</p>
+        </blockquote>
+        <figcaption>△△市 K様（40代）／カーポート・駐車場工事・<time datetime="2026-07">2026年7月</time> <a href="/works/2026-003/">この事例を見る</a>
+          <small>※施工後アンケート（謝礼なし）より、ご本人の同意を得て掲載</small></figcaption>
+      </figure>
+    </div>
+    <!-- 要確認: Googleビジネスプロフィールの口コミ一覧URL -->
+    <p style="margin-top:20px"><a class="btn btn--ghost" href="https://www.google.com/maps?cid=0000000000000000000" rel="noopener">Googleの口コミを見る</a></p>
+  </div>
+</section>
+
+<!-- ===== 補助金 ===== -->
+<section id="subsidy" aria-labelledby="sub-title">
+  <div class="container">
+    <span class="sec-label">SUBSIDY</span>
+    <h2 id="sub-title">補助金・助成金のご案内（2026年度）</h2>
+    <p class="lead">介護保険の住宅改修、国の「住宅省エネ2026キャンペーン」、〇〇市の住宅リフォーム補助が使える場合があります。多くは<strong>工事前の申請が必要</strong>で予算がなくなりしだい終了するため、工事を決める前にご相談ください。</p>
+    <div class="subsidy-grid">
+      <article class="sub-card">
+        <h3>介護保険の住宅改修</h3>
+        <p class="big">支給上限 20万円</p>
+        <p class="alert">着工前の申請が必要です。申請前に着工すると対象外になります。</p>
+        <ul>
+          <li>対象：要支援1・2、要介護1〜5の方</li>
+          <li>手すりの取付け、段差の解消、滑りにくい床への変更、引き戸への交換、和式から洋式トイレへの交換など</li>
+          <li>工事費20万円までのうち、自己負担1〜3割を除いた額が支給されます</li>
+        </ul>
+        <p class="note">ケアマネジャーとの打ち合わせから書類づくりまでお手伝いします。</p>
+      </article>
+      <article class="sub-card">
+        <h3>住宅省エネ2026キャンペーン（国）</h3>
+        <p class="big">窓の断熱 最大100万円/戸</p>
+        <ul>
+          <li><strong>先進的窓リノベ2026</strong>：内窓・窓交換。上限100万円/戸</li>
+          <li><strong>給湯省エネ2026</strong>：エコキュート 7万円/台（性能加算で10万円/台）など</li>
+          <li><strong>みらいエコ住宅2026</strong>：断熱改修などのリフォーム。上限は住宅の省エネ性能と改修内容により40万〜100万円</li>
+        </ul>
+        <p class="note">申請は登録事業者が行います。<!-- 要確認: 〇〇工務店の事業者登録の有無 -->予算上限に達するまで、遅くとも2026年12月末まで。予算の残りは<a href="https://jutaku-shoene2026.mlit.go.jp/" rel="noopener">公式サイト</a>で確認できます。</p>
+      </article>
+      <article class="sub-card">
+        <h3>〇〇市の住宅リフォーム補助</h3>
+        <!-- 要確認: 〇〇市の制度名・補助率・上限額・受付期間・条件（市内業者施工など）・市の公式URL -->
+        <p class="big">補助率 〇% ・上限 〇万円</p>
+        <ul>
+          <li>市内の業者が施工することが条件になっている例が多い制度です</li>
+          <li>受付期間：令和8年〇月〇日〜〇月〇日（予定）</li>
+          <li>契約・着工は交付決定のあとに行う必要があります</li>
+        </ul>
+        <p class="note">詳しい条件は<a href="https://www.city.example.lg.jp/" rel="noopener">〇〇市の公式ページ</a>をご確認ください。国の補助金との併用もご相談ください。</p>
+      </article>
+    </div>
+    <p class="note" style="margin-top:20px">情報更新日：<time datetime="2026-10-30">2026年10月30日</time>。制度の内容・金額は年度や予算の状況で変わります。最新の情報は各制度の公式サイトでご確認ください。</p>
+  </div>
+</section>
+
+<!-- ===== ご依頼の流れ ===== -->
+<section id="flow" aria-labelledby="flow-title">
+  <div class="container">
+    <span class="sec-label">FLOW</span>
+    <h2 id="flow-title">ご依頼の流れ</h2>
+    <p class="lead">ご相談から見積書のお渡しまではおおむね1〜2週間、部分的なリフォームの工事は数日〜2週間ほどです。見積りまでは費用はかかりません。</p>
+    <ol class="steps">
+      <li><h3>ご相談</h3><p>電話・LINE・フォームから。写真があると話が早く進みます。</p><span class="term">当日〜翌営業日にご連絡</span></li>
+      <li><h3>現地調査（無料）</h3><p>担当者がお伺いし、採寸と状態の確認をします。</p><span class="term">約30分〜1時間</span></li>
+      <li><h3>お見積り・ご提案</h3><p>内訳付きの見積書と、使える補助金をご説明します。</p><span class="term">調査から1〜2週間</span></li>
+      <li><h3>ご契約・申請</h3><p>補助金や介護保険の申請は着工前に済ませます。</p><span class="term">制度により期間が変わります</span></li>
+      <li><h3>施工</h3><p>ご近所へのあいさつ、毎日の清掃をして進めます。</p><span class="term">数日〜2週間（部分工事）</span></li>
+      <li><h3>お引き渡し・点検</h3><p>保証書をお渡しし、1か月・1年後に点検に伺います。</p><span class="term">保証 1〜5年</span></li>
+    </ol>
+    <div class="btn-row">
+      <a class="btn" href="/contact/#visit">現地調査を予約する</a>
+      <a class="btn btn--line" href="https://lin.ee/XXXXXXX" rel="noopener">LINEで写真を送る</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 代表あいさつ ===== -->
+<section id="greeting" aria-labelledby="greet-title">
+  <div class="container">
+    <span class="sec-label">MESSAGE</span>
+    <h2 id="greet-title">代表あいさつ</h2>
+    <p class="lead">〇〇工務店は、〇〇市で生まれ育った大工の代表が、ご相談から工事まで自分の目で見ることを大切にしている小さな工務店です。</p>
+    <!-- 要確認: 代表者氏名・顔写真（作業着姿）・経歴・資格・あいさつ文はご本人の言葉で書き直す -->
+    <div class="greet">
+      <figure>
+        <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220'%3E%3Crect width='220' height='220' fill='%23EADFD2'/%3E%3Ccircle cx='110' cy='88' r='42' fill='%23B9A58C'/%3E%3Cpath d='M30 220c6-52 40-78 80-78s74 26 80 78z' fill='%237A4B26'/%3E%3C/svg%3E" width="220" height="220" loading="lazy" decoding="async" alt="代表 〇〇 〇〇（顔写真差し替え予定）">
+        <figcaption><strong>代表 〇〇 〇〇</strong>大工・2級建築施工管理技士</figcaption>
+      </figure>
+      <div>
+        <p>はじめまして。〇〇工務店の〇〇です。〇〇市〇〇町で生まれ、地元の工務店で大工として〇年修業したあと、2005年に独立しました。</p>
+        <p>小さな工務店のままでいるのは、ご相談を受けた私がそのまま現場に立てるからです。「言ったことが職人さんに伝わっていなかった」ということが起きないよう、見積りから仕上げまで責任を持って担当します。</p>
+        <p>網戸1枚の張替えでも、お気軽にお声がけください。〇〇市の住まいを長く見守る、身近な相談相手でありたいと考えています。</p>
+        <p class="sign">〇〇工務店　代表 〇〇 〇〇</p>
+        <dl class="profile">
+          <dt>経験</dt><dd>大工歴〇年（うちリフォーム〇年）</dd>
+          <dt>資格</dt><dd>2級建築施工管理技士、増改築相談員 ほか</dd>
+          <dt>地域活動</dt><dd>〇〇地区自治会、〇〇祭り山車の修理 ほか</dd>
+        </dl>
+        <p style="margin-top:16px"><a href="/company/">会社概要・スタッフ紹介を見る</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 対応エリア ===== -->
+<section id="area" aria-labelledby="area-title">
+  <div class="container">
+    <span class="sec-label">AREA</span>
+    <h2 id="area-title">対応エリア</h2>
+    <p class="lead">〇〇市全域と、近隣の△△市・□□町に対応しています。エリア内は現地調査・お見積りが無料です。</p>
+    <!-- 要確認: 実際の対応町名・近隣市町、出張費の条件。GBPのサービス提供地域と一致させる -->
+    <div class="area">
+      <figure>
+        <!-- 要確認: GBP の地図埋め込み（iframe loading="lazy" title付き）または対応エリア図に差し替え -->
+        <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23E1E8DF'/%3E%3Cpath d='M60 60 200 30 330 80 360 200 260 270 110 260 40 170z' fill='%23C9D8C4' stroke='%233F5E45' stroke-width='4'/%3E%3Cpath d='M0 220C80 200 140 240 220 210S340 170 400 190' fill='none' stroke='%2399B6C0' stroke-width='10'/%3E%3Ccircle cx='200' cy='140' r='14' fill='%23A84A18'/%3E%3Ccircle cx='200' cy='140' r='70' fill='none' stroke='%23A84A18' stroke-width='3' stroke-dasharray='8 6'/%3E%3C/svg%3E" width="400" height="300" loading="lazy" decoding="async" alt="〇〇工務店の対応エリア図。〇〇市全域と近隣の△△市・□□町（地図差し替え予定）">
+        <figcaption>対応エリアのイメージ（地図は差し替え予定）</figcaption>
+      </figure>
+      <div>
+        <h3>〇〇市（全域）</h3>
+        <ul class="towns">
+          <li>〇〇町</li><li>△△町</li><li>□□町</li><li>◇◇地区</li><li>☆☆台</li><li>◎◎ヶ丘</li><li>××本町</li>
+        </ul>
+        <h3>近隣の市町</h3>
+        <ul class="towns">
+          <li>△△市</li><li>□□町</li>
+        </ul>
+        <p class="note">上記以外の地域もご相談ください。エリア外は出張費をいただく場合があります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <span class="sec-label">FAQ</span>
+    <h2 id="faq-title">よくある質問</h2>
+    <p class="lead">見積りは無料で、小さな修理からお受けしています。ほかにお客様からよくいただく質問をまとめました。</p>
+    <div class="faq">
+      <details>
+        <summary><h3>見積りは無料ですか？他社と比較してもいいですか？</h3></summary>
+        <div class="ans"><p>現地調査とお見積りは無料です（〇〇市と近隣エリア）。他社との相見積りも歓迎しており、項目ごとの内訳を明記して比較しやすい見積書をお出しします。</p></div>
+      </details>
+      <details>
+        <summary><h3>小さな工事（網戸の張替え・ドアの調整など）でも頼めますか？</h3></summary>
+        <div class="ans"><p>はい、1万円前後の小さな修繕からお受けしています。気になる箇所をまとめてご相談いただくと、出張の回数が減り費用を抑えられます。</p></div>
+      </details>
+      <details>
+        <summary><h3>住みながらリフォームできますか？</h3></summary>
+        <div class="ans"><p>水回りや内装の部分リフォームの多くは、住みながら工事できます。浴室工事中は数日入浴できないため、近くの入浴施設のご案内など、生活への影響を事前にご説明します。</p></div>
+      </details>
+      <details>
+        <summary><h3>リフォームの相談から完成までどのくらいかかりますか？</h3></summary>
+        <div class="ans"><p>相談・現地調査から見積りのお渡しまで1〜2週間、契約後の工事は部分リフォームで数日〜2週間程度です。設備機器の納期や補助金の申請時期によって前後します。</p></div>
+      </details>
+      <details>
+        <summary><h3>補助金の申請は自分でしないといけませんか？</h3></summary>
+        <div class="ans"><p>国の省エネ系の補助金の多くは、登録事業者である施工会社が申請します。市の補助金や介護保険はご本人の申請が必要な場合もあるため、書類の準備をお手伝いします。</p></div>
+      </details>
+      <details>
+        <summary><h3>工事の保証やアフターサービスはありますか？</h3></summary>
+        <div class="ans"><p>施工部分には工事内容に応じて1〜5年の自社保証を付け、設備機器にはメーカー保証が適用されます。引き渡し後は1か月・1年の点検に伺い、不具合があればすぐ対応します。</p></div>
+      </details>
+      <details>
+        <summary><h3>対応エリアはどこまでですか？</h3></summary>
+        <div class="ans"><p>〇〇市全域と、近隣の△△市・□□町に対応しています。地元の工務店なので、急な水漏れなどにも早めに伺えます。</p></div>
+      </details>
+    </div>
+    <p class="note" style="margin-top:16px">最終更新日：<time datetime="2026-10-30">2026年10月30日</time>　<a href="/faq/">よくある質問をすべて見る</a></p>
+  </div>
+</section>
+
+<!-- ===== お知らせ・コラム ===== -->
+<section id="news" aria-labelledby="news-title">
+  <div class="container">
+    <span class="sec-label">NEWS</span>
+    <h2 id="news-title">お知らせ・コラム</h2>
+    <p class="lead">年末年始の休業のお知らせや、補助金・お住まいの手入れに役立つ情報を発信しています。</p>
+    <!-- 要確認: 記事は仮。実際のお知らせに差し替え -->
+    <ul class="news">
+      <li><a href="/news/2026-year-end/"><time datetime="2026-10-30">2026.10.30</time><span class="kind">お知らせ</span><span class="ttl">年末年始休業のお知らせ（12月29日〜1月4日）</span></a></li>
+      <li><a href="/column/window-subsidy-2026/"><time datetime="2026-10-15">2026.10.15</time><span class="kind">コラム</span><span class="ttl">内窓で冬の寒さ対策。先進的窓リノベ2026の申請は12月末までに</span></a></li>
+      <li><a href="/column/kaigo-jutaku-kaishu/"><time datetime="2026-09-20">2026.09.20</time><span class="kind">コラム</span><span class="ttl">介護保険で手すりを付けるときの申請の流れ（上限20万円）</span></a></li>
+    </ul>
+    <a href="/news/">お知らせ・コラムの一覧へ</a>
+  </div>
+</section>
+
+<!-- ===== 最終CTA ===== -->
+<section id="contact" class="final-cta" aria-labelledby="cta-title">
+  <div class="container">
+    <h2 id="cta-title">まずはお気軽にご相談ください</h2>
+    <p class="lead">お急ぎの方はお電話、写真で相談したい方はLINE、まとめて書きたい方はフォームが便利です。現地調査・お見積りは無料です。</p>
+    <div class="cta-box">
+      <div class="cta-item">
+        <h3>お電話（お急ぎの方）</h3>
+        <p>受付 8:00〜18:00（日曜・祝日休み）</p>
+        <a class="btn" href="tel:0000000000"><span class="tel-big num">0000-00-0000</span></a>
+      </div>
+      <div class="cta-item">
+        <h3>LINE（写真で相談）</h3>
+        <p>気になる箇所の写真を送るだけで、概算をお伝えします。24時間受付。</p>
+        <a class="btn btn--line" href="https://lin.ee/XXXXXXX" rel="noopener">LINEで相談する</a>
+      </div>
+      <div class="cta-item">
+        <h3>フォーム（無料見積り）</h3>
+        <p>入力が必要なのは4項目だけ。2営業日以内にご連絡します。</p>
+        <!-- 要確認: 返信までの目安日数 -->
+        <a class="btn" href="/contact/" style="background:var(--navy);border-color:var(--navy)">見積りフォームへ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== フッター ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <h2>〇〇工務店</h2>
+        <!-- 要確認: NAP（正式社名・住所・電話）の正規表記。GBP・JSON-LD・外部掲載先と完全一致させる -->
+        <address>
+          株式会社〇〇工務店<br>
+          〒000-0000 〇〇県〇〇市〇〇町1-2-3<br>
+          TEL：<a href="tel:0000000000">0000-00-0000</a><br>
+          メール：<a href="mailto:info@example.jp">info@example.jp</a>
+        </address>
+        <p style="margin-top:12px"><a href="https://www.google.com/maps?cid=0000000000000000000" rel="noopener">Googleマップ・口コミ（Googleビジネスプロフィール）</a><br>
+        <a href="https://www.instagram.com/example_koumuten/" rel="noopener">Instagram</a></p>
+      </div>
+      <div>
+        <h2>営業時間・許可</h2>
+        <dl>
+          <dt>営業時間</dt><dd>月〜土 8:00〜18:00</dd>
+          <dt>定休日</dt><dd>日曜・祝日、年末年始（12/29〜1/4）</dd>
+          <dt>代表</dt><dd>〇〇 〇〇</dd>
+          <dt>創業</dt><dd>2005年4月</dd>
+          <dt>建設業許可</dt><dd>〇〇県知事許可（般-00）第00000号</dd>
+          <dt>瑕疵保険</dt><dd>リフォーム瑕疵保険 登録事業者（〇〇保険法人）</dd>
+          <dt>対応エリア</dt><dd>〇〇市全域・△△市・□□町</dd>
+        </dl>
+      </div>
+      <nav aria-label="サイトマップ">
+        <h2>サイトマップ</h2>
+        <ul class="foot-nav">
+          <li><a href="/">トップ</a></li>
+          <li><a href="/menu/water/">水回り</a></li>
+          <li><a href="/menu/interior/">内装・クロス</a></li>
+          <li><a href="/menu/exterior-wall/">外壁・屋根</a></li>
+          <li><a href="/menu/exterior/">外構・エクステリア</a></li>
+          <li><a href="/menu/barrier-free/">バリアフリー</a></li>
+          <li><a href="/menu/repair/">小さな修理</a></li>
+          <li><a href="/price/">費用の目安</a></li>
+          <li><a href="/works/">施工事例</a></li>
+          <li><a href="/subsidy/">補助金</a></li>
+          <li><a href="/company/">会社概要</a></li>
+          <li><a href="/area/">対応エリア</a></li>
+          <li><a href="/faq/">よくある質問</a></li>
+          <li><a href="/contact/">お問い合わせ</a></li>
+          <li><a href="/privacy/">プライバシーポリシー</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="copy">
+      <span>最終更新日：<time datetime="2026-10-30">2026年10月30日</time></span>
+      <small>&copy; 2026 〇〇工務店</small>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== スマホ下部固定CTAバー ===== -->
+<nav class="cta-bar" aria-label="お問い合わせ">
+  <a href="tel:0000000000">電話する<small>8-18時</small></a>
+  <a class="line" href="https://lin.ee/XXXXXXX" rel="noopener">LINE相談<small>24時間受付</small></a>
+  <a class="form" href="/contact/">無料見積り<small>フォーム</small></a>
+</nav>
+
+<script>
+(function(){
+  document.body.classList.remove('no-js');
+  // メニュー開閉
+  var btn=document.querySelector('.menu-btn'), nav=document.getElementById('gnav');
+  if(btn&&nav){
+    btn.addEventListener('click',function(){
+      var open=nav.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+    });
+    nav.addEventListener('click',function(e){
+      if(e.target.closest('a')){nav.classList.remove('is-open');btn.setAttribute('aria-expanded','false');}
+    });
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape'&&nav.classList.contains('is-open')){nav.classList.remove('is-open');btn.setAttribute('aria-expanded','false');btn.focus();}
+    });
+  }
+  // ビフォーアフター
+  var ba=document.getElementById('ba');
+  if(ba){
+    var r=ba.querySelector('input[type=range]');
+    var upd=function(){
+      var v=Number(r.value);
+      ba.style.setProperty('--pos',v+'%');
+      r.setAttribute('aria-valuetext', v<=5?'施工後をほぼ全体に表示':v>=95?'施工前をほぼ全体に表示':'施工前を'+v+'%、施工後を'+(100-v)+'%表示');
+    };
+    r.addEventListener('input',upd); upd();
+  }
+})();
+</script>
+</body>
+</html>
