@@ -1,0 +1,1742 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>工務店HP 調査報告書</title>
+<style>
+:root{
+  --bg:#f6f4ef; --surface:#ffffff; --surface-2:#efebe3; --text:#24211e; --muted:#5e5750;
+  --line:#d9d2c6; --accent:#6f4422; --accent-2:#2f5a46; --navy:#1e3a5f;
+  --hi:#fff4d6; --hi-line:#e3c36a; --warn:#fbe9e4; --warn-line:#d58a72; --ok:#e5f1ea; --ok-line:#7fae94;
+  --code-bg:#f1eee8; --chip-border:rgba(0,0,0,.15);
+  --sidebar:270px;
+  --font:system-ui,-apple-system,"Segoe UI","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo","Noto Sans JP",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#181614; --surface:#211e1b; --surface-2:#2a2622; --text:#ece7e0; --muted:#b3aaa0;
+    --line:#3d3731; --accent:#d9a679; --accent-2:#8cc4a6; --navy:#9fbbe0;
+    --hi:#3a3220; --hi-line:#8a7432; --warn:#3b2620; --warn-line:#a0614d; --ok:#1f3128; --ok-line:#4f8a6a;
+    --code-bg:#14120f; --chip-border:rgba(255,255,255,.25);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#181614; --surface:#211e1b; --surface-2:#2a2622; --text:#ece7e0; --muted:#b3aaa0;
+  --line:#3d3731; --accent:#d9a679; --accent-2:#8cc4a6; --navy:#9fbbe0;
+  --hi:#3a3220; --hi-line:#8a7432; --warn:#3b2620; --warn-line:#a0614d; --ok:#1f3128; --ok-line:#4f8a6a;
+  --code-bg:#14120f; --chip-border:rgba(255,255,255,.25);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{font-size:100%;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);font-size:1rem;line-height:1.8;letter-spacing:.02em}
+a{color:var(--accent);text-underline-offset:.2em;overflow-wrap:anywhere}
+code{font-family:var(--mono);font-size:.88em;background:var(--code-bg);padding:.05em .35em;border-radius:4px;overflow-wrap:anywhere}
+pre{font-family:var(--mono);font-size:.82rem;line-height:1.55;background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow-x:auto;white-space:pre;max-width:100%}
+pre code{background:none;padding:0;font-size:inherit;overflow-wrap:normal}
+h1,h2,h3,h4{line-height:1.45;letter-spacing:.01em}
+h2{font-size:1.45rem;margin:0 0 .8rem;padding-bottom:.4rem;border-bottom:2px solid var(--accent)}
+h3{font-size:1.12rem;margin:1.8rem 0 .6rem;padding-left:.6rem;border-left:4px solid var(--accent-2)}
+h4{font-size:1rem;margin:1.2rem 0 .4rem}
+p{margin:.5rem 0 .9rem}
+ul,ol{padding-left:1.4em;margin:.4rem 0 1rem}
+li{margin:.2rem 0}
+small,.small{font-size:.85rem;color:var(--muted)}
+
+/* layout */
+.layout{display:block}
+.toc{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;max-height:100vh;overflow-y:auto}
+.toc details{padding:10px 16px}
+.toc summary{cursor:pointer;font-weight:700;min-height:44px;display:flex;align-items:center}
+.toc ol{list-style:none;padding:0;margin:.3rem 0 .5rem;counter-reset:t}
+.toc li{margin:0}
+.toc a{display:flex;gap:.2em;padding:6px 8px;border-radius:6px;color:var(--text);text-decoration:none;font-size:.92rem;line-height:1.5}
+.toc a:hover,.toc a.active{background:var(--surface-2);color:var(--accent)}
+.toc .num{flex:0 0 1.9em;color:var(--muted);font-variant-numeric:tabular-nums}
+.toc-head{font-size:.8rem;color:var(--muted);margin:0 0 .3rem;display:none}
+main{padding:0 16px 64px;max-width:980px;margin:0 auto;min-width:0}
+@media (min-width:1000px){
+  .layout{display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr)}
+  .toc{position:sticky;top:0;height:100vh;max-height:none;overflow-y:auto;border-bottom:none;border-right:1px solid var(--line)}
+  .toc details{padding:20px 14px}
+  .toc summary{display:none}
+  .toc-head{display:block}
+  main{padding:0 40px 80px;margin:0}
+}
+
+header.cover{padding:32px 0 20px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.cover .kicker{font-size:.85rem;color:var(--muted);margin:0}
+.cover h1{font-size:1.9rem;margin:.2rem 0 .6rem}
+.meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px 16px;font-size:.9rem;margin:.6rem 0}
+.meta-grid div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+.meta-grid b{display:block;font-size:.78rem;color:var(--muted);font-weight:600}
+.theme-btn{font:inherit;font-size:.85rem;background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:999px;padding:6px 14px;cursor:pointer;min-height:36px}
+
+section.chap{padding-top:36px;scroll-margin-top:56px}
+@media (min-width:1000px){section.chap{scroll-margin-top:8px}}
+.chap > h2 .no{color:var(--accent);margin-right:.4em;font-variant-numeric:tabular-nums}
+
+.callout{border:1px solid var(--line);border-left:5px solid var(--accent);background:var(--surface);border-radius:8px;padding:10px 14px;margin:1rem 0}
+.callout p:first-child{margin-top:0}.callout p:last-child{margin-bottom:0}
+.callout.judge{border-left-color:var(--hi-line);background:var(--hi)}
+.callout.warn{border-left-color:var(--warn-line);background:var(--warn)}
+.callout.ok{border-left-color:var(--ok-line);background:var(--ok)}
+.label{display:inline-block;font-size:.75rem;font-weight:700;padding:1px 8px;border-radius:999px;border:1px solid currentColor;margin-right:.4em;white-space:nowrap;line-height:1.6}
+.judge .label{color:#7a5a00}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .judge .label{color:#f0cf74}}
+:root[data-theme="dark"] .judge .label{color:#f0cf74}
+
+/* tables */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:.6rem 0 1.2rem;border:1px solid var(--line);border-radius:8px;background:var(--surface);max-width:100%}
+table{border-collapse:collapse;width:100%;font-size:.88rem;line-height:1.6}
+caption{caption-side:top;text-align:left;font-weight:700;padding:8px 12px;font-size:.9rem}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;vertical-align:top;text-align:left}
+thead th{background:var(--surface-2);font-weight:700;white-space:nowrap;position:sticky;top:0}
+tbody tr:last-child td,tbody tr:last-child th{border-bottom:none}
+tbody th{font-weight:700;background:transparent}
+.w-wide{min-width:760px}.w-mid{min-width:600px}.w-xl{min-width:980px}
+td.url,td .url{font-size:.8rem;word-break:break-all}
+td.nowrap,th.nowrap{white-space:nowrap}
+.tag{display:inline-block;font-size:.72rem;padding:0 6px;border-radius:4px;background:var(--surface-2);border:1px solid var(--line);white-space:nowrap;margin:1px 2px 1px 0}
+.t-yori{background:#fde7d9;border-color:#e7b394;color:#6b2f10}
+.t-hi{background:#e3eef8;border-color:#9dbbd8;color:#173b5c}
+.t-jo{background:#e6f1e6;border-color:#9cc59c;color:#1f4a1f}
+.pri{display:inline-block;min-width:2.2em;text-align:center;font-weight:700;border-radius:4px;padding:0 6px;font-size:.78rem;white-space:nowrap}
+.p-high{background:#c44b1d;color:#fff}.p-mid{background:#b8860b;color:#fff}.p-low{background:#6b7280;color:#fff}
+.p-must{background:#8b2e1a;color:#fff}.p-rec{background:#2f5a46;color:#fff}.p-nice{background:#6b7280;color:#fff}
+.ng{color:#b3261e;font-weight:700}.okk{color:#2f6b45;font-weight:700}.chg{color:#9a6a00;font-weight:700}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ng{color:#ff8a80}:root:not([data-theme="light"]) .okk{color:#8fd1a9}:root:not([data-theme="light"]) .chg{color:#f0cf74}}
+:root[data-theme="dark"] .ng{color:#ff8a80}:root[data-theme="dark"] .okk{color:#8fd1a9}:root[data-theme="dark"] .chg{color:#f0cf74}
+
+/* summary top10 */
+.top10{counter-reset:k;list-style:none;padding:0;margin:1rem 0;display:grid;gap:10px}
+.top10 li{counter-increment:k;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px 12px 58px;position:relative;margin:0}
+.top10 li::before{content:counter(k);position:absolute;left:14px;top:12px;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-variant-numeric:tabular-nums}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .top10 li::before{color:#1b1612}}
+:root[data-theme="dark"] .top10 li::before{color:#1b1612}
+.top10 b{display:block}
+.top10 span{font-size:.9rem;color:var(--muted)}
+
+/* sitemap tree */
+.tree,.tree ul{list-style:none;margin:0;padding:0}
+.tree ul{margin-left:14px;padding-left:14px;border-left:2px solid var(--line)}
+.tree li{margin:4px 0;position:relative}
+.tree .node{display:inline-block;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:3px 10px;font-size:.9rem;line-height:1.5}
+.tree .node code{font-size:.78rem}
+.tree .new{border-color:var(--accent-2);border-width:2px}
+.tree .new::after{content:"追加推奨";font-size:.7rem;color:var(--accent-2);font-weight:700;margin-left:6px}
+
+/* checklist */
+.check{list-style:none;padding:0;margin:.4rem 0 1rem}
+.check li{display:flex;gap:10px;align-items:flex-start;padding:6px 8px;border-bottom:1px dashed var(--line);margin:0}
+.check input{width:20px;height:20px;margin-top:4px;flex:0 0 auto;accent-color:var(--accent)}
+.check label{flex:1;cursor:pointer;min-width:0}
+.check .num{color:var(--muted);font-variant-numeric:tabular-nums;margin-right:.3em}
+.check li.done label{color:var(--muted);text-decoration:line-through}
+.progress{font-size:.85rem;color:var(--muted);margin:.2rem 0 .6rem}
+
+/* palettes */
+.palettes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:1rem 0}
+.pal{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.pal.rec{border:2px solid var(--accent)}
+.pal h4{margin:0 0 .3rem}
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px;margin:.6rem 0}
+.chip{border:1px solid var(--chip-border);border-radius:8px;overflow:hidden;font-size:.74rem;line-height:1.35;background:var(--surface)}
+.chip .sw{height:44px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem}
+.chip .cap{padding:4px 6px}
+.chip .cap code{font-size:.72rem;padding:0;background:none}
+.sample{border-radius:8px;padding:12px;margin-top:6px;border:1px solid var(--chip-border)}
+.sample .btn{display:inline-block;border-radius:999px;padding:6px 14px;font-weight:700;font-size:.85rem;margin-top:6px}
+
+/* misc */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:.8rem 0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.card h4{margin:0 0 .3rem}
+details.code{margin:.6rem 0;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+details.code > summary{cursor:pointer;padding:10px 14px;font-weight:700;min-height:44px}
+details.code > pre{margin:0 10px 10px}
+details.code > div{padding:0 14px 10px}
+.faq-list{counter-reset:f;list-style:none;padding:0}
+.faq-list li{counter-increment:f;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:0 0 8px}
+.faq-list .q{font-weight:700}
+.faq-list .q::before{content:"Q" counter(f) ". ";color:var(--accent)}
+.faq-list .a{margin:.3rem 0 0;font-size:.95rem}
+.faq-list .fix{font-size:.8rem;color:var(--muted);margin:.3rem 0 0}
+.src{font-size:.8rem;color:var(--muted)}
+.srclist{font-size:.8rem;line-height:1.55;columns:1}
+.srclist li{word-break:break-all;margin:2px 0}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:.8rem 0}
+.kpi div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:.85rem}
+.kpi b{display:block;font-size:1.25rem;color:var(--accent);font-variant-numeric:tabular-nums}
+.flow{display:grid;grid-template-columns:1fr;gap:6px;counter-reset:s;list-style:none;padding:0}
+.flow li{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 12px 8px 44px;position:relative;margin:0}
+.flow li::before{content:counter(s);position:absolute;left:12px;top:8px;font-weight:700;color:var(--accent)}
+footer.end{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);font-size:.85rem;color:var(--muted)}
+.skip{position:absolute;left:-9999px}.skip:focus{left:8px;top:8px;background:var(--surface);padding:8px;z-index:10}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+@media (max-width:600px){
+  .cover h1{font-size:1.5rem}
+  h2{font-size:1.25rem}
+  table{font-size:.84rem}
+}
+
+@media print{
+  :root{--bg:#fff;--surface:#fff;--surface-2:#f1f1f1;--text:#000;--muted:#444;--line:#bbb;--code-bg:#f6f6f6}
+  body{font-size:10.5pt;line-height:1.6;background:#fff}
+  .toc,.theme-btn,.skip,.progress{display:none!important}
+  .layout{display:block}
+  main{max-width:none;padding:0;margin:0}
+  section.chap{padding-top:12px;break-before:page}
+  section.chap#s1{break-before:auto}
+  .tw{overflow:visible;border:none}
+  table{min-width:0!important;font-size:8.5pt}
+  thead th{position:static}
+  tr,li,.callout,.card,.pal,pre{break-inside:avoid}
+  h2,h3,h4{break-after:avoid}
+  pre{white-space:pre-wrap;word-break:break-all;font-size:7.5pt}
+  a{color:#000;text-decoration:none}
+  details.code > summary{padding:4px 0}
+  .chip .sw,.pri,.tag,.top10 li::before{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .check li.done label{text-decoration:none;color:#000}
+}
+@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<div class="layout">
+<nav class="toc" aria-label="目次">
+  <details id="toc-details" open>
+    <summary>目次（タップで開閉）</summary>
+    <p class="toc-head">工務店HP 調査報告書・制作仕様書</p>
+    <ol>
+      <li><a href="#s1"><span class="num">1</span>エグゼクティブサマリー</a></li>
+      <li><a href="#s2"><span class="num">2</span>参考にすべきホームページ</a></li>
+      <li><a href="#s3"><span class="num">3</span>サイト構成と追加コンテンツ</a></li>
+      <li><a href="#s4"><span class="num">4</span>ページ仕様表</a></li>
+      <li><a href="#s5"><span class="num">5</span>キーワード対応表</a></li>
+      <li><a href="#s6"><span class="num">6</span>ローカルSEO／GBPチェックリスト</a></li>
+      <li><a href="#s7"><span class="num">7</span>構造化データ方針</a></li>
+      <li><a href="#s8"><span class="num">8</span>信頼性要素と施工事例テンプレート</a></li>
+      <li><a href="#s9"><span class="num">9</span>問い合わせ導線・フォーム設計</a></li>
+      <li><a href="#s10"><span class="num">10</span>デザイン方針3案</a></li>
+      <li><a href="#s11"><span class="num">11</span>技術SEO 公開前チェックリスト</a></li>
+      <li><a href="#s12"><span class="num">12</span>AI検索対策とFAQ候補20問</a></li>
+      <li><a href="#s13"><span class="num">13</span>もう効かない古いSEO常識</a></li>
+      <li><a href="#s14"><span class="num">14</span>補助金・料金相場の目安</a></li>
+      <li><a href="#s15"><span class="num">15</span>確認事項と公開後の運用</a></li>
+      <li><a href="#s16"><span class="num">16</span>注記・統合判断・出典一覧</a></li>
+    </ol>
+  </details>
+</nav>
+
+<main id="main">
+<header class="cover">
+  <p class="kicker">調査報告書・制作仕様書（社外秘）</p>
+  <h1>〇〇市の小さな工務店（内装・リフォーム・外構）<br>ホームページ制作 調査報告書</h1>
+  <div class="meta-grid">
+    <div><b>調査日・作成日</b>2026年10月30日</div>
+    <div><b>読み手</b>制作担当（Web制作者）／工務店 代表者さま</div>
+    <div><b>調査体制</b>司令塔1名＋調査担当10名の結果を統合</div>
+    <div><b>調査方法</b>WebSearch中心（一部公式サイトは直接開けず）→ <a href="#s16">16章</a></div>
+  </div>
+  <p class="small">表記ルール：「〇〇市」「〇〇町」「〇〇工務店」は仮置きです。価格・制度の数値は調査時点の目安で、公開前に一次情報（公式サイト）での確認が必要です。<span class="label" style="color:var(--muted)">判断</span>の付いた枠は、担当者間で食い違った点をまとめ役が統一した箇所です。</p>
+  <button type="button" class="theme-btn" id="themeBtn" aria-label="表示の明るさを切り替える">表示：自動</button>
+</header>
+
+<!-- 1 -->
+<section class="chap" id="s1">
+<h2><span class="no">1</span>エグゼクティブサマリー</h2>
+<div class="callout ok">
+<p><b>結論：</b>小さな工務店が「〇〇市 リフォーム」などで見つけてもらうための主戦場は、<b>Googleマップ（Googleビジネスプロフィール）と、工事ごとに作った地域名入りのページ</b>です。特別な裏技はなく、2026年5月にGoogleが公表した生成AI向けガイドでも「AI検索対策＝通常のSEO」と明言されています。やることは「正確な会社情報をそろえる」「自社の施工事例を地域名・費用・工期つきで積み上げる」「口コミを集めて返信する」の3つに集約されます。</p>
+</div>
+<div class="kpi">
+  <div><b>約8%</b>ローカル検索でAI Overviewsが出る割合（マップ枠が今も主役）</div>
+  <div><b>58%</b>ChatGPTがローカル事業者を推薦する際、情報源が事業者自身のサイトだった割合（BrightLocal）</div>
+  <div><b>2026/5/7</b>FAQリッチリザルトが全サイトで表示終了</div>
+  <div><b>20万円</b>介護保険の住宅改修 支給限度基準額（一律）</div>
+</div>
+<h3>優先度トップ10（上から順に着手）</h3>
+<ol class="top10">
+  <li><b>Googleビジネスプロフィール（GBP）を完全に埋める</b><span>正式な屋号のみ（地名やキーワードを足さない）、メインカテゴリ、サービスの個別登録、自社写真10〜15枚以上、営業時間・特別営業時間。→ 6章</span></li>
+  <li><b>口コミを全員に同じ文面で依頼し、全件に返信する</b><span>引き渡し時にQRカード。謝礼・★指定・満足客だけへの依頼は禁止。口コミは数より新しさが効く。→ 6章</span></li>
+  <li><b>工事ごとに1ページを作り、title・h1を「〇〇市＋工事名」にする</b><span>水回り・浴室・キッチン・トイレ・内装・外壁屋根・外構・窓・バリアフリー・小さな修理。→ 4・5章</span></li>
+  <li><b>施工事例を1件1URLで、町名・費用・工期・築年数・自社写真つきで積み上げる</b><span>「〇〇市△△町 ユニットバス交換（工期4日・〇〇万円）」の形式。経験（E-E-A-T）の一番の証拠。→ 8章</span></li>
+  <li><b>NAP（社名・住所・電話）を1つの表記に統一する</b><span>表記台帳を作り、GBP・フッターの<code>&lt;address&gt;</code>・構造化データ（<code>GeneralContractor</code>）・外部掲載先をそろえる。→ 6・7章</span></li>
+  <li><b>「〇〇市で使えるリフォーム補助金」ページを作る</b><span>市の補助は「市内業者の施工」が条件の例が多く、地元工務店の最大の武器。更新日を必ず明記。→ 14章</span></li>
+  <li><b>費用の目安ページと料金表を出す</b><span>税込か・工事費込みか・含まれる／含まれないもの・時点を明記。小修理は出張費・最低料金も。→ 14章</span></li>
+  <li><b>代表の顔写真・建設業許可番号（または無許可の正直な説明）・保証内容を載せる</b><span>小規模店では「誰が来るか」が最大の判断材料。→ 8章</span></li>
+  <li><b>電話（テキスト＋<code>tel:</code>）・LINE写真見積もり・4項目の短いフォームを並べる</b><span>スマホは下部固定CTAバー。送信後は thanks ページでGA4キーイベント計測。→ 9章</span></li>
+  <li><b>表示速度・クロールの土台を整え、各見出しの直後に結論を書く</b><span>静的HTML、LCP≤2.5秒、Search Console／GA4、OAI-SearchBotなど検索用AIクローラーをブロックしない。→ 11・12章</span></li>
+</ol>
+<div class="callout warn"><p><b>やらなくてよいこと：</b>meta keywords、FAQ構造化データでの★狙い、自社サイトの口コミへの星マークアップ、町名だけ差し替えた地域ページの量産、llms.txtやAI専用ページ作り、GBPの店名へのキーワード追加。詳しくは<a href="#s13">13章</a>。</p></div>
+</section>
+
+<!-- 2 -->
+<section class="chap" id="s2">
+<h2><span class="no">2</span>参考にすべきホームページ</h2>
+<p>Agent1（地域密着の小規模工務店10件）とAgent2（外構専門店・大手の工事別ページ・価格表示10件）の結果です。<b>どのサイトもWebFetchで開けず、検索結果の抜粋で確認しています。</b>トップの並び順などは、制作前にブラウザで目視確認してください。実績の数字は各社の自己申告です。</p>
+<h3>2-1. 地域密着の小規模工務店（Agent1）</h3>
+<div class="tw"><table class="w-wide">
+<thead><tr><th>#</th><th>サイト名（地域）</th><th>URL</th><th>良い点</th><th>真似する箇所</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>石川建築（名古屋市中村区）</td><td class="url"><a href="https://ishikawa-kenchiku.jp/">ishikawa-kenchiku.jp</a></td><td>「地域密着型の小さな工務店」「営業マンや現場監督はいません」と小ささを“窓口が一本”の利点として表現。代表が大工・現場監督・建築士を兼任。工事別ページのtitleが「地域名＋工事名」、事例のエリア別一覧あり</td><td>「大手との違い（選ばれる理由）」と代表あいさつ。<br><small>反面教師：創業年・実績件数・電話表記がサイト内で不一致 → 数字は1か所で管理</small></td></tr>
+<tr><td>2</td><td>大森工務店（大阪市淀川区）</td><td class="url"><a href="https://omorikoumuten.jp/">omorikoumuten.jp</a></td><td>網戸・水漏れ・カギ・電球交換など小さな工事を入口に。「人気の5つの理由」。紹介率80%以上・Googleクチコミ4.6（49件）をトップに表示</td><td>「〇つの理由」と「こんな小さな工事もOK」一覧（各項目から料金・事例へリンク）</td></tr>
+<tr><td>3</td><td>司工務店（東京都府中市）</td><td class="url"><a href="https://www.tsukasa-koumuten.jp/">tsukasa-koumuten.jp</a></td><td>代表が18歳から大工で今も現場に。全工事自社施工で中間マージンなし。事例名が「府中市Y様邸ロフト工事」</td><td>事例タイトル「市名＋様邸＋工事名」、戸建て／店舗／マンションのカテゴリ</td></tr>
+<tr><td>4</td><td>タマケン（東京都新宿区）</td><td class="url"><a href="https://www.tamaken.info/">tamaken.info</a></td><td>titleに「木と手仕事の小さな工務店」。大工が全員正社員であることを独立ページに。リノベのブランド名</td><td>「社員大工とつくる」型の職人紹介ページ</td></tr>
+<tr><td>5</td><td>小さなリフォーム屋さん ワークスHiro（徳島市周辺）</td><td class="url"><a href="https://www.workshiro.com/">workshiro.com</a></td><td>夫婦二人をそのまま名乗る。営業エリアを市町村名で列挙。単価目安（土間コン1㎡7,500円〜）とLINE写真見積もり</td><td>料金の目安＋「写真を送るだけでLINE見積もり」導線</td></tr>
+<tr><td>6</td><td>RESUMO（京都）</td><td class="url"><a href="https://www.resumo-kyoto.com/">resumo-kyoto.com</a></td><td>「京都の小さな工務店」＋おしゃれ。事例ごとに費用・工期・築年数（例：和室改修52.6万円・10日・築22年）。小工事〜1,000万円台を同じ一覧に</td><td>事例カードの「費用・工期・築年数」<code>&lt;dl&gt;</code></td></tr>
+<tr><td>7</td><td>シエルブルー（福岡市東区）</td><td class="url"><a href="https://cielblue.co.jp/">cielblue.co.jp</a></td><td>titleに町名（名島）まで。事例に費用・工期、工事別「事例まとめ」。代表執筆の地域名入りコラム。2年保証、受注状況で断る場合もFAQで正直に</td><td>工事別の事例まとめページ、地域名入りコラム（著者名・写真付き）</td></tr>
+<tr><td>8</td><td>アースサービス（神奈川県小田原市）外構専門</td><td class="url"><a href="https://earth-eg.com/">earth-eg.com</a></td><td>施工エリアを9市町で明記。施工例を新築外構／カーポート／ウッドデッキ等に分類。代表名・設立年・1級土木施工管理技士</td><td>外構の工事種類別メニュー（URLは <code>/works/carport/</code> のように意味のある英単語に）</td></tr>
+<tr><td>9</td><td>沢野建設工房（石川県かほく市）</td><td class="url"><a href="https://sawano-kk.jp/">sawano-kk.jp</a></td><td>素材と職人の写真で世界観。「家づくりの流れ」「よくある質問」をナビに。「大工さんの仕事」ブログ</td><td>「流れ」と「FAQ」。<br><small>反面教師：事例がブログに埋もれ、更新が止まって見える</small></td></tr>
+<tr><td>10</td><td>天山工務店（世田谷・品川・大田）<small>参考・規模やや大</small></td><td class="url"><a href="https://www.tenzan.net/">tenzan.net</a></td><td>対応エリアを区名3つに絞ってtitleに。営業所別のスタッフ紹介</td><td>エリア別スタッフ紹介「〇〇市を担当するスタッフ」</td></tr>
+</tbody></table></div>
+
+<h3>2-2. 外構専門店・大手の工事別ページ・価格表示（Agent2）</h3>
+<div class="tw"><table class="w-wide">
+<thead><tr><th>サイト名</th><th>URL</th><th>良い点</th><th>真似する箇所</th></tr></thead>
+<tbody>
+<tr><td>ガーデンプラス（外構）</td><td class="url"><a href="https://www.garden.ne.jp/index.php?action=public_showcase_search_cost">garden.ne.jp（費用別施工例）</a></td><td>施工例を「50万円まで／50〜100万円…」の価格帯で絞り込み。金額・施工年月・市区町村を明記</td><td>価格帯別の静的URL（例 <code>/works/price/under-50/</code>）と事例カードの<code>&lt;dl&gt;</code></td></tr>
+<tr><td>SOTORIE（外構）</td><td class="url"><a href="https://sotorie.com/works/price/300-400/">sotorie.com/works/price/300-400/</a></td><td>価格帯ごとの専用URL、件数をタイトルに</td><td>価格帯ページのtitle「〇〇万〜〇〇万円の外構施工事例◯件」</td></tr>
+<tr><td>ハンワホームズ（外構）</td><td class="url"><a href="https://www.hanwa-ex.com/service/work/">hanwa-ex.com/service/work/</a></td><td>新築／リフォームを分け、面積・費用・写真で比較</td><td>事例詳細の「面積／費用／工期／使用商品」表</td></tr>
+<tr><td>ファミテイ（外構）</td><td class="url"><a href="https://famitei.mobi/contents.php/price">famitei.mobi/contents.php/price</a></td><td>項目別単価を公開（カーポート99,000円〜、土間8,627円/㎡〜）</td><td>単価表に改定日（<code>&lt;time&gt;</code>）を付ける</td></tr>
+<tr><td>セイカツ・ドゥ（生活堂リフォーム）</td><td class="url"><a href="https://www.seikatsu-do.com/reform/kitchen/marketprice.php">seikatsu-do.com/reform/kitchen/</a></td><td>相場・流れ・口コミをページ分け。定額パックに含むもの（撤去・給排水・処分・保証等）と含まないもの（腐食・シロアリ・電気工事等）を明記</td><td>パック価格直下に「含まれるもの／含まれないもの」の2列</td></tr>
+<tr><td>交換できるくん</td><td class="url"><a href="https://www.sunrefre.jp/faucet/price/">sunrefre.jp/faucet/price/</a></td><td>品目ごとに価格・工事内容ページ。給湯器の価格帯別販売比率まで公開</td><td>「お客様の価格帯分布」を表で示す</td></tr>
+<tr><td>コメリ（ホームセンター）</td><td class="url"><a href="https://www.komeri.com/contents/reform/details/carport_list.html">komeri.com カーポート</a></td><td>商品価格と組立工事費を分けて表示</td><td>4列表「商品｜本体価格｜工事費｜合計目安」</td></tr>
+<tr><td>カインズ／ヤマダ電機（比較記事経由）</td><td class="url"><a href="https://crexgroup.com/ja/reform/toilet-reform/cainz-toilet-reform-price-reviews/">crexgroup.com（比較記事）</a></td><td>商品＋標準工事費のパック。配管劣化・防水層は追加になりやすいと指摘</td><td>プランカード「〇万円〜（税込・標準工事費込み）」</td></tr>
+<tr><td>生活堂（外構・カーポート相場）</td><td class="url"><a href="https://www.seikatsu-do.com/exterior/carport/marketprice.php">seikatsu-do.com/exterior/carport/</a></td><td>本体＋基準工事＋標準工事の合計で相場を表示</td><td>価格の近くに「工事費込み価格に含まれるもの」<code>&lt;details&gt;</code></td></tr>
+<tr><td>SUUMOリフォーム掲載の大手</td><td class="url"><a href="https://suumo.jp/remodel/tokyo/">suumo.jp/remodel/tokyo/</a></td><td>会社紹介に「掲載事例の価格帯」「施工事例◯件」</td><td>トップと会社概要に「施工事例◯件／価格帯◯万〜◯万円」</td></tr>
+</tbody></table></div>
+
+<h3>2-3. 共通して見えた「型」</h3>
+<div class="cards">
+<div class="card"><h4>トップページの型（小規模リフォーム店）</h4><ol class="small" style="color:var(--text)"><li>「〇〇市の小さな工務店」＋実際の施工写真＋電話・LINE</li><li>対応工事と「小さな工事もOK」</li><li>選ばれる理由（3〜5個）</li><li>施工事例（費用・工期つき）</li><li>お客様の声・口コミ</li><li>代表・職人紹介（顔写真）</li><li>対応エリア（市町村名）</li><li>工事の流れとFAQ</li><li>お知らせ・コラム</li><li>会社概要と問い合わせ</li></ol></div>
+<div class="card"><h4>工事メニュー別ページの型</h4><p class="small" style="color:var(--text)">悩み → できること → 料金の目安（含む／含まない・追加費用のケース）→ 〇〇市内の施工事例3件 → 工事の流れ → 使える補助金 → FAQ 5〜8問 → 担当者（顔写真・資格）→ 問い合わせ → 関連メニューへのリンク。小さな工務店は「相場・流れ・事例」を1ページにまとめる方が管理しやすい。</p></div>
+<div class="card"><h4>「小ささ」を強みにする言い方</h4><p class="small" style="color:var(--text)">「小さな工務店」と名乗る／社長＝窓口＝職人／職人が社員・自社施工／エリアを市町村名で絞る／小さな工事OK／紹介と口コミ／夫婦・家族経営／費用・工期を正直に出す。</p></div>
+</div>
+</section>
+
+<!-- 3 -->
+<section class="chap" id="s3">
+<h2><span class="no">3</span>サイト構成（サイトマップ）と追加をすすめるコンテンツ</h2>
+<p>司令塔の決定案に、各担当の結果（URL設計・ページの分け方）を合わせたものです。URLは小文字・ハイフン・英単語で2〜3階層（Agent9）。</p>
+<div class="callout judge"><p><span class="label">判断</span><b>URLの接頭辞を <code>/service/</code> に統一。</b>担当ごとに <code>/menu/</code>（Agent3）・<code>/service/</code>（Agent2・4・5）・<code>/reform/</code>（Agent9）と割れていたため、多数派で構造化データのひな形（Agent5）とも一致する <code>/service/</code> を採用。浴室・キッチン・トイレは水回りの子にせず同じ階層に並べ、浅い階層（Agent9）を保つ。</p></div>
+<ul class="tree">
+<li><span class="node">トップ <code>/</code></span>
+<ul>
+  <li><span class="node">工事メニュー一覧 <code>/service/</code></span>
+  <ul>
+    <li><span class="node">水回り（洗面台・給湯器を含むハブ） <code>/service/water/</code></span></li>
+    <li><span class="node">浴室・ユニットバス <code>/service/bath/</code></span></li>
+    <li><span class="node">キッチン <code>/service/kitchen/</code></span></li>
+    <li><span class="node">トイレ <code>/service/toilet/</code></span></li>
+    <li><span class="node">内装・クロス・床 <code>/service/interior/</code></span></li>
+    <li><span class="node">外壁・屋根 <code>/service/roof-wall/</code></span></li>
+    <li><span class="node">外構・エクステリア <code>/service/exterior/</code></span></li>
+    <li><span class="node">断熱・内窓 <code>/service/window/</code></span></li>
+    <li><span class="node">バリアフリー・介護 <code>/service/barrier-free/</code></span></li>
+    <li><span class="node">小さな修理 <code>/service/repair/</code></span></li>
+  </ul></li>
+  <li><span class="node">施工事例 <code>/works/</code>（工事種別・地域で絞り込み）→ 詳細 <code>/works/2026-xxx/</code></span></li>
+  <li><span class="node">お客様の声 <code>/voice/</code></span></li>
+  <li><span class="node">費用の目安・料金表 <code>/price/</code></span></li>
+  <li><span class="node new">補助金・助成金ガイド <code>/subsidy/</code></span></li>
+  <li><span class="node">会社概要・代表あいさつ <code>/company/</code> → スタッフ <code>/staff/名前/</code></span></li>
+  <li><span class="node">ご依頼の流れ・保証とアフター <code>/flow/</code></span></li>
+  <li><span class="node">よくある質問 <code>/faq/</code></span></li>
+  <li><span class="node">対応エリア <code>/area/</code>（町別ページは固有事例3件以上が条件）</span></li>
+  <li><span class="node new">お知らせ・コラム <code>/news/</code></span></li>
+  <li><span class="node">無料見積もり・お問い合わせ <code>/contact/</code> → 送信完了 <code>/contact/thanks/</code>（noindex）</span></li>
+  <li><span class="node">口コミ依頼（施工後のお客様へ） <code>/review/</code></span></li>
+  <li><span class="node">プライバシーポリシー <code>/privacy/</code>／<code>404.html</code>／<code>sitemap.xml</code>／<code>robots.txt</code></span></li>
+</ul></li>
+</ul>
+<h3>全ページ共通の部品</h3>
+<ul>
+<li>ヘッダー：ロゴ／電話番号（テキスト＋受付時間）／LINE・見積もりボタン。<code>position:sticky</code>、高さ64px以内。</li>
+<li>パンくず（全下層ページ）＋ <code>BreadcrumbList</code>。</li>
+<li>スマホ下部の固定CTAバー（電話／LINE／フォーム）。</li>
+<li>フッター：NAP（<code>&lt;address&gt;</code>）・営業時間・対応エリア・GBPへのリンク・プライバシーポリシー。</li>
+</ul>
+<h3>追加をすすめるコンテンツ（司令塔案＋各担当の根拠）</h3>
+<div class="tw"><table class="w-mid">
+<thead><tr><th>追加コンテンツ</th><th>理由</th><th>根拠担当</th></tr></thead>
+<tbody>
+<tr><td>補助金・助成金ガイド</td><td>「〇〇市 リフォーム 補助金」は依頼に直結。市の補助は市内業者が条件の例が多く、地元工務店の強み。AIにも引用されやすい（数値・出典・更新日）</td><td>Agent3・10</td></tr>
+<tr><td>お知らせ・コラム</td><td>季節のメンテナンス（梅雨前の排水、冬前の内窓）や地域名入りの記事。GBP投稿の転載元にもなる。更新が止まって見えるサイトは反面教師</td><td>Agent1・4</td></tr>
+<tr><td>小さな修理ページ（出張費・最低料金つき）</td><td>網戸・ドア調整などを入口にする小規模店の定石。料金表に出張費と最低料金の行が一番問い合わせを左右する</td><td>Agent1・2</td></tr>
+<tr><td>スタッフ個別ページ</td><td>著者名（byline）と経歴ページの連結はGoogleの helpful content の Who に当たる</td><td>Agent6</td></tr>
+<tr><td>口コミ依頼ページ <code>/review/</code></td><td>QRカードの飛び先。GBPの口コミURLと書き方の例（★や内容は指定しない）</td><td>Agent4</td></tr>
+<tr><td>業者の選び方・見積書の見方（コラム）</td><td>比較中の検索意図の受け皿。AIに引用されやすい</td><td>Agent10</td></tr>
+</tbody></table></div>
+</section>
+
+<!-- 4 -->
+<section class="chap" id="s4">
+<h2><span class="no">4</span>ページ仕様表</h2>
+<p>title・h1・meta description 案はAgent3。CTAはAgent7の配置図。<span class="tag">補完</span>はAgent3の表に無かったページを、司令塔のサイト構成に合わせてまとめ役が同じ書式で補ったものです。title は全角30字前後、「サービス＋地域｜社名」、h1 は1ページ1つ。</p>
+<div class="tw"><table class="w-xl">
+<thead><tr><th>ページ</th><th>URL</th><th>title</th><th>h1</th><th>狙うキーワード</th><th>CTA</th></tr></thead>
+<tbody>
+<tr><td>トップ</td><td class="nowrap"><code>/</code></td><td>〇〇市のリフォーム・外構工事｜〇〇工務店</td><td>〇〇市のリフォーム・内装・外構なら〇〇工務店</td><td>〇〇市 リフォーム／〇〇市 工務店／〇〇市 リフォーム 業者・おすすめ</td><td>FV：電話・LINE（主ボタン1つを強調）／事例後：写真見積もり帯／末尾：電話・LINE・フォーム</td></tr>
+<tr><td>水回り</td><td class="nowrap"><code>/service/water/</code></td><td>〇〇市の水回りリフォーム（浴室・トイレ・キッチン）｜〇〇工務店</td><td>〇〇市の水回りリフォーム</td><td>〇〇市 水回り リフォーム／洗面台 交換／給湯器 交換・エコキュート</td><td>冒頭：LINE写真で概算／価格表後：LINE・フォーム／末尾：電話・LINE・フォーム・現地調査予約</td></tr>
+<tr><td>浴室</td><td class="nowrap"><code>/service/bath/</code></td><td>〇〇市の浴室・お風呂リフォーム｜ユニットバス交換の〇〇工務店</td><td>〇〇市の浴室リフォーム・ユニットバス交換</td><td>〇〇市 浴室リフォーム／お風呂 リフォーム／ユニットバス 交換</td><td>同上（サービスページ共通）</td></tr>
+<tr><td>キッチン</td><td class="nowrap"><code>/service/kitchen/</code></td><td>〇〇市のキッチンリフォーム｜〇〇工務店</td><td>〇〇市のキッチンリフォーム</td><td>〇〇市 キッチン リフォーム</td><td>同上</td></tr>
+<tr><td>トイレ</td><td class="nowrap"><code>/service/toilet/</code></td><td>〇〇市のトイレリフォーム・交換｜〇〇工務店</td><td>〇〇市のトイレリフォーム・交換</td><td>〇〇市 トイレ リフォーム／交換</td><td>同上</td></tr>
+<tr><td>内装</td><td class="nowrap"><code>/service/interior/</code></td><td>〇〇市の内装リフォーム（クロス・床張替え）｜〇〇工務店</td><td>〇〇市の内装リフォーム</td><td>〇〇市 内装 リフォーム／クロス 張替え／フローリング 張替え</td><td>同上</td></tr>
+<tr><td>外壁・屋根 <span class="tag">補完</span></td><td class="nowrap"><code>/service/roof-wall/</code></td><td>〇〇市の外壁塗装・屋根リフォーム｜〇〇工務店</td><td>〇〇市の外壁・屋根リフォーム</td><td>〇〇市 外壁塗装／屋根 リフォーム（Agent3の46語には無し。要追加調査）</td><td>同上</td></tr>
+<tr><td>外構</td><td class="nowrap"><code>/service/exterior/</code></td><td>〇〇市の外構工事（カーポート・フェンス・駐車場）｜〇〇工務店</td><td>〇〇市の外構・エクステリア工事</td><td>〇〇市 外構／外構工事 業者／カーポート 設置／ウッドデッキ・フェンス</td><td>同上</td></tr>
+<tr><td>断熱・窓</td><td class="nowrap"><code>/service/window/</code></td><td>〇〇市の内窓・窓リフォーム｜先進的窓リノベ2026対応</td><td>〇〇市の内窓・断熱窓リフォーム</td><td>〇〇市 窓 リフォーム・内窓／内窓 費用／二重窓 補助金</td><td>同上＋補助金ページへ</td></tr>
+<tr><td>バリアフリー</td><td class="nowrap"><code>/service/barrier-free/</code></td><td>〇〇市のバリアフリーリフォーム・手すり設置｜〇〇工務店</td><td>〇〇市のバリアフリー・介護リフォーム</td><td>〇〇市 バリアフリー リフォーム／手すり 取り付け 費用</td><td>同上＋「介護保険は着工前の申請が必要」の注記</td></tr>
+<tr><td>小さな修理 <span class="tag">補完</span></td><td class="nowrap"><code>/service/repair/</code></td><td>〇〇市の小さな修理（網戸・ドア・水漏れ）｜〇〇工務店</td><td>〇〇市の小さな修理・修繕</td><td>〇〇市 網戸 張り替え／ドア 調整 修理（要追加調査）</td><td>電話を主ボタン（急ぎの修理が多い）＋LINE写真</td></tr>
+<tr><td>施工事例一覧</td><td class="nowrap"><code>/works/</code></td><td>〇〇市のリフォーム施工事例・ビフォーアフター｜〇〇工務店</td><td>〇〇市・近隣の施工事例</td><td>〇〇市 施工事例 リフォーム／ビフォーアフター</td><td>記事末にCTA帯1つ（途中に置かない）</td></tr>
+<tr><td>施工事例（個別）</td><td class="nowrap"><code>/works/2026-xxx/</code></td><td>〇〇市〇〇町 ユニットバス交換（工期4日・〇〇万円）｜施工事例</td><td>〇〇市〇〇町　在来浴室からユニットバスへの交換</td><td>ロングテール（町名×工事名×費用）</td><td>「この事例と似た工事の相談」フォーム（hiddenで事例名送信）＋LINE</td></tr>
+<tr><td>お客様の声 <span class="tag">補完</span></td><td class="nowrap"><code>/voice/</code></td><td>お客様の声・口コミ｜〇〇市の〇〇工務店</td><td>〇〇市のお客様の声</td><td>〇〇市 リフォーム 口コミ／評判</td><td>末尾CTA帯＋Googleの口コミを見るリンク</td></tr>
+<tr><td>費用</td><td class="nowrap"><code>/price/</code></td><td>リフォーム費用の目安（浴室・キッチン・外構）｜〇〇市の〇〇工務店</td><td>リフォーム・外構工事の費用の目安</td><td>浴室リフォーム 費用／キッチン 費用 相場／トイレ交換 費用／クロス 6畳／外構 相場／駐車場 コンクリート 費用</td><td>各表の直後にLINE写真見積もり</td></tr>
+<tr><td>補助金</td><td class="nowrap"><code>/subsidy/</code></td><td>〇〇市のリフォーム補助金・助成金まとめ【2026年度】｜〇〇工務店</td><td>〇〇市で使えるリフォーム補助金（2026年度）</td><td>〇〇市 リフォーム 補助金／助成金 2026／介護保険 住宅改修／みらいエコ住宅2026／先進的窓リノベ2026／給湯省エネ2026</td><td>「補助金の相談だけでもOK」電話・フォーム</td></tr>
+<tr><td>会社概要</td><td class="nowrap"><code>/company/</code></td><td>会社概要・代表あいさつ｜〇〇市の〇〇工務店</td><td>会社概要</td><td>（指名検索・信頼確認）</td><td>末尾CTA帯（電話・フォーム）</td></tr>
+<tr><td>流れ・保証 <span class="tag">補完</span></td><td class="nowrap"><code>/flow/</code></td><td>ご依頼の流れと保証・アフターサービス｜〇〇工務店</td><td>ご依頼の流れと保証</td><td>リフォーム 流れ／工期（FAQと分担）</td><td>流れの直後に現地調査予約</td></tr>
+<tr><td>FAQ</td><td class="nowrap"><code>/faq/</code></td><td>よくある質問（費用・工期・補助金）｜〇〇市の〇〇工務店</td><td>リフォームのよくある質問</td><td>補助金 併用できる／リフォーム 工期 何日</td><td>末尾CTA帯</td></tr>
+<tr><td>対応エリア</td><td class="nowrap"><code>/area/</code></td><td>対応エリア（〇〇市全域・近隣市町）｜〇〇工務店</td><td>対応エリア</td><td>〇〇町 水回り リフォーム／〇〇市 リフォーム 近く／〇〇町 工務店</td><td>末尾CTA帯</td></tr>
+<tr><td>お知らせ・コラム <span class="tag">補完</span></td><td class="nowrap"><code>/news/</code></td><td>お知らせ・住まいのコラム｜〇〇市の〇〇工務店</td><td>お知らせ・コラム</td><td>季節・地域のロングテール</td><td>記事末にCTA帯1つ</td></tr>
+<tr><td>お問い合わせ</td><td class="nowrap"><code>/contact/</code></td><td>無料見積り・お問い合わせ｜〇〇市の〇〇工務店</td><td>無料見積り・お問い合わせ</td><td>リフォーム 見積もり 無料 〇〇市</td><td>冒頭に電話・LINE・フォームの3択。固定バーは電話・LINEの2つに</td></tr>
+<tr><td>送信完了</td><td class="nowrap"><code>/contact/thanks/</code></td><td>送信完了｜〇〇工務店</td><td>お問い合わせありがとうございました</td><td>— <small>noindex</small></td><td>返信目安・急ぎの電話・LINEで写真追加。GA4 <code>generate_lead</code></td></tr>
+</tbody></table></div>
+<p class="small">meta description（Agent3案）は全角80〜120字。地域名・強み・行動の呼びかけを入れ、ページごとに書き分ける（順位要因ではなくクリック率対策）。全文はAgent3の原稿を参照。</p>
+</section>
+
+<!-- 5 -->
+<section class="chap" id="s5">
+<h2><span class="no">5</span>キーワード対応表</h2>
+<p>Agent3の46語。意図：<span class="tag t-yori">依</span>今すぐ依頼／<span class="tag t-hi">比</span>比較中／<span class="tag t-jo">情</span>情報収集。URLは3章の統一URLに読み替え済み。<b>同じキーワードを複数ページのtitleで取り合わない</b>（費用は費用ページ、工事内容は工事ページが主担当で、相互に内部リンク）。</p>
+<div class="tw"><table class="w-mid">
+<thead><tr><th>#</th><th>キーワード</th><th>意図</th><th>割り当てページ</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>〇〇市 リフォーム</td><td class="nowrap"><span class="tag t-yori">依</span></td><td>トップ <code>/</code></td></tr>
+<tr><td>2</td><td>〇〇市 工務店</td><td class="nowrap"><span class="tag t-yori">依</span></td><td>トップ <code>/</code></td></tr>
+<tr><td>3</td><td>〇〇市 リフォーム 業者</td><td class="nowrap"><span class="tag t-yori">依</span></td><td>トップ <code>/</code>（会社概要へ内部リンク）</td></tr>
+<tr><td>4</td><td>〇〇市 リフォーム おすすめ</td><td class="nowrap"><span class="tag t-hi">比</span></td><td>トップ <code>/</code>＋施工事例</td></tr>
+<tr><td>5</td><td>〇〇市 リフォーム 口コミ／評判</td><td class="nowrap"><span class="tag t-hi">比</span></td><td>お客様の声 <code>/voice/</code>＋施工事例 <code>/works/</code></td></tr>
+<tr><td>6</td><td>〇〇市 水回り リフォーム</td><td class="nowrap"><span class="tag t-yori">依</span></td><td>水回り <code>/service/water/</code></td></tr>
+<tr><td>7</td><td>〇〇町 水回り リフォーム</td><td class="nowrap"><span class="tag t-yori">依</span></td><td>対応エリア <code>/area/</code>（固有事例が増えたら町別ページ）</td></tr>
+<tr><td>8</td><td>〇〇市 浴室リフォーム／お風呂 リフォーム</td><td class="nowrap"><span class="tag t-yori">依</span></td><td>浴室 <code>/service/bath/</code></td></tr>
+<tr><td>9</td><td>〇〇市 ユニットバス 交換</td><td class="nowrap"><span class="tag t-yori">依</span></td><td>浴室 <code>/service/bath/</code></td></tr>
+<tr><td>10</td><td>浴室リフォーム 費用／相場</td><td class="nowrap"><span class="tag t-hi">比</span></td><td>費用 <code>/price/</code>（浴室セクション）</td></tr>
+<tr><td>11</td><td>在来浴室 ユニットバス 費用</td><td class="nowrap"><span class="tag t-hi">比</span></td><td>費用 <code>/price/</code>＋浴室</td></tr>
+<tr><td>12</td><td>〇〇市 キッチン リフォーム</td><td class="nowrap"><span class="tag t-yori">依</span></td><td>キッチン <code>/service/kitchen/</code></td></tr>
+<tr><td>13</td><td>キッチンリフォーム 費用 相場</td><td class="nowrap"><span class="tag t-hi">比</span></td><td>費用 <code>/price/</code></td></tr>
+<tr><td>14</td><td>〇〇市 トイレ リフォーム／交換</td><td class="nowrap"><span class="tag t-yori">依</span></td><td>トイレ <code>/service/toilet/</code></td></tr>
+<tr><td>15</td><td>トイレ交換 費用</td><td class="nowrap"><span class="tag t-hi">比</span></td><td>費用 <code>/price/</code></td></tr>
+<tr><td>16</td><td>〇〇市 洗面台 交換</td><td class="nowrap"><span class="tag t-yori">依</span></td><td>水回り <code>/service/water/</code></td></tr>
+<tr><td>17</td><td>水回り リフォーム セット 費用</td><td class="nowrap"><span class="tag t-hi">比</span></td><td>費用 <code>/price/</code></td></tr>
+<tr><td>18</td><td>〇〇市 内装 リフォーム</td><td class="nowrap"><span class="tag t-yori">依</span></td><td>内装 <code>/service/interior/</code></td></tr>
+<tr><td>19</td><td>〇〇市 クロス 張替え</td><td class="nowrap"><span class="tag t-yori">依</span></td><td>内装 <code>/service/interior/</code></td></tr>
+<tr><td>20</td><td>クロス張替え 費用 6畳</td><td class="nowrap"><span class="tag t-hi">比</span></td><td>費用 <code>/price/</code></td></tr>
+<tr><td>21</td><td>〇〇市 フローリング 張替え</td><td class="nowrap"><span class="tag t-yori">依</span></td><td>内装 <code>/service/interior/</code></td></tr>
+<tr><td>22</td><td>和室 洋室 リフォーム 費用</td><td class="nowrap"><span class="tag t-hi">比</span></td><td>内装＋費用</td></tr>
+<tr><td>23</td><td>〇〇市 外構</td><td class="nowrap"><span class="tag t-yori">依</span></td><td>外構 <code>/service/exterior/</code></td></tr>
+<tr><td>24</td><td>〇〇市 外構工事 業者</td><td class="nowrap"><span class="tag t-yori">依</span></td><td>外構 <code>/service/exterior/</code></td></tr>
+<tr><td>25</td><td>〇〇市 カーポート 設置</td><td class="nowrap"><span class="tag t-yori">依</span></td><td>外構 <code>/service/exterior/</code></td></tr>
+<tr><td>26</td><td>〇〇市 ウッドデッキ／フェンス</td><td class="nowrap"><span class="tag t-yori">依</span></td><td>外構 <code>/service/exterior/</code></td></tr>
+<tr><td>27</td><td>外構工事 費用 相場</td><td class="nowrap"><span class="tag t-hi">比</span></td><td>費用 <code>/price/</code></td></tr>
+<tr><td>28</td><td>駐車場 コンクリート 費用</td><td class="nowrap"><span class="tag t-hi">比</span></td><td>費用 <code>/price/</code></td></tr>
+<tr><td>29</td><td>〇〇市 窓 リフォーム／内窓</td><td class="nowrap"><span class="tag t-yori">依</span></td><td>断熱・窓 <code>/service/window/</code></td></tr>
+<tr><td>30</td><td>内窓 費用／二重窓 補助金</td><td class="nowrap"><span class="tag t-hi">比</span><span class="tag t-jo">情</span></td><td>断熱・窓＋補助金</td></tr>
+<tr><td>31</td><td>〇〇市 給湯器 交換／エコキュート</td><td class="nowrap"><span class="tag t-yori">依</span></td><td>水回り <code>/service/water/</code>（給湯器セクション）</td></tr>
+<tr><td>32</td><td>〇〇市 バリアフリー リフォーム</td><td class="nowrap"><span class="tag t-yori">依</span></td><td>バリアフリー <code>/service/barrier-free/</code></td></tr>
+<tr><td>33</td><td>手すり 取り付け 費用</td><td class="nowrap"><span class="tag t-hi">比</span></td><td>バリアフリー＋費用</td></tr>
+<tr><td>34</td><td>〇〇市 リフォーム 補助金</td><td class="nowrap"><span class="tag t-jo">情</span><span class="tag t-hi">比</span></td><td>補助金 <code>/subsidy/</code></td></tr>
+<tr><td>35</td><td>〇〇市 住宅リフォーム 助成金 2026</td><td class="nowrap"><span class="tag t-jo">情</span></td><td>補助金 <code>/subsidy/</code></td></tr>
+<tr><td>36</td><td>介護保険 住宅改修 〇〇市</td><td class="nowrap"><span class="tag t-jo">情</span></td><td>補助金 <code>/subsidy/#kaigo</code>＋バリアフリー</td></tr>
+<tr><td>37</td><td>介護保険 住宅改修 20万円</td><td class="nowrap"><span class="tag t-jo">情</span></td><td>補助金 <code>/subsidy/#kaigo</code></td></tr>
+<tr><td>38</td><td>みらいエコ住宅2026 リフォーム</td><td class="nowrap"><span class="tag t-jo">情</span></td><td>補助金 <code>/subsidy/#mirai-eco</code></td></tr>
+<tr><td>39</td><td>先進的窓リノベ2026</td><td class="nowrap"><span class="tag t-jo">情</span></td><td>補助金 <code>/subsidy/#mado</code>＋断熱・窓</td></tr>
+<tr><td>40</td><td>給湯省エネ2026 エコキュート 補助金</td><td class="nowrap"><span class="tag t-jo">情</span></td><td>補助金 <code>/subsidy/#kyuto</code>＋水回り</td></tr>
+<tr><td>41</td><td>補助金 併用できる リフォーム</td><td class="nowrap"><span class="tag t-jo">情</span></td><td>FAQ <code>/faq/</code></td></tr>
+<tr><td>42</td><td>〇〇市 施工事例 リフォーム</td><td class="nowrap"><span class="tag t-hi">比</span></td><td>施工事例 <code>/works/</code></td></tr>
+<tr><td>43</td><td>リフォーム ビフォーアフター 〇〇市</td><td class="nowrap"><span class="tag t-hi">比</span></td><td>施工事例 <code>/works/</code></td></tr>
+<tr><td>44</td><td>リフォーム 工期／何日</td><td class="nowrap"><span class="tag t-jo">情</span></td><td>FAQ <code>/faq/</code></td></tr>
+<tr><td>45</td><td>リフォーム 見積もり 無料 〇〇市</td><td class="nowrap"><span class="tag t-yori">依</span></td><td>お問い合わせ <code>/contact/</code></td></tr>
+<tr><td>46</td><td>〇〇市 リフォーム 近く／〇〇町 工務店</td><td class="nowrap"><span class="tag t-yori">依</span></td><td>対応エリア <code>/area/</code>＋トップ（Googleビジネスプロフィール連携）</td></tr>
+</tbody></table></div>
+<div class="callout judge"><p><span class="label">判断</span>#5「口コミ／評判」はAgent3では施工事例 <code>/works/</code> 割り当てだったが、司令塔のサイト構成に「お客様の声」ページがあるため <code>/voice/</code> を主担当、<code>/works/</code> を従とした。</p></div>
+<h3>検索意図の分け方</h3>
+<div class="tw"><table class="w-mid">
+<thead><tr><th>意図</th><th>特徴的な語</th><th>主な受け皿</th></tr></thead>
+<tbody>
+<tr><td><span class="tag t-yori">今すぐ依頼</span></td><td>〇〇市＋工事名、業者、工務店、見積もり、修理、交換、近く、即日</td><td>工事メニュー各ページ、お問い合わせ、トップ</td></tr>
+<tr><td><span class="tag t-hi">比較中</span></td><td>費用、相場、価格、おすすめ、口コミ、評判、事例、ビフォーアフター</td><td>費用ページ、施工事例、お客様の声、会社概要</td></tr>
+<tr><td><span class="tag t-jo">情報収集</span></td><td>補助金、助成金、介護保険、時期、工期、流れ、注意点</td><td>補助金ページ、FAQ、コラム</td></tr>
+</tbody></table></div>
+<p class="small">地域名なしの「費用」「補助金」ページでも、末尾に「〇〇市での施工例と価格」セクションを置くと地域客の比較段階につながる。</p>
+</section>
+
+<!-- 6 -->
+<section class="chap" id="s6">
+<h2><span class="no">6</span>ローカルSEO／Googleビジネスプロフィール設定チェックリスト</h2>
+<p>Agent4の結果。確度は【公式】【二次】の区別あり。support.google.com などは直接開けず、検索結果の要約で確認しています。</p>
+<p class="progress" data-progress="gbp"></p>
+<h3>基本情報</h3>
+<ul class="check" data-group="gbp">
+<li><input type="checkbox" id="g1"><label for="g1"><b>ビジネス名</b>：登記・看板と同じ正式な屋号だけ。地名やサービス名を足さない（ガイドライン違反）【公式】。サイトのtitle・フッター・構造化データの <code>name</code> も同じ文字列に。</label></li>
+<li><input type="checkbox" id="g2"><label for="g2"><b>メインカテゴリ</b>：「リフォーム業」か「工務店」のうち売上の中心に近い方。サブに内装業者・外構工事業者など実際に請け負うもの。メインカテゴリは個別のランキング要因で1位【二次】。トップのh1と語をそろえる。</label></li>
+<li><input type="checkbox" id="g3"><label for="g3"><b>住所の表示（SAB判定）</b>：事務所で接客するなら表示。お客様が来ない自宅兼事務所なら住所を非表示にしてサービス提供地域を設定【公式】。</label></li>
+<li><input type="checkbox" id="g4"><label for="g4"><b>サービス提供地域</b>：市区町村名で最大20件、実際に行ける範囲に絞る【公式】。サイトの対応エリアと構造化データ <code>areaServed</code> を一致。</label></li>
+<li><input type="checkbox" id="g5"><label for="g5"><b>電話番号</b>：固定電話（あれば）をメインに、サイトと同じ表記。</label></li>
+<li><input type="checkbox" id="g6"><label for="g6"><b>ウェブサイトURL</b>：トップか所在地・対応エリアページ。計測用にUTM付き、遷移先には canonical。</label></li>
+<li><input type="checkbox" id="g7"><label for="g7"><b>営業時間・特別営業時間</b>：年末年始・お盆を必ず反映（「検索時点で営業中」が上位要因に入ったとの報告【二次】）。</label></li>
+<li><input type="checkbox" id="g8"><label for="g8"><b>属性</b>：オンライン見積もりなど該当するものを設定。</label></li>
+</ul>
+<h3>サービス・商品・写真・投稿</h3>
+<ul class="check" data-group="gbp">
+<li><input type="checkbox" id="g9"><label for="g9"><b>サービス登録</b>：クロス張替え・キッチン交換・浴室・外構カーポートなどを1件ずつ、説明文と「〜円から」の目安価格つき。サイトの工事ページのh1とサービス名をそろえる。</label></li>
+<li><input type="checkbox" id="g10"><label for="g10"><b>商品</b>：主力メニュー3〜5件を価格の目安・写真つきで登録し、サイトの該当ページへリンク。</label></li>
+<li><input type="checkbox" id="g11"><label for="g11"><b>写真</b>：外観・看板・スタッフ・施工前後・現場。素材写真や文字の多い画像は避ける。最初に10〜15枚以上、その後毎月追加。</label></li>
+<li><input type="checkbox" id="g12"><label for="g12"><b>ロゴ・カバー写真</b>：構造化データの <code>logo</code>・<code>image</code> と同じ画像。</label></li>
+<li><input type="checkbox" id="g13"><label for="g13"><b>最新情報の投稿</b>：週1〜隔週。施工事例・季節の提案・休業のお知らせ。リンク先はサイトの該当ページ（UTM付き）。</label></li>
+</ul>
+<h3>口コミ</h3>
+<ul class="check" data-group="gbp">
+<li><input type="checkbox" id="g14"><label for="g14"><b>全件に返信</b>：低評価にも事実ベースで丁寧に。個人情報や工事場所の特定につながる情報は書かない。</label></li>
+<li><input type="checkbox" id="g15"><label for="g15"><b>口コミ依頼の短縮URLとQRカード</b>を作り、引き渡し時に全員へ同じ文面で渡す（GBP管理画面「クチコミを依頼」）。</label></li>
+<li><input type="checkbox" id="g16"><label for="g16"><b>禁止事項を社内で共有</b>：謝礼・割引との引き換え、★や内容の指定、満足客だけへの依頼（ゲーティング）、社員・身内の投稿、低評価削除と引き換えの値引き【公式】。</label></li>
+</ul>
+<div class="callout judge"><p><span class="label">判断</span><b>GBPのQ&amp;Aは運用しない。</b>Agent10は「Q&amp;Aも更新する」と書いていたが、Agent4の新しい出典（Q&amp;A APIは2025年11月3日に終了、公開側も撤去され2026年8月に日本でも始まった「マップに相談（Ask Maps）」に置き換え）を優先。代わりにサイトのFAQ・サービス説明・口コミ本文を充実させる。GBPのチャットも2024年7月に終了済み。</p></div>
+<h3>サイト側でやること（NAP・地図・エリア）</h3>
+<ul class="check" data-group="gbp">
+<li><input type="checkbox" id="g17"><label for="g17"><b>NAPの表記台帳</b>：社名（株式会社の位置・全角半角）、住所（「丁目-番-号」か「1-2-3」か、ビル名）、電話（ハイフン）を1つに決め、GBP・サイト・外部掲載先を合わせる。細かな表記ゆれより、旧住所や使わない電話番号の修正を優先。</label></li>
+<li><input type="checkbox" id="g18"><label for="g18"><b>全ページ共通フッターに <code>&lt;address&gt;</code></b> と <code>tel:</code> リンク（テンプレートで1か所管理）。</label></li>
+<li><input type="checkbox" id="g19"><label for="g19"><b>地図の埋め込み</b>：会社概要に、GBPの「共有→地図を埋め込む」のiframe（<code>loading="lazy"</code>・<code>title</code>・width/height）。SABで住所非表示なら、ピン地図でなく対応エリアの市町村リスト。</label></li>
+<li><input type="checkbox" id="g20"><label for="g20"><b>対応エリアページ</b>：町名ごとに実際の事例を紐づける。中身のない地名違いページは量産しない（ドアウェイ扱い）。</label></li>
+<li><input type="checkbox" id="g21"><label for="g21"><b>所属団体・登録制度</b>をロゴ・登録番号・リンク付きで会社概要に掲示。</label></li>
+<li><input type="checkbox" id="g22"><label for="g22"><b>GBPからの流入をUTMで計測</b>（GA4・Search Console）。外部掲載先のNAPを年1〜2回点検。</label></li>
+</ul>
+<h3>サイテーション（会社情報の掲載先）候補</h3>
+<div class="tw"><table class="w-mid">
+<thead><tr><th>掲載先</th><th>メモ</th></tr></thead>
+<tbody>
+<tr><td>商工会・商工会議所の会員紹介</td><td>地域の公的な性格を持つ掲載先</td></tr>
+<tr><td>自治体の住宅リフォーム助成の登録施工業者名簿</td><td>「市内業者の施工」が条件の例が多い（例：燕市・彦根市・土浦市）。登録すれば集客にも直結</td></tr>
+<tr><td>国交省 住宅リフォーム事業者団体登録制度の登録団体</td><td>団体の事業者検索に掲載。信頼性の訴求にも</td></tr>
+<tr><td>リフォーム瑕疵保険の事業者登録</td><td>保険法人の事業者検索に載る</td></tr>
+<tr><td>iタウンページ、エキテン、Yahoo!プレイス、Apple Business Connect、Bing Places</td><td>主要な地図・電話帳系。表記台帳と一致させる</td></tr>
+<tr><td>メーカーの施工店検索（TOTO・LIXIL・YKK APなど）</td><td>工務店に特に有効（各社で要確認）</td></tr>
+<tr><td>ホームプロ、リショップナビ等の紹介サイト</td><td>有料・審査あり。費用対効果で判断</td></tr>
+</tbody></table></div>
+<div class="callout judge"><p><span class="label">判断</span><b>サイテーションは「数で順位を上げる」目的では行わない。</b>Agent4（Whitespark 2026要約：マップ枠への影響は約6%）とAgent10（ChatGPTの情報源の27%が第三者の言及）は矛盾しない。目的を「情報の一貫性」と「AI検索での露出」に置き、上表の質の高い掲載先に絞る。</p></div>
+</section>
+
+<!-- 7 -->
+<section class="chap" id="s7">
+<h2><span class="no">7</span>構造化データ方針</h2>
+<p>Agent5の結果（developers.google.com はWebSearchで <code>developers.google.com</code> に絞って確認）。構造化データは<b>順位を上げるものではなく</b>、見た目（リッチリザルト）と、検索エンジン・AIの理解を助けるもの。</p>
+<div class="callout judge"><p><span class="label">判断</span><b>会社の型は <code>GeneralContractor</code> に統一。</b>Agent2・4・6・10は <code>HomeAndConstructionBusiness</code>、Agent5・9は <code>GeneralContractor</code>。後者は前者の下位型（LocalBusiness &gt; HomeAndConstructionBusiness &gt; GeneralContractor）で、内装・リフォーム・外構をまとめて請け負う業態に一番合うため。あわせて <code>@id</code> は <code>#organization</code>、営業時間は文字列の <code>openingHours</code>（Agent9のひな形）ではなく <code>openingHoursSpecification</code>（Google公式ドキュメント準拠）に統一。</p></div>
+<h3>使う型</h3>
+<div class="tw"><table class="w-mid">
+<thead><tr><th>用途</th><th>型</th><th>置くページ</th><th>メモ</th></tr></thead>
+<tbody>
+<tr><td>会社本体</td><td><code>GeneralContractor</code></td><td>トップ（会社概要に複製可）</td><td>必須は <code>address</code>。<code>geo</code> は小数点以下5桁以上でGBPのピンと一致</td></tr>
+<tr><td>サイト名</td><td><code>WebSite</code></td><td>トップ</td><td><code>og:site_name</code> と表記をそろえる</td></tr>
+<tr><td>パンくず</td><td><code>BreadcrumbList</code></td><td>全下層</td><td>モバイル検索では2025年1月から非表示（PCは表示）。サポートは継続</td></tr>
+<tr><td>工事メニュー</td><td><code>Service</code>＋<code>Offer</code>／<code>PriceSpecification</code></td><td>各工事ページ</td><td>リッチリザルトは無いが意味づけに有効。価格は画面に出しているものだけ</td></tr>
+<tr><td>施工事例</td><td><code>Article</code>＋<code>ImageObject</code></td><td>事例詳細</td><td><code>contentUrl</code> は <code>&lt;img src&gt;</code> と完全一致</td></tr>
+<tr><td>代表・職人</td><td><code>Person</code>（<code>hasCredential</code>）</td><td>会社概要・スタッフ</td><td>資格はE-E-A-Tの補強</td></tr>
+<tr><td>会社概要</td><td><code>AboutPage</code></td><td>会社概要</td><td>本文の会社概要表と完全一致</td></tr>
+<tr><td>FAQ</td><td><code>FAQPage</code></td><td>任意</td><td>リッチリザルトは2026年5月7日に表示終了。付けるなら本文と完全一致</td></tr>
+</tbody></table></div>
+<h3>守るルール</h3>
+<ul>
+<li>画面に見えない内容（住所・電話・営業時間・価格・FAQ）をJSON-LDにだけ書かない。</li>
+<li>お客様の声に <code>Review</code>／<code>AggregateRating</code> を付けない（2019年から自社掲載の口コミは★対象外）。</li>
+<li><code>areaServed</code> は対応エリアページに載せた市町村だけ。県全域などを際限なく並べない。</li>
+<li>会社情報は共通テンプレート1か所から出力し、ページごとに値をばらつかせない。プラグインとテーマの二重出力に注意。</li>
+<li><code>HowTo</code> は付けない（2023年に廃止）。施工手順は <code>&lt;ol&gt;</code> で書く。</li>
+<li>祝日休みはJSON-LDで表せないので、本文に書き、GBPの特別営業時間で管理。年末年始は <code>specialOpeningHoursSpecification</code>。</li>
+<li>公開前に <a href="https://search.google.com/test/rich-results">リッチリザルトテスト</a> と <a href="https://validator.schema.org/">Schema Markup Validator</a> で確認。</li>
+</ul>
+<div class="callout judge"><p><span class="label">判断</span><b>自社サイトの口コミへの星マークアップは「違反」ではなく「効果なし＋誤解のおそれ」と表記。</b>Agent10は「ガイドライン違反」、Agent4・5・6は「★は出ないがペナルティはない」。Google公式（2019年告知・review-snippetドキュメント）にもとづく後者を採用し、どちらにしても付けない方針は共通。</p></div>
+<h3>JSON-LD ひな形（Agent5作成・JSONとして有効を確認済み）</h3>
+<p class="small">ドメインは <code>https://example.jp</code> の仮置き。会社の定義（<code>#organization</code>）はトップに置き、他ページは <code>@id</code> で参照する。価格・資格・座標などはすべて仮の値。</p>
+<details class="code"><summary>4-1 トップページ（WebSite＋GeneralContractor）</summary><pre><code>{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@graph&quot;: [
+    {
+      &quot;@type&quot;: &quot;WebSite&quot;,
+      &quot;@id&quot;: &quot;https://example.jp/#website&quot;,
+      &quot;url&quot;: &quot;https://example.jp/&quot;,
+      &quot;name&quot;: &quot;〇〇工務店&quot;,
+      &quot;inLanguage&quot;: &quot;ja&quot;,
+      &quot;publisher&quot;: { &quot;@id&quot;: &quot;https://example.jp/#organization&quot; }
+    },
+    {
+      &quot;@type&quot;: &quot;GeneralContractor&quot;,
+      &quot;@id&quot;: &quot;https://example.jp/#organization&quot;,
+      &quot;name&quot;: &quot;〇〇工務店&quot;,
+      &quot;alternateName&quot;: &quot;株式会社〇〇工務店&quot;,
+      &quot;url&quot;: &quot;https://example.jp/&quot;,
+      &quot;logo&quot;: {
+        &quot;@type&quot;: &quot;ImageObject&quot;,
+        &quot;url&quot;: &quot;https://example.jp/images/logo.png&quot;,
+        &quot;width&quot;: 512,
+        &quot;height&quot;: 512
+      },
+      &quot;image&quot;: [
+        &quot;https://example.jp/images/shop-front-1x1.jpg&quot;,
+        &quot;https://example.jp/images/shop-front-4x3.jpg&quot;,
+        &quot;https://example.jp/images/shop-front-16x9.jpg&quot;
+      ],
+      &quot;description&quot;: &quot;〇〇市で内装リフォーム・水まわり・外構工事を手がける地域密着の工務店です。&quot;,
+      &quot;telephone&quot;: &quot;+81-00-0000-0000&quot;,
+      &quot;email&quot;: &quot;info@example.jp&quot;,
+      &quot;priceRange&quot;: &quot;¥¥&quot;,
+      &quot;address&quot;: {
+        &quot;@type&quot;: &quot;PostalAddress&quot;,
+        &quot;postalCode&quot;: &quot;000-0000&quot;,
+        &quot;addressRegion&quot;: &quot;〇〇県&quot;,
+        &quot;addressLocality&quot;: &quot;〇〇市&quot;,
+        &quot;streetAddress&quot;: &quot;〇〇町1-2-3&quot;,
+        &quot;addressCountry&quot;: &quot;JP&quot;
+      },
+      &quot;geo&quot;: {
+        &quot;@type&quot;: &quot;GeoCoordinates&quot;,
+        &quot;latitude&quot;: 35.00000,
+        &quot;longitude&quot;: 139.00000
+      },
+      &quot;openingHoursSpecification&quot;: [
+        {
+          &quot;@type&quot;: &quot;OpeningHoursSpecification&quot;,
+          &quot;dayOfWeek&quot;: [&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday&quot;],
+          &quot;opens&quot;: &quot;08:00:00&quot;,
+          &quot;closes&quot;: &quot;18:00:00&quot;
+        }
+      ],
+      &quot;specialOpeningHoursSpecification&quot;: [
+        {
+          &quot;@type&quot;: &quot;OpeningHoursSpecification&quot;,
+          &quot;opens&quot;: &quot;00:00:00&quot;,
+          &quot;closes&quot;: &quot;00:00:00&quot;,
+          &quot;validFrom&quot;: &quot;2026-12-29&quot;,
+          &quot;validThrough&quot;: &quot;2027-01-04&quot;
+        }
+      ],
+      &quot;areaServed&quot;: [
+        { &quot;@type&quot;: &quot;City&quot;, &quot;name&quot;: &quot;〇〇市&quot; },
+        { &quot;@type&quot;: &quot;City&quot;, &quot;name&quot;: &quot;△△市&quot; },
+        { &quot;@type&quot;: &quot;City&quot;, &quot;name&quot;: &quot;□□町&quot; }
+      ],
+      &quot;knowsAbout&quot;: [&quot;内装リフォーム&quot;, &quot;水まわりリフォーム&quot;, &quot;外構工事&quot;, &quot;エクステリア&quot;],
+      &quot;sameAs&quot;: [
+        &quot;https://www.google.com/maps?cid=0000000000000000000&quot;,
+        &quot;https://www.instagram.com/example_koumuten/&quot;,
+        &quot;https://www.youtube.com/@example_koumuten&quot;,
+        &quot;https://www.facebook.com/example.koumuten&quot;
+      ],
+      &quot;founder&quot;: { &quot;@id&quot;: &quot;https://example.jp/company/#founder&quot; },
+      &quot;foundingDate&quot;: &quot;2005-04-01&quot;,
+      &quot;hasCredential&quot;: {
+        &quot;@type&quot;: &quot;EducationalOccupationalCredential&quot;,
+        &quot;credentialCategory&quot;: &quot;建設業許可&quot;,
+        &quot;name&quot;: &quot;〇〇県知事許可（般-00）第00000号&quot;
+      }
+    }
+  ]
+}</code></pre></details>
+<details class="code"><summary>4-2 工事ページ（例：外構 <code>/service/exterior/</code>：Service＋BreadcrumbList＋FAQPage任意）</summary><pre><code>{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@graph&quot;: [
+    {
+      &quot;@type&quot;: &quot;Service&quot;,
+      &quot;@id&quot;: &quot;https://example.jp/service/exterior/#service&quot;,
+      &quot;name&quot;: &quot;外構・エクステリア工事&quot;,
+      &quot;serviceType&quot;: &quot;外構工事&quot;,
+      &quot;description&quot;: &quot;〇〇市周辺で、駐車場の土間コンクリート、フェンス、門まわり、ウッドデッキの施工を行います。&quot;,
+      &quot;url&quot;: &quot;https://example.jp/service/exterior/&quot;,
+      &quot;image&quot;: &quot;https://example.jp/images/service/exterior-main.jpg&quot;,
+      &quot;provider&quot;: { &quot;@id&quot;: &quot;https://example.jp/#organization&quot; },
+      &quot;areaServed&quot;: [
+        { &quot;@type&quot;: &quot;City&quot;, &quot;name&quot;: &quot;〇〇市&quot; },
+        { &quot;@type&quot;: &quot;City&quot;, &quot;name&quot;: &quot;△△市&quot; }
+      ],
+      &quot;hasOfferCatalog&quot;: {
+        &quot;@type&quot;: &quot;OfferCatalog&quot;,
+        &quot;name&quot;: &quot;外構工事メニュー&quot;,
+        &quot;itemListElement&quot;: [
+          {
+            &quot;@type&quot;: &quot;Offer&quot;,
+            &quot;itemOffered&quot;: { &quot;@type&quot;: &quot;Service&quot;, &quot;name&quot;: &quot;駐車場土間コンクリート（1台分）&quot; },
+            &quot;priceSpecification&quot;: {
+              &quot;@type&quot;: &quot;PriceSpecification&quot;,
+              &quot;minPrice&quot;: 200000,
+              &quot;priceCurrency&quot;: &quot;JPY&quot;,
+              &quot;valueAddedTaxIncluded&quot;: true
+            }
+          },
+          {
+            &quot;@type&quot;: &quot;Offer&quot;,
+            &quot;itemOffered&quot;: { &quot;@type&quot;: &quot;Service&quot;, &quot;name&quot;: &quot;目隠しフェンス設置（10m）&quot; },
+            &quot;priceSpecification&quot;: {
+              &quot;@type&quot;: &quot;PriceSpecification&quot;,
+              &quot;minPrice&quot;: 300000,
+              &quot;priceCurrency&quot;: &quot;JPY&quot;,
+              &quot;valueAddedTaxIncluded&quot;: true
+            }
+          }
+        ]
+      }
+    },
+    {
+      &quot;@type&quot;: &quot;BreadcrumbList&quot;,
+      &quot;itemListElement&quot;: [
+        { &quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 1, &quot;name&quot;: &quot;ホーム&quot;, &quot;item&quot;: &quot;https://example.jp/&quot; },
+        { &quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 2, &quot;name&quot;: &quot;サービス&quot;, &quot;item&quot;: &quot;https://example.jp/service/&quot; },
+        { &quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 3, &quot;name&quot;: &quot;外構・エクステリア工事&quot; }
+      ]
+    },
+    {
+      &quot;@type&quot;: &quot;FAQPage&quot;,
+      &quot;mainEntity&quot;: [
+        {
+          &quot;@type&quot;: &quot;Question&quot;,
+          &quot;name&quot;: &quot;見積もりは無料ですか？&quot;,
+          &quot;acceptedAnswer&quot;: { &quot;@type&quot;: &quot;Answer&quot;, &quot;text&quot;: &quot;はい、〇〇市内の現地調査とお見積もりは無料です。&quot; }
+        }
+      ]
+    }
+  ]
+}</code></pre></details>
+<details class="code"><summary>4-3 施工事例ページ（Article＋ImageObject＋BreadcrumbList）</summary><pre><code>{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@graph&quot;: [
+    {
+      &quot;@type&quot;: &quot;Article&quot;,
+      &quot;@id&quot;: &quot;https://example.jp/works/2026-001/#article&quot;,
+      &quot;headline&quot;: &quot;〇〇市M様邸 LDK内装リフォーム（築30年・木造）&quot;,
+      &quot;description&quot;: &quot;築30年の木造住宅で、和室とキッチンをつなげて20畳のLDKに改装した事例です。工期3週間。&quot;,
+      &quot;datePublished&quot;: &quot;2026-09-15&quot;,
+      &quot;dateModified&quot;: &quot;2026-09-20&quot;,
+      &quot;author&quot;: { &quot;@id&quot;: &quot;https://example.jp/company/#founder&quot; },
+      &quot;publisher&quot;: { &quot;@id&quot;: &quot;https://example.jp/#organization&quot; },
+      &quot;mainEntityOfPage&quot;: &quot;https://example.jp/works/2026-001/&quot;,
+      &quot;image&quot;: [
+        { &quot;@id&quot;: &quot;https://example.jp/works/2026-001/#img-before&quot; },
+        { &quot;@id&quot;: &quot;https://example.jp/works/2026-001/#img-after&quot; }
+      ],
+      &quot;about&quot;: { &quot;@type&quot;: &quot;Service&quot;, &quot;name&quot;: &quot;内装リフォーム&quot;, &quot;provider&quot;: { &quot;@id&quot;: &quot;https://example.jp/#organization&quot; } },
+      &quot;contentLocation&quot;: { &quot;@type&quot;: &quot;Place&quot;, &quot;address&quot;: { &quot;@type&quot;: &quot;PostalAddress&quot;, &quot;addressLocality&quot;: &quot;〇〇市&quot;, &quot;addressRegion&quot;: &quot;〇〇県&quot;, &quot;addressCountry&quot;: &quot;JP&quot; } }
+    },
+    {
+      &quot;@type&quot;: &quot;ImageObject&quot;,
+      &quot;@id&quot;: &quot;https://example.jp/works/2026-001/#img-before&quot;,
+      &quot;contentUrl&quot;: &quot;https://example.jp/images/works/2026-001/before.jpg&quot;,
+      &quot;caption&quot;: &quot;施工前：独立した和室とキッチン&quot;,
+      &quot;creator&quot;: { &quot;@id&quot;: &quot;https://example.jp/#organization&quot; },
+      &quot;creditText&quot;: &quot;〇〇工務店&quot;,
+      &quot;copyrightNotice&quot;: &quot;© 〇〇工務店&quot;,
+      &quot;license&quot;: &quot;https://example.jp/photo-policy/&quot;,
+      &quot;acquireLicensePage&quot;: &quot;https://example.jp/contact/&quot;
+    },
+    {
+      &quot;@type&quot;: &quot;ImageObject&quot;,
+      &quot;@id&quot;: &quot;https://example.jp/works/2026-001/#img-after&quot;,
+      &quot;contentUrl&quot;: &quot;https://example.jp/images/works/2026-001/after.jpg&quot;,
+      &quot;caption&quot;: &quot;施工後：20畳の対面キッチンLDK&quot;,
+      &quot;creator&quot;: { &quot;@id&quot;: &quot;https://example.jp/#organization&quot; },
+      &quot;creditText&quot;: &quot;〇〇工務店&quot;,
+      &quot;copyrightNotice&quot;: &quot;© 〇〇工務店&quot;,
+      &quot;license&quot;: &quot;https://example.jp/photo-policy/&quot;,
+      &quot;acquireLicensePage&quot;: &quot;https://example.jp/contact/&quot;
+    },
+    {
+      &quot;@type&quot;: &quot;BreadcrumbList&quot;,
+      &quot;itemListElement&quot;: [
+        { &quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 1, &quot;name&quot;: &quot;ホーム&quot;, &quot;item&quot;: &quot;https://example.jp/&quot; },
+        { &quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 2, &quot;name&quot;: &quot;施工事例&quot;, &quot;item&quot;: &quot;https://example.jp/works/&quot; },
+        { &quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 3, &quot;name&quot;: &quot;〇〇市M様邸 LDK内装リフォーム&quot; }
+      ]
+    }
+  ]
+}</code></pre></details>
+<details class="code"><summary>4-4 会社概要ページ（AboutPage＋Person＋BreadcrumbList）</summary><pre><code>{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@graph&quot;: [
+    {
+      &quot;@type&quot;: &quot;AboutPage&quot;,
+      &quot;@id&quot;: &quot;https://example.jp/company/#webpage&quot;,
+      &quot;url&quot;: &quot;https://example.jp/company/&quot;,
+      &quot;name&quot;: &quot;会社概要｜〇〇工務店&quot;,
+      &quot;isPartOf&quot;: { &quot;@id&quot;: &quot;https://example.jp/#website&quot; },
+      &quot;about&quot;: { &quot;@id&quot;: &quot;https://example.jp/#organization&quot; },
+      &quot;mainEntity&quot;: { &quot;@id&quot;: &quot;https://example.jp/#organization&quot; }
+    },
+    {
+      &quot;@type&quot;: &quot;Person&quot;,
+      &quot;@id&quot;: &quot;https://example.jp/company/#founder&quot;,
+      &quot;name&quot;: &quot;〇〇 太郎&quot;,
+      &quot;jobTitle&quot;: &quot;代表取締役&quot;,
+      &quot;image&quot;: &quot;https://example.jp/images/company/founder.jpg&quot;,
+      &quot;worksFor&quot;: { &quot;@id&quot;: &quot;https://example.jp/#organization&quot; },
+      &quot;hasCredential&quot;: [
+        { &quot;@type&quot;: &quot;EducationalOccupationalCredential&quot;, &quot;credentialCategory&quot;: &quot;国家資格&quot;, &quot;name&quot;: &quot;一級建築施工管理技士&quot; },
+        { &quot;@type&quot;: &quot;EducationalOccupationalCredential&quot;, &quot;credentialCategory&quot;: &quot;国家資格&quot;, &quot;name&quot;: &quot;二級建築士&quot; }
+      ],
+      &quot;knowsAbout&quot;: [&quot;木造住宅リフォーム&quot;, &quot;外構設計&quot;],
+      &quot;sameAs&quot;: [&quot;https://www.instagram.com/example_taro/&quot;]
+    },
+    {
+      &quot;@type&quot;: &quot;BreadcrumbList&quot;,
+      &quot;itemListElement&quot;: [
+        { &quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 1, &quot;name&quot;: &quot;ホーム&quot;, &quot;item&quot;: &quot;https://example.jp/&quot; },
+        { &quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 2, &quot;name&quot;: &quot;会社概要&quot; }
+      ]
+    }
+  ]
+}</code></pre></details>
+</section>
+
+<!-- 8 -->
+<section class="chap" id="s8">
+<h2><span class="no">8</span>信頼性要素と施工事例テンプレート</h2>
+<p>Agent6の結果。E-E-A-Tは今も有効だが「順位を直接決める点数」ではない。現行の品質評価ガイドライン（2025年9月11日版）では Trust（信頼）が中心。</p>
+<div class="tw"><table class="w-wide">
+<thead><tr><th>区分</th><th>要素</th><th>書き方・実装</th></tr></thead>
+<tbody>
+<tr><td><span class="pri p-must">必須</span></td><td>会社の実在性（正式社名・住所・電話・代表者名・地図）</td><td>会社概要を <code>&lt;dl&gt;</code>、フッターに <code>&lt;address&gt;</code>、JSON-LDに同じ値</td></tr>
+<tr><td><span class="pri p-must">必須</span></td><td>建設業許可の有無と許可番号</td><td>「〇〇県知事許可（般-7）第12345号 内装仕上工事業」のように全部書く。<b>許可なしの場合も隠さず</b>「500万円未満（税込）の工事を専門に承っています。それ以上は提携の許可業者と連携」と正直に。軽微な工事の500万円基準（建築一式は1,500万円未満等）は2026年時点で変更なし</td></tr>
+<tr><td><span class="pri p-must">必須</span></td><td>施工事例（自社写真・地域名・工期・費用）</td><td>1件1URL、<code>&lt;article&gt;</code>。経験（Experience）の一番の証拠。ストック写真は不可</td></tr>
+<tr><td><span class="pri p-must">必須</span></td><td>保証内容とアフター点検（期間・対象・無償/有償）</td><td>工事種別｜保証期間｜点検時期の表、保証書サンプルPDF</td></tr>
+<tr><td><span class="pri p-must">必須</span></td><td>代表者の顔写真・名前・メッセージ</td><td>「誰が来るか」が最大の判断材料。<code>Person</code> を <code>founder</code> に</td></tr>
+<tr><td><span class="pri p-must">必須</span></td><td>お客様の声の掲載同意とステマ規制対応</td><td>書面同意。謝礼・割引がある場合は明示。★の数の指定は違反の典型（景表法ステマ告示 2023年10月施行）</td></tr>
+<tr><td><span class="pri p-rec">推奨</span></td><td>リフォーム瑕疵保険の登録事業者</td><td>登録番号＋協会検索ページへの「登録を確認する」リンク（第三者確認できるかで信頼度が大きく変わる）</td></tr>
+<tr><td><span class="pri p-rec">推奨</span></td><td>住宅リフォーム事業者団体登録制度の登録団体に加盟</td><td>団体名（国土交通大臣登録）。ロゴは使用規程を確認</td></tr>
+<tr><td><span class="pri p-rec">推奨</span></td><td>有資格者一覧</td><td>建築士・建築施工管理技士・増改築相談員・エクステリアプランナー等を表で</td></tr>
+<tr><td><span class="pri p-rec">推奨</span></td><td>職人・スタッフのプロフィール</td><td>経験年数・得意工事・担当事例へのリンク。1人1ページ</td></tr>
+<tr><td><span class="pri p-rec">推奨</span></td><td>工期・費用の目安ページ</td><td>条件つきの価格帯。二重価格や根拠のない「地域No.1」は景表法リスク</td></tr>
+<tr><td><span class="pri p-rec">推奨</span></td><td>地域との関わり</td><td>出身校・自治会・祭り・市の登録業者など固有名詞と年で</td></tr>
+<tr><td><span class="pri p-nice">あれば良い</span></td><td>お客様インタビュー動画</td><td>YouTube埋め込み（<code>loading="lazy"</code>）＋文字起こし</td></tr>
+<tr><td><span class="pri p-nice">あれば良い</span></td><td>手書きアンケート画像</td><td>内容をテキストで併記（画像だけでは読まれない）</td></tr>
+<tr><td><span class="pri p-nice">あれば良い</span></td><td>受賞歴・メディア掲載・メーカー認定店</td><td><code>award</code></td></tr>
+<tr><td><span class="pri p-nice">あれば良い</span></td><td>公的相談窓口（住まいるダイヤル）の案内</td><td>FAQの一問として。中立的な姿勢を示せる</td></tr>
+<tr><td><span class="pri p-nice">あれば良い</span></td><td>「よくある失敗と当社の対策」記事</td><td>著者署名と資格つき</td></tr>
+</tbody></table></div>
+<p class="small">「施工実績〇〇件」などの数字には数え方と時点を書く（例：※2015〜2026年9月、自社施工のリフォーム工事件数）。</p>
+
+<h3>施工事例ページ テンプレート</h3>
+<p>URL例：<code>/works/2026-ohashi-bathroom/</code>（1件1URL）</p>
+<div class="tw"><table class="w-mid">
+<thead><tr><th>ブロック</th><th>内容</th><th>HTML</th></tr></thead>
+<tbody>
+<tr><th>h1</th><td>〇〇市△△町｜築30年の在来浴室をユニットバスへ（工期5日・約120万円）</td><td><code>&lt;h1&gt;</code></td></tr>
+<tr><th>概要表</th><td>所在地（町名まで・番地は出さない）／建物（構造・築年数）／工事内容／工期と施工時期／費用（税込・補助金を使った場合はその額）／使用商品（メーカー・品番）／担当（スタッフページへリンク）</td><td><code>&lt;dl&gt;</code>、<code>&lt;time datetime="2026-05"&gt;</code></td></tr>
+<tr><th>お客様の悩み</th><td>お客様の言葉を「」で引用</td><td><code>&lt;p&gt;</code></td></tr>
+<tr><th>ご提案のポイント</th><td>工法・商品の選定理由、比較した代替案、予算調整の工夫</td><td><code>&lt;h2&gt;</code>＋<code>&lt;p&gt;</code></td></tr>
+<tr><th>ビフォー／アフター</th><td>同じ画角で並べる</td><td><code>&lt;figure&gt;</code>＋<code>&lt;figcaption&gt;</code>、altに地名と工事内容（個人名は入れない）</td></tr>
+<tr><th>工程写真（3〜6枚）</th><td>解体後の土台の状態や補修。見えない部分の誠実さ＝経験の核</td><td><code>loading="lazy"</code></td></tr>
+<tr><th>費用内訳</th><td>本体／工事費／解体・処分／電気・設備／諸経費／合計（税込）</td><td><code>&lt;table&gt;</code>（数値は画像にしない）</td></tr>
+<tr><th>担当者コメント</th><td>苦労した点、現場で見つかった問題と対応（署名・資格つき）</td><td><code>&lt;p class="byline"&gt;</code></td></tr>
+<tr><th>お客様の声</th><td>同意を得た場合のみ。イニシャル＋年代程度</td><td><code>&lt;blockquote&gt;</code></td></tr>
+<tr><th>保証・アフター</th><td>この工事の保証期間と次回点検</td><td><code>&lt;p&gt;</code></td></tr>
+<tr><th>関連リンク・CTA</th><td>同じ地域の事例／同じ工事の価格ページ／「この事例と似た工事の相談」</td><td>フォームのhiddenに事例名</td></tr>
+</tbody></table></div>
+<div class="callout"><p><b>プライバシー：</b>住所は町名まで。外観写真は表札・ナンバープレート・近隣の家をぼかす。<b>同意書の項目：</b>掲載媒体（HP・SNS・チラシ）、掲載内容（文章・写真・顔・動画・町名・イニシャル）、期間、撤回方法と連絡先、目的外利用の禁止、謝礼の有無。口頭でなく書面かフォームで取る。</p></div>
+<h3>会社概要ページに載せる項目</h3>
+<p>商号（ふりがな）／代表者（写真）／所在地・地図／電話・FAX・メール・営業時間・定休日／創業・設立年／事業内容／対応エリア／建設業許可（なければ「軽微な工事のみ」）／建築士事務所登録・その他許可／従業員数・職人数・有資格者数／工事保証・点検スケジュール／瑕疵保険・賠償責任保険／加盟団体・商工会／メーカー認定・自治体登録業者／年間施工件数（根拠つき）／取引銀行／地域活動・沿革／プライバシーポリシー・特定商取引法に関する表記（要否は専門家確認）。</p>
+</section>
+
+<!-- 9 -->
+<section class="chap" id="s9">
+<h2><span class="no">9</span>問い合わせ導線・フォーム設計</h2>
+<p>Agent7の結果。顧客は高齢者からLINE世代まで幅広いため、<b>電話・LINE・フォームの3つを並べ、見た目で主従をつける</b>のが2026年時点の実務的な落としどころ（「CTAは1つに絞れ」はLPでは有効）。</p>
+<h3>5つの導線</h3>
+<div class="tw"><table class="w-mid">
+<thead><tr><th>導線</th><th>向く人・場面</th><th>実装</th></tr></thead>
+<tbody>
+<tr><td>電話タップ</td><td>高齢層、急ぎの修理（雨漏り・水回り）</td><td>番号はテキスト＋<code>tel:</code>、受付時間を併記。画像にしない</td></tr>
+<tr><td>LINE相談</td><td>検討期間の長い顧客との接点。初期費用0円</td><td>友だち追加URLを経路別（ヘッダー／固定バー／事例ページ）に発行して計測</td></tr>
+<tr><td>写真を送るだけの簡易見積もり</td><td>「写真を1枚送りたいだけ」の人</td><td>LINEボタンの下に「①全体 ②気になる箇所のアップ ③型番シール」</td></tr>
+<tr><td>見積もり・相談フォーム</td><td>まとめて書きたい人</td><td>「相談・見積もり」「現地調査予約」の2本で十分</td></tr>
+<tr><td>現地調査予約</td><td>日程を決めたい人</td><td>Googleカレンダーの予約スケジュール（無料で1つ）。iframeよりリンク推奨</td></tr>
+</tbody></table></div>
+<h3>ページ別CTA配置</h3>
+<pre><code>■ トップ
+  ヘッダー: ロゴ | 電話(テキスト+受付時間) | [LINE][FORM]
+  FV: キャッチ + 対応エリア + [TEL][LINE]（主ボタンは1つだけ強調）
+  施工事例3件 → 「写真を送るだけで概算見積もり」帯 [LINE][FORM]
+  流れ → [現地調査予約]   FAQ → 最終CTA帯 [TEL][LINE][FORM]
+  [固定バー]（スマホのみ）: [TEL][LINE][FORM]
+■ 工事ページ: 冒頭[LINE写真] / 事例・価格表の直後 [LINE][FORM] / 末尾 [TEL][LINE][FORM][予約]
+■ 施工事例詳細: 本文末「この事例と似た工事の相談」[FORM]（hiddenで事例名）+ [LINE]
+■ 一覧・コラム: 記事末にCTA帯1つ（途中には置かない）
+■ 会社概要: 末尾 [TEL][FORM]
+■ お問い合わせ: 冒頭に3択（急ぎ→電話／写真→LINE／まとめて→フォーム）。固定バーは[TEL][LINE]のみ
+■ 送信完了: お礼 + 返信の目安（例: 2営業日以内）+ 急ぎの電話 + LINEで写真追加</code></pre>
+<div class="callout judge"><p><span class="label">判断</span><b>スマホ固定CTAバーは「ボタン3つまで・高さ56px前後・最低48px」に統一。</b>Agent8の部品表は「2ボタン」、Agent7は「3つまで（電話／LINE／フォーム）・高さ56〜64px」。導線担当のAgent7を優先し、お問い合わせページだけ2ボタン。タップ領域はWCAG 2.2 AAの最小24pxを超え、高齢者向けに44〜48px以上（Agent7・8・9で一致）。<code>padding-bottom:env(safe-area-inset-bottom)</code> とbody下端の余白を忘れない。PCでは非表示。</p></div>
+<h3>見積もり・相談フォームの項目</h3>
+<p><b>必須は「ご相談の種類・お名前・電話番号・ご相談内容」の4項目＋個人情報の同意</b>。他はすべて任意。確認画面は省き、送信ボタンの直前に見直しを促す一文を置く。メールの2回入力・電話番号の分割は不要。</p>
+<div class="tw"><table class="w-wide">
+<thead><tr><th>#</th><th>項目</th><th>必須</th><th>HTML</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>ご相談の種類</td><td>必須</td><td><code>&lt;fieldset&gt;&lt;legend&gt;</code>＋radio：内装／水回り／その他リフォーム／外構／修理・その他</td></tr>
+<tr><td>2</td><td>お名前</td><td>必須</td><td><code>type="text" autocomplete="name"</code>（姓名は分けない）</td></tr>
+<tr><td>3</td><td>ふりがな</td><td>任意</td><td><code>autocomplete="off"</code></td></tr>
+<tr><td>4</td><td>電話番号</td><td>必須</td><td><code>type="tel" autocomplete="tel" inputmode="tel"</code>（ハイフン有無どちらも可と明記）</td></tr>
+<tr><td>5</td><td>メールアドレス</td><td>任意</td><td><code>type="email" autocomplete="email"</code></td></tr>
+<tr><td>6</td><td>希望の連絡方法</td><td>任意</td><td><code>&lt;select&gt;</code> 電話／メール／LINE／どれでも</td></tr>
+<tr><td>7</td><td>郵便番号</td><td>任意</td><td><code>autocomplete="postal-code" inputmode="numeric"</code>（YubinBangoで住所補完）</td></tr>
+<tr><td>8</td><td>住所（工事場所）</td><td>任意</td><td><code>autocomplete="street-address"</code>（1欄）</td></tr>
+<tr><td>9</td><td>ご相談内容</td><td>必須</td><td><code>&lt;textarea rows="6"&gt;</code>（例文はplaceholderでなくラベル下に）</td></tr>
+<tr><td>10</td><td>写真</td><td>任意</td><td><code>type="file" accept="image/*" multiple</code>（枚数とMB上限を明記）</td></tr>
+<tr><td>11</td><td>ご予算の目安</td><td>任意</td><td><code>&lt;select&gt;</code> 〜50万／50〜100万／100〜300万／300万〜／未定</td></tr>
+<tr><td>12</td><td>現地調査の希望</td><td>任意</td><td>checkbox＋希望日時は自由記述（<code>type="date"</code>は高齢者に使いにくい）</td></tr>
+<tr><td>13</td><td>個人情報の取扱い</td><td>必須</td><td><code>type="checkbox" required</code>＋プライバシーポリシー（別タブ）</td></tr>
+<tr><td>—</td><td>流入元・ハニーポット</td><td>非表示</td><td><code>type="hidden" name="source"</code>／<code>name="_gotcha"</code></td></tr>
+</tbody></table></div>
+<p><b>高齢者への配慮：</b>入力文字16px以上・高さ48px／ラベルは上に置き <code>&lt;label for&gt;</code>／「必須」「任意」を文字で／エラーは欄の直下に文字で（色だけにしない）／200%拡大でも使える／全角数字も受け付ける／フォーム冒頭と送信ボタン横に電話の逃げ道。</p>
+<h3>静的HTMLでフォームを動かす方法</h3>
+<div class="tw"><table class="w-wide">
+<thead><tr><th>方式</th><th>特徴（検索結果ベース・料金は要確認）</th><th>写真添付</th><th>向く場面</th></tr></thead>
+<tbody>
+<tr><td><b>B. Tally（第一候補）</b></td><td>無料で送信数無制限（フェアユース）、1ファイル10MBまで。無料はロゴ表示。Proは月$29前後</td><td>無料で可</td><td>写真見積もりを無料で受けたい</td></tr>
+<tr><td>A. Formspree</td><td><code>action</code> に指定するだけ。無料は月50件・保存30日、添付・自動返信は有料</td><td>有料</td><td>デザインを自作したい・件数が少ない（写真はLINEで受ける）</td></tr>
+<tr><td>C. formrun等の国産</td><td>日本語の管理画面、対応状況の管理がしやすい。2026年料金は未確認</td><td>プランによる</td><td>家族・社員で対応を分担</td></tr>
+<tr><td>D. Googleフォーム</td><td>無料だがデザインの自由度が低い。添付はGoogleアカウント必須</td><td>制限あり</td><td>社内用・簡易</td></tr>
+<tr><td>E. Cloudflare Pages Functions＋Turnstile＋Resend</td><td>自社ドメインで完結、無料枠大。送信元ドメイン認証が必要、保守が要る</td><td>実装次第</td><td>制作者が保守できる</td></tr>
+</tbody></table></div>
+<ul>
+<li>スパム対策：新規導入なら <b>Cloudflare Turnstile</b>（無料・パズルなし。サーバー側検証が必須）＋ハニーポット。reCAPTCHAはGoogle Cloudへ移行済み。</li>
+<li>どの方式でも：送信後は自社の <code>/contact/thanks/</code> へリダイレクト、自動返信、通知先は2アドレス（社長と事務）、二重送信防止。</li>
+<li>計測：thanksページ表示を GA4 キーイベント（<code>generate_lead</code>）。電話タップは自動では取れないため <code>click_to_call</code>、LINEは <code>click_line</code> をgtag／GTMで計測（数えられるのはタップ数）。</li>
+</ul>
+</section>
+
+<!-- 10 -->
+<section class="chap" id="s10">
+<h2><span class="no">10</span>デザイン方針3案と推奨</h2>
+<p>Agent8の結果。傾向は「白・生成り基調で写真が主役」「ナチュラル系とクール系の2系統」「顔が見える」「項目のそろった事例カード」「アニメーションは控えめ」。2026年のPantone色は白「Cloud Dancer（#F0EEE9）」。コントラスト比はWCAGの相対輝度式で計算済み（本文はすべてAA 4.5:1以上）。</p>
+<div class="palettes">
+<div class="pal rec">
+<h4>案A「木と生成り」 ★推奨</h4>
+<p class="small">ナチュラル・親しみ寄り。見出し 丸ゴシック／本文 UDゴシック</p>
+<div class="chips">
+<div class="chip"><div class="sw" style="background:#F0EEE9;color:#2B2622">背景</div><div class="cap"><code>#F0EEE9</code></div></div>
+<div class="chip"><div class="sw" style="background:#FFFFFF;color:#2B2622">面</div><div class="cap"><code>#FFFFFF</code></div></div>
+<div class="chip"><div class="sw" style="background:#2B2622;color:#fff">本文</div><div class="cap"><code>#2B2622</code> 12.91:1</div></div>
+<div class="chip"><div class="sw" style="background:#5C5149;color:#fff">補助</div><div class="cap"><code>#5C5149</code> 6.64:1</div></div>
+<div class="chip"><div class="sw" style="background:#7A4B26;color:#fff">木</div><div class="cap"><code>#7A4B26</code> 6.33:1</div></div>
+<div class="chip"><div class="sw" style="background:#3F5E45;color:#fff">緑</div><div class="cap"><code>#3F5E45</code> 6.25:1</div></div>
+<div class="chip"><div class="sw" style="background:#A84A18;color:#fff">CTA</div><div class="cap"><code>#A84A18</code> 白字5.74:1</div></div>
+</div>
+<div class="sample" style="background:#F0EEE9;color:#2B2622"><b style="color:#7A4B26">〇〇市の小さな工務店</b><br><span style="font-size:.85rem">地元の職人が、現地調査から施工まで担当します。</span><br><span class="btn" style="background:#A84A18;color:#fff">無料で相談する</span></div>
+</div>
+<div class="pal">
+<h4>案B「誠実ネイビー×木」</h4>
+<p class="small">信頼・丁寧寄り。見出し 明朝（Noto Serif JP）／本文 ゴシック</p>
+<div class="chips">
+<div class="chip"><div class="sw" style="background:#FFFFFF;color:#1F2933">背景</div><div class="cap"><code>#FFFFFF</code></div></div>
+<div class="chip"><div class="sw" style="background:#F5F2EC;color:#1F2933">面</div><div class="cap"><code>#F5F2EC</code></div></div>
+<div class="chip"><div class="sw" style="background:#1F2933;color:#fff">本文</div><div class="cap"><code>#1F2933</code> 14.76:1</div></div>
+<div class="chip"><div class="sw" style="background:#4A5560;color:#fff">補助</div><div class="cap"><code>#4A5560</code> 6.81:1</div></div>
+<div class="chip"><div class="sw" style="background:#1E3A5F;color:#fff">紺</div><div class="cap"><code>#1E3A5F</code> 11.5:1</div></div>
+<div class="chip"><div class="sw" style="background:#8A5A2B;color:#fff">木</div><div class="cap"><code>#8A5A2B</code> 5.87:1</div></div>
+<div class="chip"><div class="sw" style="background:#C2410C;color:#fff">CTA</div><div class="cap"><code>#C2410C</code> 白字5.18:1</div></div>
+</div>
+<div class="sample" style="background:#FFFFFF;color:#1F2933"><b style="color:#1E3A5F">〇〇市の小さな工務店</b><br><span style="font-size:.85rem">地元の職人が、現地調査から施工まで担当します。</span><br><span class="btn" style="background:#C2410C;color:#fff">無料で相談する</span></div>
+</div>
+<div class="pal">
+<h4>案C「和モダン 墨×藍×弁柄」</h4>
+<p class="small">職人感寄り。見出し 明朝（Shippori Mincho B1）／本文は必ずゴシック</p>
+<div class="chips">
+<div class="chip"><div class="sw" style="background:#F7F4EE;color:#1C1C1C">背景</div><div class="cap"><code>#F7F4EE</code></div></div>
+<div class="chip"><div class="sw" style="background:#1C1C1C;color:#fff">本文</div><div class="cap"><code>#1C1C1C</code> 15.52:1</div></div>
+<div class="chip"><div class="sw" style="background:#6B6259;color:#fff">補助</div><div class="cap"><code>#6B6259</code> 5.44:1</div></div>
+<div class="chip"><div class="sw" style="background:#2C4F6E;color:#fff">藍</div><div class="cap"><code>#2C4F6E</code> 7.81:1</div></div>
+<div class="chip"><div class="sw" style="background:#9C3D2B;color:#fff">弁柄</div><div class="cap"><code>#9C3D2B</code> 白字6.74:1</div></div>
+</div>
+<div class="sample" style="background:#F7F4EE;color:#1C1C1C"><b style="color:#2C4F6E">〇〇市の小さな工務店</b><br><span style="font-size:.85rem">地元の職人が、現地調査から施工まで担当します。</span><br><span class="btn" style="background:#9C3D2B;color:#fff">無料で相談する</span></div>
+</div>
+</div>
+<div class="callout ok"><p><b>推奨は案A</b>（必要に応じて案Bのネイビーを「信頼」アクセントに追加）。施主の中心は地元の40〜70代で、相談のハードルを下げることが最優先。生成りと木に丸ゴシックの見出しで親しみを出し、丁寧さはUDフォントの本文・そろったグリッド・項目のそろった事例カード・工程写真で担保する。</p></div>
+<div class="callout judge"><p><span class="label">判断</span><b>日本語Webフォントは「本文はシステムフォント、見出しだけ1ウェイトのWebフォントを許容」。</b>Agent8は Google Fonts（Zen Maru Gothic＋BIZ UDPGothic）を推奨、Agent9は表示速度（LCP・CLS）の観点から「原則使わない」。CWVの基準を守ることを優先し、使う場合はサブセット化・<code>display=swap</code>・preconnect、ウェイトは最小限。BIZ UDPGothicはWindows 10以降に標準搭載されているため、本文の<code>font-family</code>の先頭に指定するだけでも効果がある。<code>theme-color</code> もAgent9ひな形の緑（#1f4e3d）でなく案Aの色に合わせる。</p></div>
+<h3>アクセシビリティ（高齢者配慮）</h3>
+<ul>
+<li>本文は実効16px以上、推奨17〜18px（<code>clamp(1rem,.95rem+.3vw,1.125rem)</code>）。「本文12〜14px」は古い。</li>
+<li>行間1.7〜1.9（和文の慣行値）、1行は全角35〜40字まで。</li>
+<li>コントラストは通常文字4.5:1以上、大きい文字3:1以上。</li>
+<li>タップ領域は44〜48px以上。リンクの下線を残す、色だけで区別しない、フォーカスリングを見せる。</li>
+<li>ヒーローは静止画1枚（自動スライドのカルーセルは非推奨）。キャッチは画像に焼き込まずHTMLテキストで。</li>
+<li><code>prefers-reduced-motion</code> で動きを止める。アニメはフェード程度。</li>
+</ul>
+<h3>主な部品</h3>
+<p class="small">ヘッダー（sticky）／ヒーロー（静止画1枚・<code>fetchpriority="high"</code>）／信頼バッジ帯（創業年・件数・資格・保証）／サービスカード／施工事例カード（<code>&lt;dl&gt;</code>）／ビフォーアフタースライダー（<code>input type="range"</code>で操作、JS無効時は縦並び）／工程タイムライン／スタッフ紹介／お客様の声／対応エリア（テキストの市町村リスト）／料金目安テーブル（横スクロールラッパー）／FAQアコーディオン（<code>&lt;details&gt;</code>）／CTAバンド／スマホ固定CTA／フッター（<code>&lt;address&gt;</code>）。</p>
+</section>
+
+<!-- 11 -->
+<section class="chap" id="s11">
+<h2><span class="no">11</span>技術SEO 公開前チェックリスト</h2>
+<p>Agent9の32項目。Core Web Vitals の基準は <b>LCP ≤ 2.5秒／INP ≤ 200ms／CLS ≤ 0.1</b>（実ユーザーの75パーセンタイル）。チェック状態はこのブラウザにだけ保存されます。</p>
+<div class="callout judge"><p><span class="label">判断</span>「2026年にLCPが2.0秒へ厳しくなった」という記事（Agent9が確認）はGoogleの一次情報で裏付けがなく、Agent8・9とも2.5秒据え置きで一致。<b>2.5秒を基準</b>とする。INPを150msへ下げる案も未確定。</p></div>
+<p class="progress" data-progress="tech"></p>
+<h4>表示速度・CWV</h4><ul class="check" data-group="tech">
+<li><input type="checkbox" id="t1"><label for="t1"><span class="num">1.</span>PageSpeed Insights（モバイル）で LCP≦2.5s、CLS≦0.1、TBT/INPに問題なし</label></li>
+<li><input type="checkbox" id="t2"><label for="t2"><span class="num">2.</span>ヒーロー画像が <code>fetchpriority=&quot;high&quot;</code> で、<code>loading=&quot;lazy&quot;</code> が付いていない</label></li>
+<li><input type="checkbox" id="t3"><label for="t3"><span class="num">3.</span>ファーストビューより下の画像はすべて <code>loading=&quot;lazy&quot;</code></label></li>
+<li><input type="checkbox" id="t4"><label for="t4"><span class="num">4.</span>すべての img/iframe に width/height がある</label></li>
+<li><input type="checkbox" id="t5"><label for="t5"><span class="num">5.</span>画像は AVIF/WebP（<code>&lt;picture&gt;</code>）で、1枚あたり概ね200KB以下</label></li>
+<li><input type="checkbox" id="t6"><label for="t6"><span class="num">6.</span><code>srcset</code>/<code>sizes</code> でスマホに小さい画像を配信している</label></li>
+<li><input type="checkbox" id="t7"><label for="t7"><span class="num">7.</span>Webフォントなし、またはサブセット化したWOFF2＋<code>font-display:swap</code></label></li>
+<li><input type="checkbox" id="t8"><label for="t8"><span class="num">8.</span>JSは <code>defer</code>、不要なライブラリ（jQuery・スライダー）は入れていない</label></li>
+<li><input type="checkbox" id="t9"><label for="t9"><span class="num">9.</span>Googleマップの iframe は <code>loading=&quot;lazy&quot;</code></label></li>
+<li><input type="checkbox" id="t10"><label for="t10"><span class="num">10.</span>CSS/画像に長期キャッシュを設定し、圧縮（Brotli/gzip）が有効</label></li>
+</ul>
+<h4>メタ・head</h4><ul class="check" data-group="tech">
+<li><input type="checkbox" id="t11"><label for="t11"><span class="num">11.</span><code>&lt;html lang=&quot;ja&quot;&gt;</code>、charset、viewport がある</label></li>
+<li><input type="checkbox" id="t12"><label for="t12"><span class="num">12.</span>title が全ページで固有（地域名＋サービス＋社名）</label></li>
+<li><input type="checkbox" id="t13"><label for="t13"><span class="num">13.</span>meta description が全ページで固有</label></li>
+<li><input type="checkbox" id="t14"><label for="t14"><span class="num">14.</span>canonical が自己参照の https 絶対URL</label></li>
+<li><input type="checkbox" id="t15"><label for="t15"><span class="num">15.</span>OGP（1200×630画像）、<code>twitter:card</code> がある。シェアプレビューで確認済み</label></li>
+<li><input type="checkbox" id="t16"><label for="t16"><span class="num">16.</span>favicon（ICO/SVG/180px apple-touch-icon/manifest）を設置</label></li>
+<li><input type="checkbox" id="t17"><label for="t17"><span class="num">17.</span>theme-color を設定</label></li>
+<li><input type="checkbox" id="t18"><label for="t18"><span class="num">18.</span>LocalBusiness（GeneralContractor）と BreadcrumbList の JSON-LD がリッチリザルトテストでエラーなし</label></li>
+<li><input type="checkbox" id="t19"><label for="t19"><span class="num">19.</span>NAP がサイト内・GBP・構造化データで完全一致</label></li>
+</ul>
+<h4>クロール・インデックス</h4><ul class="check" data-group="tech">
+<li><input type="checkbox" id="t20"><label for="t20"><span class="num">20.</span>robots.txt が全体を Disallow していない（制作時の設定が残っていない）。Sitemap 行がある</label></li>
+<li><input type="checkbox" id="t21"><label for="t21"><span class="num">21.</span>sitemap.xml に公開URLだけが入っており、lastmod が正確</label></li>
+<li><input type="checkbox" id="t22"><label for="t22"><span class="num">22.</span>制作中に付けた <code>noindex</code> を外した（お礼ページだけ noindex）</label></li>
+<li><input type="checkbox" id="t23"><label for="t23"><span class="num">23.</span>存在しないURLがステータス404を返し、カスタム404ページが表示される</label></li>
+<li><input type="checkbox" id="t24"><label for="t24"><span class="num">24.</span>http→https、www有無、<code>/index.html</code> を301で1つに統一</label></li>
+<li><input type="checkbox" id="t25"><label for="t25"><span class="num">25.</span>リンク切れゼロ（リンクチェッカーで確認）。リダイレクトを経由する内部リンクもない</label></li>
+</ul>
+<h4>構造・導線</h4><ul class="check" data-group="tech">
+<li><input type="checkbox" id="t26"><label for="t26"><span class="num">26.</span>URLは小文字・ハイフン・英語で、2〜3階層</label></li>
+<li><input type="checkbox" id="t27"><label for="t27"><span class="num">27.</span>h1 は各ページ1つ、見出しレベルを飛ばしていない</label></li>
+<li><input type="checkbox" id="t28"><label for="t28"><span class="num">28.</span>パンくずを全下層ページに設置</label></li>
+<li><input type="checkbox" id="t29"><label for="t29"><span class="num">29.</span>施工事例・サービス・エリアページを相互に内部リンクし、アンカーテキストは具体的な言葉</label></li>
+<li><input type="checkbox" id="t30"><label for="t30"><span class="num">30.</span>スマホで電話ボタン（<code>tel:</code>）がタップでき、タップ領域は48px程度</label></li>
+</ul>
+<h4>サーバー・計測</h4><ul class="check" data-group="tech">
+<li><input type="checkbox" id="t31"><label for="t31"><span class="num">31.</span>HTTPS が有効で混在コンテンツなし。SSL自動更新を確認</label></li>
+<li><input type="checkbox" id="t32"><label for="t32"><span class="num">32.</span>Search Console の所有権確認とサイトマップ送信、GA4 のリアルタイム計測確認、キーイベント（電話・フォーム）の設定、GA4とSCのリンクが完了</label></li>
+</ul>
+<details class="code"><summary>&lt;head&gt; テンプレート（Agent9作成、統合方針に合わせて修正済み）</summary>
+<div><p class="small">修正点：URLを <code>/service/bath/</code> に、<code>@id</code> を <code>#organization</code> に、<code>openingHours</code> 文字列を <code>openingHoursSpecification</code> に、<code>theme-color</code> を案Aの色に変更。</p></div>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;ja&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+
+  &lt;!-- 基本メタ（ページごとに書き換える） --&gt;
+  &lt;title&gt;〇〇市の浴室リフォーム｜△△工務店&lt;/title&gt;
+  &lt;meta name=&quot;description&quot; content=&quot;〇〇市で浴室・キッチン・内装リフォームと外構工事を行う△△工務店。地元密着○年、施工事例○件。ユニットバス交換の費用目安と工事の流れをご紹介します。&quot;&gt;
+  &lt;link rel=&quot;canonical&quot; href=&quot;https://example.jp/service/bath/&quot;&gt;
+  &lt;meta name=&quot;theme-color&quot; content=&quot;#7A4B26&quot;&gt;
+  &lt;!-- 公開しないページ（お礼ページ・404）だけ有効化 --&gt;
+  &lt;!-- &lt;meta name=&quot;robots&quot; content=&quot;noindex&quot;&gt; --&gt;
+
+  &lt;!-- OGP / SNS --&gt;
+  &lt;meta property=&quot;og:type&quot; content=&quot;website&quot;&gt;&lt;!-- トップ以外は article でも可 --&gt;
+  &lt;meta property=&quot;og:site_name&quot; content=&quot;△△工務店&quot;&gt;
+  &lt;meta property=&quot;og:title&quot; content=&quot;〇〇市の浴室リフォーム｜△△工務店&quot;&gt;
+  &lt;meta property=&quot;og:description&quot; content=&quot;ユニットバス交換の費用目安と工事の流れ。〇〇市の地元工務店です。&quot;&gt;
+  &lt;meta property=&quot;og:url&quot; content=&quot;https://example.jp/service/bath/&quot;&gt;
+  &lt;meta property=&quot;og:image&quot; content=&quot;https://example.jp/og/reform-bath.jpg&quot;&gt;
+  &lt;meta property=&quot;og:image:width&quot; content=&quot;1200&quot;&gt;
+  &lt;meta property=&quot;og:image:height&quot; content=&quot;630&quot;&gt;
+  &lt;meta property=&quot;og:locale&quot; content=&quot;ja_JP&quot;&gt;
+  &lt;meta name=&quot;twitter:card&quot; content=&quot;summary_large_image&quot;&gt;
+
+  &lt;!-- アイコン --&gt;
+  &lt;link rel=&quot;icon&quot; href=&quot;/favicon.ico&quot; sizes=&quot;32x32&quot;&gt;
+  &lt;link rel=&quot;icon&quot; href=&quot;/icon.svg&quot; type=&quot;image/svg+xml&quot;&gt;
+  &lt;link rel=&quot;apple-touch-icon&quot; href=&quot;/apple-touch-icon.png&quot;&gt;&lt;!-- 180x180 --&gt;
+  &lt;link rel=&quot;manifest&quot; href=&quot;/site.webmanifest&quot;&gt;&lt;!-- 192/512 PNGを定義 --&gt;
+
+  &lt;!-- 表示速度：LCP画像の先読み（トップのヒーロー画像のみ。img側にも fetchpriority=&quot;high&quot;） --&gt;
+  &lt;link rel=&quot;preload&quot; as=&quot;image&quot; href=&quot;/img/hero-1600.avif&quot; type=&quot;image/avif&quot; fetchpriority=&quot;high&quot;
+        imagesrcset=&quot;/img/hero-800.avif 800w, /img/hero-1600.avif 1600w&quot; imagesizes=&quot;100vw&quot;&gt;
+  &lt;!-- Webフォントを使う場合のみ（見出し1ウェイト・サブセット） --&gt;
+  &lt;!-- &lt;link rel=&quot;preload&quot; href=&quot;/fonts/heading-sub.woff2&quot; as=&quot;font&quot; type=&quot;font/woff2&quot; crossorigin&gt; --&gt;
+
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/css/style.v1.css&quot;&gt;
+  &lt;script src=&quot;/js/main.v1.js&quot; defer&gt;&lt;/script&gt;
+
+  &lt;!-- 構造化データ（会社情報：全ページ共通で可） --&gt;
+  &lt;script type=&quot;application/ld+json&quot;&gt;
+  {
+    &quot;@context&quot;: &quot;https://schema.org&quot;,
+    &quot;@graph&quot;: [
+      {
+        &quot;@type&quot;: &quot;WebSite&quot;,
+        &quot;@id&quot;: &quot;https://example.jp/#website&quot;,
+        &quot;name&quot;: &quot;△△工務店&quot;,
+        &quot;url&quot;: &quot;https://example.jp/&quot;
+      },
+      {
+        &quot;@type&quot;: &quot;GeneralContractor&quot;,
+        &quot;@id&quot;: &quot;https://example.jp/#organization&quot;,
+        &quot;name&quot;: &quot;△△工務店&quot;,
+        &quot;url&quot;: &quot;https://example.jp/&quot;,
+        &quot;logo&quot;: &quot;https://example.jp/img/logo.png&quot;,
+        &quot;image&quot;: &quot;https://example.jp/og/top.jpg&quot;,
+        &quot;telephone&quot;: &quot;+81-00-0000-0000&quot;,
+        &quot;address&quot;: {
+          &quot;@type&quot;: &quot;PostalAddress&quot;,
+          &quot;postalCode&quot;: &quot;000-0000&quot;,
+          &quot;addressRegion&quot;: &quot;〇〇県&quot;,
+          &quot;addressLocality&quot;: &quot;〇〇市&quot;,
+          &quot;streetAddress&quot;: &quot;〇〇町1-2-3&quot;,
+          &quot;addressCountry&quot;: &quot;JP&quot;
+        },
+        &quot;areaServed&quot;: [&quot;〇〇市&quot;, &quot;△△市&quot;],
+        &quot;openingHoursSpecification&quot;: [{
+          &quot;@type&quot;: &quot;OpeningHoursSpecification&quot;,
+          &quot;dayOfWeek&quot;: [&quot;Monday&quot;,&quot;Tuesday&quot;,&quot;Wednesday&quot;,&quot;Thursday&quot;,&quot;Friday&quot;,&quot;Saturday&quot;],
+          &quot;opens&quot;: &quot;08:00:00&quot;, &quot;closes&quot;: &quot;18:00:00&quot;
+        }],
+        &quot;sameAs&quot;: [&quot;https://www.instagram.com/xxxx/&quot;]
+      },
+      {
+        &quot;@type&quot;: &quot;BreadcrumbList&quot;,
+        &quot;itemListElement&quot;: [
+          {&quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 1, &quot;name&quot;: &quot;ホーム&quot;, &quot;item&quot;: &quot;https://example.jp/&quot;},
+          {&quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 2, &quot;name&quot;: &quot;工事メニュー&quot;, &quot;item&quot;: &quot;https://example.jp/service/&quot;},
+          {&quot;@type&quot;: &quot;ListItem&quot;, &quot;position&quot;: 3, &quot;name&quot;: &quot;浴室リフォーム&quot;}
+        ]
+      }
+    ]
+  }
+  &lt;/script&gt;
+
+  &lt;!-- Search Console（URLプレフィックス＋HTMLタグ方式の場合のみ。トップページに） --&gt;
+  &lt;!-- &lt;meta name=&quot;google-site-verification&quot; content=&quot;XXXXXXXX&quot;&gt; --&gt;
+
+  &lt;!-- GA4 --&gt;
+  &lt;script async src=&quot;https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag(&#x27;js&#x27;, new Date());
+    gtag(&#x27;config&#x27;, &#x27;G-XXXXXXXXXX&#x27;);
+  &lt;/script&gt;
+&lt;/head&gt;</code></pre></details>
+<details class="code"><summary>robots.txt（Agent9＋Agent10：検索用AIクローラーを明示的に許可）</summary>
+<pre><code>User-agent: *
+Allow: /
+
+# ChatGPT検索・Perplexityの検索用クローラー（ブロックするとAI検索に出なくなる）
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://example.jp/sitemap.xml</code></pre></details>
+<h3>サーバー・計測の要点</h3>
+<ul>
+<li>静的HTMLなら Cloudflare Pages が最有力（無料・帯域無制限・自動SSL）。Netlifyは2026年からクレジット制。国内サポート重視ならエックスサーバー等。</li>
+<li>HTTPS必須、http・www有無・<code>/index.html</code> を301で1つに。混在コンテンツゼロ。安定後にHSTS。</li>
+<li>sitemap.xmlは <code>&lt;loc&gt;</code> と正確な <code>&lt;lastmod&gt;</code> だけ。Search Consoleから送信（ping送信は2023年廃止）。</li>
+<li>404は本当に404を返す（トップへのリダイレクトや200はソフト404）。404ページにも主要導線を置く。</li>
+<li>Cookie同意は日本の小規模サイトでは必須ではないが、プライバシーポリシーにGA4の利用を明記（外部送信規律への配慮）。</li>
+</ul>
+</section>
+
+<!-- 12 -->
+<section class="chap" id="s12">
+<h2><span class="no">12</span>AI検索対策とFAQ候補20問</h2>
+<p>Agent10の結果。2026年5月15日にGoogle Search Centralが生成AI向けの最適化ガイドを公開し、「SEOは今も有効」「llms.txt、Markdown版ページ、AI向けのチャンク分割、AI専用の構造化データは不要」と明言。AI Overviews／AIモード（日本語は2025年9月9日開始）に出るための追加要件はなく、インデックスされスニペット対象であれば引用候補になる。Googleマップの「マップに相談（Ask Maps）」は2026年8月に日本で開始。</p>
+<div class="tw"><table class="w-wide">
+<thead><tr><th>確度</th><th>施策</th><th>実装</th></tr></thead>
+<tbody>
+<tr><td><span class="pri p-high">高</span></td><td>クロールできる状態とインデックスの確保（Googleが明言する前提）</td><td>本文はJSで後から描画せずHTMLに直接。canonical、XMLサイトマップ。<code>nosnippet</code>や小さすぎる<code>max-snippet</code>は付けない</td></tr>
+<tr><td><span class="pri p-high">高</span></td><td>GBPを完全に埋めて更新し続ける</td><td>AI OverviewsやAsk MapsはGBPの属性と口コミを直接読む。サイトのNAPを1文字も違わず一致（6章）</td></tr>
+<tr><td><span class="pri p-high">高</span></td><td>口コミを継続獲得し全件返信</td><td>AIは星の数だけでなく本文（「対応が丁寧」等）も読む</td></tr>
+<tr><td><span class="pri p-high">高</span></td><td>結論を先に書く</td><td>質問形の <code>&lt;h2&gt;</code> 直後の <code>&lt;p&gt;</code> に結論と数値、詳細は後ろへ</td></tr>
+<tr><td><span class="pri p-high">高</span></td><td>自社サイトを「一次情報の正本」にする</td><td>ChatGPTのローカル推薦の情報源は事業者サイト58%。会社概要を <code>&lt;dl&gt;</code> で事実ベースに</td></tr>
+<tr><td><span class="pri p-high">高</span></td><td>検索用AIクローラーをブロックしない</td><td>OAI-SearchBot・PerplexityBotを許可（GPTBot＝学習用とは別物）</td></tr>
+<tr><td><span class="pri p-mid">中</span></td><td>具体的な数値・相場・工期を出典つきで明記</td><td>費用は表、補助金は公式URLへリンク</td></tr>
+<tr><td><span class="pri p-mid">中</span></td><td>更新日の表示と実際の内容更新</td><td><code>&lt;time&gt;</code>と<code>dateModified</code>を一致。日付だけ変える更新は無効</td></tr>
+<tr><td><span class="pri p-mid">中</span></td><td>Q&amp;A形式のコンテンツ</td><td>回答文は初期状態でHTML内に存在させる</td></tr>
+<tr><td><span class="pri p-mid">中</span></td><td>地域名を含む施工事例ページ</td><td>1事例1URL、h1に地域と工事名、<code>&lt;dl&gt;</code>に費用・工期</td></tr>
+<tr><td><span class="pri p-mid">中</span></td><td>第三者からの言及（地域メディア・商工会・自治体名簿）</td><td>ChatGPTの情報源の27%。掲載実績をリンクつきで</td></tr>
+<tr><td><span class="pri p-mid">中</span></td><td>LocalBusiness系の構造化データ</td><td>7章の <code>GeneralContractor</code></td></tr>
+<tr><td><span class="pri p-mid">中</span></td><td>Bing Webmaster Tools登録とIndexNow</td><td>ChatGPT検索・CopilotはBingとの関係が深いとされる（二次情報）</td></tr>
+<tr><td><span class="pri p-low">低</span></td><td>llms.txtの設置</td><td>Googleは不要と明言、97%のファイルにAIからのリクエストなしとの報告。置くなら5分で済む範囲</td></tr>
+<tr><td><span class="pri p-low">低</span></td><td>GPTBot／Google-Extended（学習用）の拒否</td><td>AI検索表示とはおおむね無関係。知名度を上げたい側なので許可のまま推奨</td></tr>
+<tr><td><span class="pri p-low">低</span></td><td>AI専用ページ（Markdown版・AI向け要約）</td><td>Googleが不要と明言。作らない</td></tr>
+</tbody></table></div>
+<p class="small">確認方法：月1回、ChatGPT・Gemini・AIモードで「〇〇市 リフォーム おすすめ」などを質問し、言及・引用の有無を記録する。</p>
+
+<h3>FAQ候補20問（模範回答）</h3>
+<div class="callout judge"><p><span class="label">判断</span><b>FAQの金額はAgent2の出典つき相場に合わせて修正。</b>Agent10の回答例は出典が付いていない数値が多く、Agent2（比較サイト・専門店の公開単価、2024〜2026年）と幅が食い違っていた（例：トイレ 15〜40万円 → 10〜30万円、ユニットバス交換 70〜150万円 → 50〜120万円、土間コン 1〜1.5万円/㎡ → 約7,500〜8,600円/㎡〜）。出典が見つからなかった項目（洗面台・フェンス・ウッドデッキ）は「自社実績値に置き換え」と明記。<b>公開時はすべて自社の実績値に置き換える</b>こと。</p></div>
+<ol class="faq-list">
+<li><p class="q">キッチンのリフォーム費用はいくらくらいですか？</p><p class="a">I型システムキッチンの交換だけなら40万〜80万円程度、周辺工事を含めると50万〜150万円程度が一般的です。位置の移動や対面化を伴う全体改修では80万〜400万円になることもあります。現地調査の後、内訳つきの見積書をお出しします。</p><p class="fix">修正：Agent2の相場に統一</p></li>
+<li><p class="q">浴室（ユニットバス）交換の費用と工期は？</p><p class="a">ユニットバスからユニットバスへの交換は50万〜120万円程度、工期は4〜5日程度が目安です。タイル張りの在来浴室からの交換は解体と土台補修が必要なため、50万〜200万円（100万円前後が多い）と幅があります。</p><p class="fix">修正：金額をAgent2に統一（工期はAgent10・Agent6の事例例による目安）</p></li>
+<li><p class="q">トイレの交換はいくらで、何時間かかりますか？</p><p class="a">便器・便座の交換は10万〜30万円程度で、約7割が15万円以下というデータもあります。工事は半日〜1日です。床・壁の内装も一緒に替えると20万〜50万円程度が目安です。</p><p class="fix">修正：Agent2に統一</p></li>
+<li><p class="q">洗面台の交換費用は？</p><p class="a">洗面化粧台の交換は本体のグレードで大きく変わります。工事は多くの場合1日で完了します。<b>［金額は自社実績値を記入：Agent10案は15万〜50万円だが出典なし］</b></p></li>
+<li><p class="q">壁紙（クロス）の張り替えはいくらですか？</p><p class="a">1㎡あたり1,000〜2,500円程度、6畳間（壁面約40㎡）で量産品なら4万〜5万円、標準品で5万〜7.6万円程度が目安です。家具の移動や下地補修が必要な場合は別途かかります。</p><p class="fix">修正：Agent2に統一</p></li>
+<li><p class="q">フローリングの張り替え費用は？</p><p class="a">6畳で、既存の床に重ねて張る工法なら約5万〜25万円、剥がして張り替える工法なら約10万〜25万円が目安です。床下の傷みがあれば補修費が加わります。</p><p class="fix">修正：Agent2に統一</p></li>
+<li><p class="q">駐車場の土間コンクリートの費用は？</p><p class="a">専門店の公開単価では1㎡あたり約7,500〜8,600円からです。残土処分・下地・勾配の調整で総額が変わるため、車1台分の総額は現地調査のうえでお出しします。<b>［1台分の自社実績値を記入］</b></p><p class="fix">修正：Agent1・2の公開単価に統一（Agent10の1〜1.5万円/㎡は出典なし）</p></li>
+<li><p class="q">ブロック塀やフェンスの工事費用は？</p><p class="a">フェンスは高さ・素材・長さで大きく変わります。古いブロック塀の撤去・やり替えには、自治体の撤去補助が使える場合があります。<b>［1mあたりの自社実績値を記入：信頼できる相場出典なし］</b></p></li>
+<li><p class="q">ウッドデッキやテラス屋根の設置費用は？</p><p class="a">サイズ・素材（天然木／樹脂）・基礎工事の有無で変動します。<b>［自社実績値を記入：Agent2は信頼できる出典を確認できず］</b></p></li>
+<li><p class="q">リフォームで使える補助金はありますか？</p><p class="a">国の「住宅省エネ2026キャンペーン」（みらいエコ住宅2026・先進的窓リノベ2026・給湯省エネ2026）のほか、県や〇〇市独自の住宅リフォーム補助、介護保険の住宅改修費などがあります。多くは工事前の申請が必要で、予算に達すると締め切られるため、早めにご相談ください。</p></li>
+<li><p class="q">窓の断熱リフォームの補助金はいくら出ますか？</p><p class="a">先進的窓リノベ2026事業では、窓の性能とサイズに応じた補助額の合計が支給され、上限は1戸あたり100万円です。2026年度は内窓の対象条件が変わっている（Sグレード以上等）との情報があるため、対象製品を確認してご提案します。<b>［公式で要確認］</b></p></li>
+<li><p class="q">補助金の申請は自分でしないといけませんか？</p><p class="a">国の省エネ系補助金の多くは、登録事業者である施工会社が申請手続きを行う仕組みです。市の補助金はご本人の申請が必要な場合もあるため、書類の準備もお手伝いします。</p></li>
+<li><p class="q">介護・バリアフリーのリフォームに使える制度は？</p><p class="a">要支援・要介護認定を受けた方は、介護保険の住宅改修費として、手すりの設置や段差の解消などに上限20万円（自己負担1〜3割）まで支給されます。工事前にケアマネジャーへの相談と事前申請が必要で、申請前に着工すると対象外になります。</p></li>
+<li><p class="q">見積もりは無料ですか？他社と比較してもいいですか？</p><p class="a">〇〇市と近隣エリアの現地調査とお見積もりは無料です。相見積もりも歓迎しており、項目ごとの内訳を明記した見積書をお出しします。</p></li>
+<li><p class="q">住みながらリフォームできますか？</p><p class="a">水回りや内装の部分リフォームの多くは、住みながら工事できます。浴室工事中は数日入浴できないため、生活への影響を事前にご説明します。</p></li>
+<li><p class="q">工事の保証やアフターサービスはありますか？</p><p class="a">施工部分には自社の工事保証（工事内容により期間が異なる）を付け、設備機器にはメーカー保証が適用されます。引き渡し後の定期点検にも対応しています。<b>［保証期間・点検時期は自社の実際の内容を記入］</b></p></li>
+<li><p class="q">対応エリアはどこまでですか？</p><p class="a">〇〇市全域と、近隣の△△市・□□町に対応しています。<b>［GBPのサービス提供地域・構造化データと一致させる］</b></p></li>
+<li><p class="q">小さな工事（網戸の張り替え・ドアの調整など）でも頼めますか？</p><p class="a">はい、小さな修繕からお受けしています。目安として網戸の張り替えは1枚1,500〜10,000円程度、ドアの建付け調整は1万円台が相場です。気になる箇所をまとめてご相談いただくと出張費を抑えられます。<b>［出張費・最低料金を記入］</b></p><p class="fix">修正：Agent2の小修理相場を追記</p></li>
+<li><p class="q">相談から完成までどのくらいかかりますか？</p><p class="a">一般的には、相談・現地調査から見積もり提示まで1〜2週間、契約後の工事は部分リフォームで数日〜2週間程度です。設備機器の納期や補助金申請の時期によって前後します。</p></li>
+<li><p class="q">支払い方法とリフォームローンについて教えてください。</p><p class="a">現金振込のほか、工事規模に応じて着工時と完了時の分割払いにも対応しています。金融機関のリフォームローンもご案内できます。<b>［自社の支払い条件を記入］</b></p></li>
+</ol>
+<p class="small">HTML：<code>&lt;details&gt;&lt;summary&gt;質問&lt;/summary&gt;&lt;p&gt;回答&lt;/p&gt;&lt;/details&gt;</code> または <code>&lt;h3&gt;</code>＋<code>&lt;p&gt;</code>。各回答の1文目で結論。最終更新日を <code>&lt;time&gt;</code> で表示。FAQPageのJSON-LDは任意。</p>
+</section>
+
+<!-- 13 -->
+<section class="chap" id="s13">
+<h2><span class="no">13</span>「もう効かない古いSEO常識」一覧</h2>
+<p>各担当の検証を統合。<span class="ng">無効</span>＝やらない、<span class="chg">変化</span>＝やり方・目的が変わった、<span class="okk">有効</span>＝今もやる。</p>
+<div class="tw"><table class="w-wide">
+<thead><tr><th>古い常識</th><th>2026年の判定</th><th>どうするか</th><th>担当</th></tr></thead>
+<tbody>
+<tr><td>meta keywords を書く</td><td><span class="ng">無効</span> 2009年から未使用</td><td>書かない</td><td class="nowrap">3・9</td></tr>
+<tr><td>FAQ構造化データでリッチリザルト</td><td><span class="ng">無効</span> 2026年5月7日に全サイトで表示終了、6月にドキュメント削除</td><td>FAQは見える本文として書く。JSON-LDは任意</td><td class="nowrap">2・3・5・10</td></tr>
+<tr><td>HowTo構造化データ</td><td><span class="ng">無効</span> 2023年に廃止</td><td>手順は <code>&lt;ol&gt;</code></td><td class="nowrap">5・10</td></tr>
+<tr><td>自社サイトの口コミに★マークアップ</td><td><span class="ng">無効</span> 2019年から自社掲載は対象外</td><td>付けない。★はGBPに任せる</td><td class="nowrap">4・5・6</td></tr>
+<tr><td>「構造化データで順位が上がる」</td><td><span class="ng">誤り</span></td><td>見た目と理解の補助として使う</td><td class="nowrap">5</td></tr>
+<tr><td>GBPの店名に「〇〇市 リフォーム」を足す</td><td><span class="ng">違反</span></td><td>正式な屋号だけ</td><td class="nowrap">4</td></tr>
+<tr><td>GBPのQ&amp;Aに自社FAQを書く</td><td><span class="ng">廃止</span> API 2025年11月終了、Ask Mapsへ</td><td>サイトのFAQを充実</td><td class="nowrap">4</td></tr>
+<tr><td>GBPのチャットで問い合わせを受ける</td><td><span class="ng">終了</span> 2024年7月</td><td>電話・フォームへ誘導</td><td class="nowrap">4</td></tr>
+<tr><td>町名だけ差し替えた地域ページの量産</td><td><span class="ng">危険</span> ドアウェイ扱い（2026年6月スパムアップデートでも住宅サービスが対象に）</td><td>対応エリア1ページ。町別は固有事例3件以上のときだけ</td><td class="nowrap">3・4</td></tr>
+<tr><td>キーワードの詰め込み・地域名の羅列</td><td><span class="ng">逆効果</span></td><td>人が読んで自然な文章</td><td class="nowrap">10</td></tr>
+<tr><td>サイテーションは数が多いほど上がる</td><td><span class="chg">変化</span> 影響約6%に縮小</td><td>一貫性とAI露出のため、質の高い掲載先に絞る</td><td class="nowrap">4・10</td></tr>
+<tr><td>sitemap の priority / changefreq</td><td><span class="ng">無効</span> Googleは無視</td><td>正確な lastmod だけ</td><td class="nowrap">9</td></tr>
+<tr><td>サイトマップの ping 送信</td><td><span class="ng">廃止</span> 2023年</td><td>Search Console と robots.txt</td><td class="nowrap">9</td></tr>
+<tr><td>FID 100ms</td><td><span class="chg">置換</span> 2024年3月にINP 200msへ</td><td>重いJSを入れない</td><td class="nowrap">9</td></tr>
+<tr><td>「LCPが2.0秒に厳格化」</td><td><span class="ng">誤情報</span></td><td>2.5秒のまま</td><td class="nowrap">8・9</td></tr>
+<tr><td>Search Console「ページエクスペリエンス」レポート</td><td><span class="ng">廃止</span> 2024年11月</td><td>CWVレポートとHTTPSレポートで確認</td><td class="nowrap">9</td></tr>
+<tr><td>パンくずは検索結果に表示される</td><td><span class="chg">変化</span> モバイルは2025年1月から非表示</td><td>マークアップは今も有効。導線として設置</td><td class="nowrap">5・9</td></tr>
+<tr><td>トップは自動スライドのカルーセル</td><td><span class="ng">非推奨</span> LCPを悪化</td><td>静止画1枚＋<code>fetchpriority="high"</code></td><td class="nowrap">8・9</td></tr>
+<tr><td>文字入り画像を見出しに</td><td><span class="ng">NG</span></td><td>HTMLテキストで重ねる</td><td class="nowrap">8</td></tr>
+<tr><td>本文12〜14px</td><td><span class="ng">古い</span></td><td>16px以上、推奨17〜18px</td><td class="nowrap">8</td></tr>
+<tr><td>電話番号を画像で掲載</td><td><span class="ng">NG</span></td><td>テキスト＋<code>tel:</code></td><td class="nowrap">7</td></tr>
+<tr><td>フォームの確認画面は必須</td><td><span class="chg">不要</span></td><td>送信前に見直しの一文</td><td class="nowrap">7</td></tr>
+<tr><td>メールアドレスの2回入力・電話番号の分割入力</td><td><span class="ng">不要</span></td><td>1欄＋autocomplete</td><td class="nowrap">7</td></tr>
+<tr><td>reCAPTCHA一択</td><td><span class="chg">変化</span> Google Cloudへ移行</td><td>Turnstile＋ハニーポット</td><td class="nowrap">7</td></tr>
+<tr><td>GA4の「コンバージョン」</td><td><span class="chg">名称変更</span> キーイベント</td><td>thanks表示・電話タップ・LINEをキーイベントに</td><td class="nowrap">7・9</td></tr>
+<tr><td>llms.txt・AI専用ページを作る</td><td><span class="ng">不要</span> Googleが明言</td><td>通常ページの品質に注力</td><td class="nowrap">10</td></tr>
+<tr><td>「CTAは1つに絞れ」</td><td><span class="chg">条件付き</span> LPでは有効</td><td>電話・LINE・フォームを並べて主従をつける</td><td class="nowrap">7</td></tr>
+<tr><td>title に「地域名＋工事名」、1サービス1ページ</td><td><span class="okk">有効</span></td><td>4章のとおり</td><td class="nowrap">1・2・3</td></tr>
+<tr><td>meta description を書く</td><td><span class="okk">有効</span>（順位でなくクリック率対策）</td><td>全角80〜120字、ページごとに</td><td class="nowrap">3・9</td></tr>
+<tr><td>img に width/height、URLはハイフン区切り</td><td><span class="okk">有効</span></td><td>CLS対策、Google公式推奨</td><td class="nowrap">9</td></tr>
+<tr><td>E-E-A-T・著者名と経歴ページ</td><td><span class="okk">有効</span>（直接の点数ではない）</td><td>事例・コラムに署名とスタッフページ</td><td class="nowrap">6・10</td></tr>
+<tr><td>GBPのメインカテゴリが最重要、口コミは新しさ</td><td><span class="okk">有効</span>（重要度上昇）</td><td>6章のとおり</td><td class="nowrap">4</td></tr>
+<tr><td>h1は1つ</td><td><span class="okk">無難</span>（必須ではない）</td><td>小規模サイトでは1つに</td><td class="nowrap">9</td></tr>
+</tbody></table></div>
+</section>
+
+<!-- 14 -->
+<section class="chap" id="s14">
+<h2><span class="no">14</span>補助金・料金相場の目安</h2>
+<div class="callout warn"><p><b>注意：</b>以下は2026年10月30日時点でWebSearchから得た数値です。官公庁サイト（jutaku-shoene2026.mlit.go.jp、www.meti.go.jp など）は直接開けなかったため、<b>すべて「公式で要確認」</b>です。補助金は予算に達し次第終了します。サイトに載せる際は「〇月〇日時点」と書き、公式ページへリンクしてください。</p></div>
+<h3>14-1. 補助金・制度（Agent2・3・10）</h3>
+<div class="tw"><table class="w-wide">
+<thead><tr><th>制度</th><th>内容（目安）</th><th>時点・期限</th><th>出典</th><th>確認</th></tr></thead>
+<tbody>
+<tr><td>住宅省エネ2026キャンペーン（国交省・経産省・環境省）</td><td>交付申請は2026年3月31日から順次受付。予算：先進的窓リノベ2026 1,125億円／給湯省エネ2026 570億円／みらいエコ住宅2026（リフォーム）300億円</td><td>令和7年度補正予算</td><td class="url"><a href="https://www.mlit.go.jp/report/press/house04_hh_001335.html">国交省 報道発表</a>／<a href="https://www.env.go.jp/content/000356796.pdf">環境省PDF</a>／<a href="https://www.meti.go.jp/press/2025/11/20251128004/20251128004-1.pdf">経産省PDF</a></td><td>公式で要確認</td></tr>
+<tr><td>みらいエコ住宅2026（リフォーム）</td><td>既存住宅の性能と改修後水準で上限が変わる：平成28年基準相当まで改修→上限100万円（平成4年基準未満）／80万円（平成11年基準未満）。平成11年基準相当まで→50万円／40万円。申請は登録事業者</td><td>交付申請 第二期 2026年5月13日〜12月31日（民間解説）</td><td class="url"><a href="https://www.ac.daikin.co.jp/jutakushoene/2026">ダイキン解説</a></td><td>公式で要確認</td></tr>
+<tr><td>先進的窓リノベ2026</td><td>上限100万円／戸。内窓の対象条件が変更との情報（Sグレード以上等）</td><td>予算上限まで、遅くとも2026年12月末</td><td class="url"><a href="https://www.sunrefre.jp/information/jutaku-shoene2026/mado_renovation/">交換できるくん解説</a>／<a href="https://www2.biz-lixil.com/files/user/hojyokin_handbook_madomirai26.pdf">LIXILハンドブック</a></td><td>公式で要確認</td></tr>
+<tr><td>給湯省エネ2026</td><td>エコキュート 基本7万円／台（性能加算で10万円）、ハイブリッド給湯機 10万円（12万円）、エネファーム 17万円。電気温水器撤去 +2万円、蓄熱暖房機撤去 +4万円（資料により差あり）</td><td>同上</td><td class="url"><a href="https://jutaku-shoene2026.mlit.go.jp/assets/doc/kyuto_jigyosyuchichirashi.pdf">公式チラシPDF</a>／<a href="https://kadenfan.hitachi.co.jp/kyutou/hojokin/">日立</a></td><td>公式で要確認</td></tr>
+<tr><td>介護保険の住宅改修</td><td>要支援1・2、要介護1〜5。支給限度基準額20万円（一律）、自己負担1〜3割。手すり・段差解消・滑り防止の床材・引き戸等への交換・洋式便器への交換と付帯工事。<b>着工前の事前申請が必須</b></td><td>2026年時点で上限変更は確認できず</td><td class="url"><a href="https://www.city.yokohama.lg.jp/kenko-iryo-fukushi/fukushi-kaigo/koreisha-kaigo/kaigo-hoken/kaishuhi/juukai.html">横浜市</a>／<a href="https://www.city.hiroshima.lg.jp/site/kaigo/2311.html">広島市</a></td><td>〇〇市の窓口で確認</td></tr>
+<tr><td>自治体の住宅リフォーム補助（例）</td><td>鴻巣市 5%・上限10万円／大館市 5〜20%・上限10〜50万円（市内業者が条件）／魚沼市 20〜50%・上限100万円／鶴岡市 1/5〜1/3・上限30万円／石岡市 10%・上限35〜50万円／上越市 年1回受付・超過時抽選・契約は交付決定後</td><td>令和8年度の例</td><td class="url"><a href="https://hojyokin-portal.jp/subsidies/83207">補助金ポータル</a>／<a href="https://j-net21.smrj.go.jp/snavi2/articles/179521">J-Net21</a></td><td><b>〇〇市の制度を市公式で確認</b></td></tr>
+</tbody></table></div>
+<p class="small">2026年10月時点の予算残りや受付終了の告知は検索では確認できなかった → <a href="https://jutaku-shoene2026.mlit.go.jp/">住宅省エネ2026キャンペーン公式</a>で確認し、ページに更新日を明記。</p>
+
+<h3>14-2. 工事費用の相場（Agent2：工事費込み・戸建て・税込が目安）</h3>
+<p class="small">出典の多くは比較サイトや業者メディアで、2024〜2026年の実績が混在。資材高騰で2025年以降は工事単価が上昇（<a href="https://www.yano.co.jp/press-release/show/press_id/3877">矢野経済研究所</a>）。<b>サイトには自社の実績値を優先して載せる</b>こと。</p>
+<div class="tw"><table class="w-wide">
+<thead><tr><th>区分</th><th>工事</th><th>相場の目安</th><th>主な出典</th></tr></thead>
+<tbody>
+<tr><td rowspan="5">水回り</td><td>トイレ（便器・便座交換）</td><td>10万〜30万円（約7割が15万円以下）。内装込み20万〜50万円、バリアフリー化込み50万〜100万円</td><td class="url"><a href="https://www.correc.co.jp/reform/toilet-reform-hiyou">correc</a>／<a href="https://curama.jp/magazine/767/">curama</a></td></tr>
+<tr><td>浴室</td><td>ユニットバス→ユニットバス 50万〜120万円。在来→ユニットバス 約50万〜200万円（100万円前後が多い）</td><td class="url"><a href="https://meetsmore.com/services/bathroom-remodel/media/255393">meetsmore</a></td></tr>
+<tr><td>キッチン</td><td>I型交換 40万〜80万円（全体50万〜150万円）。レイアウト変更を含む全体改修 80万〜400万円。コンロ交換10万円前後〜</td><td class="url"><a href="https://toushi.homes.co.jp/column/?p=12006">HOME'S</a>／<a href="https://allabout.co.jp/gm/gl/2597/2/">All About</a></td></tr>
+<tr><td>蛇口交換</td><td>9,000〜25,000円（作業費中心）。本体込みでキッチン混合栓1.5万〜7.3万円</td><td class="url"><a href="https://meetsmore.com/services/faucet-exchange/media/182656">meetsmore</a></td></tr>
+<tr><td>給湯器（24号）</td><td>給湯専用 6万〜15万円。エコジョーズ フルオート 19万〜26万円</td><td class="url"><a href="https://meetsmore.com/services/water-heater-exchange/media/106467">meetsmore</a></td></tr>
+<tr><td rowspan="2">内装</td><td>壁紙（6畳・壁面約40㎡）</td><td>量産品4万〜5万円、標準品5万〜7.6万円。㎡単価1,000〜2,500円</td><td class="url"><a href="https://meetsmore.com/services/wall-paper-exchange/media/228834">meetsmore</a>／<a href="https://curama.jp/magazine/732/">curama</a></td></tr>
+<tr><td>フローリング（6畳）</td><td>重ね張り 約5万〜25万円、張り替え 約10万〜25万円</td><td class="url">crexgroup（比較記事）</td></tr>
+<tr><td rowspan="2">外壁・屋根（30坪2階建て）</td><td>外壁塗装</td><td>60万〜140万円（シリコンで60万〜100万円）。外壁＋屋根同時 94万〜196万円。足場15万〜30万円（別計上のことも）</td><td class="url"><a href="https://meetsmore.com/services/outdoor-wall-painting/media/93293">meetsmore</a>／<a href="https://curama.jp/magazine/2071/">curama</a></td></tr>
+<tr><td>屋根</td><td>塗装 25万〜80万円、カバー工法 80万〜180万円、葺き替え 100万〜250万円</td><td class="url"><a href="https://meetsmore.com/services/roof-changing/media/246809">meetsmore</a></td></tr>
+<tr><td rowspan="4">外構</td><td>外構全体</td><td>新築 100万〜300万円、リフォーム 50万〜100万円。オープン50万〜100万／セミクローズ80万〜150万／クローズ150万〜300万円</td><td class="url"><a href="https://meetsmore.com/t/exterior/media/127834">meetsmore</a></td></tr>
+<tr><td>カーポート</td><td>1台用 約14万〜15万円〜、2台用（片支持）約29万〜32万円〜、2台用（両支持）約67万円〜。コメリは1台用 商品97,800円＋工事費42,000円〜</td><td class="url"><a href="https://www.seikatsu-do.com/exterior/carport/marketprice.php">生活堂</a>／<a href="https://www.komeri.com/contents/reform/details/carport_list.html">コメリ</a></td></tr>
+<tr><td>土間コンクリート</td><td>㎡あたり約8,600円〜（ファミテイ公開単価）、約7,500円〜（ワークスHiro、1台分約10万円）</td><td class="url"><a href="https://famitei.mobi/contents.php/price">ファミテイ</a>／<a href="https://www.workshiro.com/">ワークスHiro</a></td></tr>
+<tr><td>ウッドデッキ・目隠しフェンス</td><td><b>信頼できる出典を確認できず（要追加調査・自社実績値で）</b></td><td>—</td></tr>
+<tr><td>バリアフリー</td><td>手すり・段差・スロープ</td><td>手すり 約5千円〜6万円／本、段差解消 約5万〜30万円、スロープ 20万〜50万円、浴室総合改修 10万〜150万円</td><td class="url"><a href="https://diamond-fudosan.jp/articles/-/1111428">ダイヤモンド不動産</a></td></tr>
+<tr><td>小修理</td><td>網戸・ドア</td><td>網戸張り替え 1枚約1,500〜10,000円（地域差大）。ドア調整：蝶番 平均13,409円、戸車 平均12,726円、ドアノブ 平均10,301円</td><td class="url"><a href="https://meetsmore.com/services/door-repair/tokyo/kodaira">meetsmore</a></td></tr>
+</tbody></table></div>
+<h3>14-3. 価格の見せ方（Agent2の推奨）</h3>
+<div class="tw"><table class="w-mid">
+<thead><tr><th>パターン</th><th>向く工事</th><th>注意</th></tr></thead>
+<tbody>
+<tr><td>① 〇万円〜（最低価格）</td><td>外構・内装・外壁の目安</td><td>上限が分からない。「主な価格帯：15〜25万円」を併記</td></tr>
+<tr><td>② パック料金（工事費込み定額）</td><td>小修理・設備交換</td><td>標準工事の範囲外（配管劣化・下地腐食）は追加。含む／含まないを2列で</td></tr>
+<tr><td>③ 価格帯別の施工事例</td><td>外構・内装（事例が貯まったら）</td><td>古い事例は値上げ前の価格。施工年月を必ず書く</td></tr>
+</tbody></table></div>
+<p>どのパターンでも「税込か」「工事費込みか」「改定日（時点）」を必ず書く。例：<code>価格は2026年10月時点・税込。現地調査後に確定します。</code></p>
+</section>
+
+<!-- 15 -->
+<section class="chap" id="s15">
+<h2><span class="no">15</span>クライアントへの確認事項と公開後の運用</h2>
+<h3>15-1. 社長さまに確認・ご用意いただくもの</h3>
+<p class="progress" data-progress="client"></p>
+<ul class="check" data-group="client">
+<li><input type="checkbox" id="c1"><label for="c1"><b>正式な屋号とNAPの正規表記</b>（株式会社の位置、住所の書き方、電話のハイフン、ビル名）→ 表記台帳</label></li>
+<li><input type="checkbox" id="c2"><label for="c2"><b>建設業許可</b>の有無・許可行政庁・般/特・番号・業種（無い場合は500万円未満専門である旨の書き方を相談）</label></li>
+<li><input type="checkbox" id="c3"><label for="c3"><b>保有資格</b>（建築士・施工管理技士・増改築相談員など）と人数・保有者</label></li>
+<li><input type="checkbox" id="c4"><label for="c4"><b>保証の内容</b>（工事種別ごとの期間・対象・点検時期）、保証書のサンプル</label></li>
+<li><input type="checkbox" id="c5"><label for="c5"><b>リフォーム瑕疵保険の登録</b>、加盟団体（事業者団体登録制度・商工会）、メーカー認定、自治体の登録業者</label></li>
+<li><input type="checkbox" id="c6"><label for="c6"><b>対応エリア</b>（市町村名、GBPは最大20件）と出張費の考え方</label></li>
+<li><input type="checkbox" id="c7"><label for="c7"><b>営業時間・定休日・年末年始等の休み</b></label></li>
+<li><input type="checkbox" id="c8"><label for="c8"><b>Googleビジネスプロフィール</b>の有無とオーナー権限、住所を表示するか（事務所で接客するか）</label></li>
+<li><input type="checkbox" id="c9"><label for="c9"><b>施工事例の写真</b>（施工前・工程・施工後）と費用・工期・築年数、掲載同意書</label></li>
+<li><input type="checkbox" id="c10"><label for="c10"><b>お客様の声</b>の原本と同意（謝礼の有無も）</label></li>
+<li><input type="checkbox" id="c11"><label for="c11"><b>自社の価格</b>（工事別の実績価格帯、小修理の出張費・最低料金）。FAQの［ ］内を埋める</label></li>
+<li><input type="checkbox" id="c12"><label for="c12"><b>〇〇市の住宅リフォーム補助</b>の制度名・条件と、自社が登録業者か／国の省エネ補助の登録事業者か</label></li>
+<li><input type="checkbox" id="c13"><label for="c13"><b>代表あいさつの原稿と顔写真</b>（作業着）、スタッフ・職人の紹介と写真</label></li>
+<li><input type="checkbox" id="c14"><label for="c14"><b>創業年・施工実績件数</b>（数え方と時点）、沿革、地域活動</label></li>
+<li><input type="checkbox" id="c15"><label for="c15"><b>LINE公式アカウント</b>の有無（無ければ開設）、問い合わせ通知を受けるメール2件</label></li>
+<li><input type="checkbox" id="c16"><label for="c16"><b>ドメイン・サーバー</b>の有無、DNSを触れるか（Search Consoleの確認方法に影響）</label></li>
+<li><input type="checkbox" id="c17"><label for="c17"><b>ロゴ</b>、SNSのURL（Instagram・YouTube・Facebook）</label></li>
+<li><input type="checkbox" id="c18"><label for="c18"><b>デザイン案の選択</b>（10章の案A推奨）</label></li>
+<li><input type="checkbox" id="c19"><label for="c19"><b>特定商取引法の表記・クーリングオフ案内</b>の要否（訪問での契約があるか。専門家に確認）</label></li>
+<li><input type="checkbox" id="c20"><label for="c20"><b>お断りする工事・条件</b>（受注状況、対応しない工事種別）を正直に書くかどうか</label></li>
+</ul>
+<h3>15-2. 公開後の運用表</h3>
+<div class="tw"><table class="w-wide">
+<thead><tr><th>頻度</th><th>作業</th><th>担当（案）</th><th>メモ</th></tr></thead>
+<tbody>
+<tr><td>引き渡しのたび</td><td>口コミ依頼（QRカード・お礼LINE/メール）、事例写真の撮影と同意取得</td><td>社長・現場</td><td>全員に同じ文面。★や内容の指定・謝礼はしない</td></tr>
+<tr><td>口コミが来たら</td><td>GBPで全件返信</td><td>社長</td><td>低評価にも事実ベースで。個人や場所を特定する情報は書かない</td></tr>
+<tr><td>週1〜隔週</td><td>GBPの最新情報投稿</td><td>社長・事務</td><td>施工事例・季節の提案・休業案内。リンクにUTM</td></tr>
+<tr><td>月1〜2件（目安）</td><td>施工事例ページの追加</td><td>制作者＋社長</td><td>町名・費用・工期・自社写真。GBPにも同じ現場の写真を追加<small>（件数は社内で決める目安）</small></td></tr>
+<tr><td>毎月</td><td>GBPに写真追加</td><td>社長・事務</td><td>素材写真は使わない</td></tr>
+<tr><td>毎月</td><td>Search Console 確認</td><td>制作者</td><td>検索クエリ・表示回数、インデックス、CWVレポート、エラー</td></tr>
+<tr><td>毎月</td><td>GA4 確認</td><td>制作者</td><td>キーイベント（フォーム・電話タップ・LINE）、GBP経由の流入</td></tr>
+<tr><td>毎月</td><td>AI検索の確認</td><td>制作者</td><td>ChatGPT・Gemini・AIモードで「〇〇市 リフォーム おすすめ」等を質問し記録</td></tr>
+<tr><td>毎月＋制度変更時</td><td>補助金ページの更新</td><td>制作者</td><td>予算残り・受付状況を公式で確認し、更新日を書き換え（中身を変えたときだけ）</td></tr>
+<tr><td>祝日・長期休みの前</td><td>GBPの特別営業時間、サイトのお知らせ</td><td>事務</td><td>年末年始は構造化データの<code>specialOpeningHoursSpecification</code>も</td></tr>
+<tr><td>価格改定時・最低年1回</td><td>料金表・費用ページの見直し</td><td>社長＋制作者</td><td>改定日を明記</td></tr>
+<tr><td>年度初め</td><td>補助金ページの年度更新、FAQの数値見直し</td><td>制作者</td><td>title の【2026年度】も更新</td></tr>
+<tr><td>年1〜2回</td><td>外部掲載先のNAP点検</td><td>事務</td><td>表記台帳と照合。旧住所・旧電話を優先して直す</td></tr>
+</tbody></table></div>
+</section>
+
+<!-- 16 -->
+<section class="chap" id="s16">
+<h2><span class="no">16</span>注記・統合時の判断・出典一覧</h2>
+<h3>16-1. 調査方法と限界</h3>
+<div class="callout warn">
+<p>この調査は<b>WebSearch（検索結果の抜粋・要約）中心</b>で行いました。調査環境のネットワーク制限により、次のサイトはWebFetchで直接開けませんでした：developers.google.com、support.google.com、web.dev、schema.org、mlit.go.jp、jutaku-shoene2026.mlit.go.jp、www.meti.go.jp、caa.go.jp（消費者庁）、w3.org、whitespark.ca、各参考工務店のサイト など。</p>
+<p>そのため、Google公式の記述や制度の数値は、検索結果の抜粋と二次情報で照合したものです。<b>公開前に、一次情報（公式ページ）を人の目で確認してください。</b>特に、補助金の金額・期限・予算残り、介護保険の運用、GBPのガイドライン、景品表示法（ステマ告示）、特定商取引法の要否、参考サイトの実際の画面構成。</p>
+<p>価格相場は比較サイト・業者メディアの数値で、建物の状態・地域・時期で変わります。サイトに載せるのは自社の実績値を優先してください。</p>
+</div>
+<h3>16-2. 統合時に判断した矛盾点</h3>
+<div class="tw"><table class="w-wide">
+<thead><tr><th>論点</th><th>担当間の食い違い</th><th>統一した内容と理由</th></tr></thead>
+<tbody>
+<tr><td>工事ページのURL</td><td><code>/menu/</code>（3）、<code>/service/</code>（2・4・5）、<code>/reform/</code>（9）</td><td><code>/service/</code>に統一。多数派でJSON-LDひな形と一致、2階層に収まる</td></tr>
+<tr><td>会社の構造化データの型</td><td><code>HomeAndConstructionBusiness</code>（2・4・6・10）と<code>GeneralContractor</code>（5・9）</td><td><code>GeneralContractor</code>（前者の下位型で業態に最も合う）。<code>@id</code>は<code>#organization</code></td></tr>
+<tr><td>営業時間の書き方</td><td>文字列<code>openingHours</code>（9）と<code>openingHoursSpecification</code>（5）</td><td>Google公式ドキュメントに沿う後者</td></tr>
+<tr><td>FAQリッチリザルト</td><td>「政府・医療に限定、完全終了は未確認」（10）と「2026年5月7日に全サイト終了・6月にドキュメント削除」（2・3・5）</td><td>新しい出典（Google Search Central の更新履歴）を優先し「終了」</td></tr>
+<tr><td>GBPのQ&amp;A</td><td>「Q&amp;Aも更新」（10）と「廃止・Ask Mapsへ置換」（4）</td><td>新しい出典（2025年11月API終了）を優先し運用しない</td></tr>
+<tr><td>自社口コミの星マークアップ</td><td>「ガイドライン違反」（10）と「★は出ないがペナルティなし」（4・5・6）</td><td>Google公式（2019年）にもとづき「効果なし・付けない」</td></tr>
+<tr><td>費用相場（FAQ）</td><td>Agent10の回答例とAgent2の相場で幅が違う（トイレ・浴室・クロス・床・土間コン）</td><td>出典の付いたAgent2に統一。出典なしの項目は自社値に置換と明記</td></tr>
+<tr><td>日本語Webフォント</td><td>Google Fonts推奨（8）と原則使わない（9）</td><td>本文はシステムフォント、見出しのみ1ウェイト許容（CWV優先）</td></tr>
+<tr><td>固定CTAバーのボタン数・高さ</td><td>2ボタン（8）と3つまで・56〜64px（7）</td><td>導線担当の7を優先：3つまで・56px前後（最低48px）、問い合わせページのみ2つ</td></tr>
+<tr><td>LCPの基準</td><td>「2.0秒に厳格化」記事あり（9が確認）</td><td>一次情報なし。2.5秒（8・9で一致）</td></tr>
+<tr><td>HowToの終了時期</td><td>2023年9月（10）と2023年8月縮小→終了（5）</td><td>実務上の差はないため「2023年に廃止」と表記</td></tr>
+<tr><td>「口コミ／評判」キーワードの受け皿</td><td><code>/works/</code>（3）</td><td>司令塔構成の「お客様の声」<code>/voice/</code>を主、<code>/works/</code>を従</td></tr>
+<tr><td>theme-color</td><td>緑 #1f4e3d（9のひな形）</td><td>デザイン案Aの色に合わせる</td></tr>
+</tbody></table></div>
+<h3>16-3. 出典URL一覧（担当別・重複除去）</h3>
+<p class="small">各担当の調査ファイルに記載されたURLを機械的に抽出したものです（合計 312 件）。印刷時はすべて展開されます。</p>
+<details class="code"><summary>Agent1 参考サイトA（39件）</summary><div><ol class="srclist"><li><a href="https://ishikawa-kenchiku.jp/" rel="noopener">https://ishikawa-kenchiku.jp/</a></li>
+<li><a href="https://ishikawa-kenchiku.jp/about/" rel="noopener">https://ishikawa-kenchiku.jp/about/</a></li>
+<li><a href="https://ishikawa-kenchiku.jp/bathroom/" rel="noopener">https://ishikawa-kenchiku.jp/bathroom/</a></li>
+<li><a href="https://ishikawa-kenchiku.jp/interior/" rel="noopener">https://ishikawa-kenchiku.jp/interior/</a></li>
+<li><a href="https://omorikoumuten.jp/" rel="noopener">https://omorikoumuten.jp/</a></li>
+<li><a href="https://omorikoumuten.jp/staff/" rel="noopener">https://omorikoumuten.jp/staff/</a></li>
+<li><a href="https://omorikoumuten.jp/review/" rel="noopener">https://omorikoumuten.jp/review/</a></li>
+<li><a href="https://omorikoumuten.jp/outline/" rel="noopener">https://omorikoumuten.jp/outline/</a></li>
+<li><a href="https://www.tsukasa-koumuten.jp/" rel="noopener">https://www.tsukasa-koumuten.jp/</a></li>
+<li><a href="https://www.tsukasa-koumuten.jp/company" rel="noopener">https://www.tsukasa-koumuten.jp/company</a></li>
+<li><a href="https://www.tsukasa-koumuten.jp/aboutus" rel="noopener">https://www.tsukasa-koumuten.jp/aboutus</a></li>
+<li><a href="https://www.tsukasa-koumuten.jp/works/house/43468" rel="noopener">https://www.tsukasa-koumuten.jp/works/house/43468</a></li>
+<li><a href="https://www.tamaken.info/" rel="noopener">https://www.tamaken.info/</a></li>
+<li><a href="https://www.tamaken.info/concept/employee/" rel="noopener">https://www.tamaken.info/concept/employee/</a></li>
+<li><a href="https://www.tamaken.info/works/" rel="noopener">https://www.tamaken.info/works/</a></li>
+<li><a href="https://www.workshiro.com/" rel="noopener">https://www.workshiro.com/</a></li>
+<li><a href="https://www.resumo-kyoto.com/" rel="noopener">https://www.resumo-kyoto.com/</a></li>
+<li><a href="https://www.resumo-kyoto.com/construction/" rel="noopener">https://www.resumo-kyoto.com/construction/</a></li>
+<li><a href="https://www.resumo-kyoto.com/construction/detail.php?post_id=489" rel="noopener">https://www.resumo-kyoto.com/construction/detail.php?post_id=489</a></li>
+<li><a href="https://cielblue.co.jp/" rel="noopener">https://cielblue.co.jp/</a></li>
+<li><a href="https://cielblue.co.jp/about" rel="noopener">https://cielblue.co.jp/about</a></li>
+<li><a href="https://cielblue.co.jp/service" rel="noopener">https://cielblue.co.jp/service</a></li>
+<li><a href="https://cielblue.co.jp/works/washroom-examples" rel="noopener">https://cielblue.co.jp/works/washroom-examples</a></li>
+<li><a href="https://cielblue.co.jp/1428" rel="noopener">https://cielblue.co.jp/1428</a></li>
+<li><a href="https://earth-eg.com/" rel="noopener">https://earth-eg.com/</a></li>
+<li><a href="https://earth-eg.com/company" rel="noopener">https://earth-eg.com/company</a></li>
+<li><a href="https://earth-eg.com/example001" rel="noopener">https://earth-eg.com/example001</a></li>
+<li><a href="https://sawano-kk.jp/" rel="noopener">https://sawano-kk.jp/</a></li>
+<li><a href="https://sawano-kk.jp/institution/" rel="noopener">https://sawano-kk.jp/institution/</a></li>
+<li><a href="https://sawano-kk.jp/blog/detail/20230902091142/" rel="noopener">https://sawano-kk.jp/blog/detail/20230902091142/</a></li>
+<li><a href="https://leapy.jp/blog/web-design/job/reform-design/" rel="noopener">https://leapy.jp/blog/web-design/job/reform-design/</a></li>
+<li><a href="https://www.tenzan.net/" rel="noopener">https://www.tenzan.net/</a></li>
+<li><a href="https://www.tenzan.net/company/department/" rel="noopener">https://www.tenzan.net/company/department/</a></li>
+<li><a href="https://www.tenzan.net/new_house/" rel="noopener">https://www.tenzan.net/new_house/</a></li>
+<li><a href="https://mobinc.jp/column/2026/03/05/successful-web-marketing-cases-and-strategies-for-construction-companies" rel="noopener">https://mobinc.jp/column/2026/03/05/successful-web-marketing-cases-and-strategies-for-construction-companies</a></li>
+<li><a href="https://jinrai.co.jp/blog/2026/04/14/koumuten-homepage-shukyaku/" rel="noopener">https://jinrai.co.jp/blog/2026/04/14/koumuten-homepage-shukyaku/</a></li>
+<li><a href="https://www.issoh.co.jp/column/details/17512/" rel="noopener">https://www.issoh.co.jp/column/details/17512/</a></li>
+<li><a href="https://construction.acsport.net/column/useful/1785/" rel="noopener">https://construction.acsport.net/column/useful/1785/</a></li>
+<li><a href="https://tsukunobi.com/columns/rreform-hp" rel="noopener">https://tsukunobi.com/columns/rreform-hp</a></li></ol></div></details>
+<details class="code"><summary>Agent2 参考サイトB（49件）</summary><div><ol class="srclist"><li><a href="https://www.garden.ne.jp/index.php?action=public_showcase_search_cost" rel="noopener">https://www.garden.ne.jp/index.php?action=public_showcase_search_cost</a></li>
+<li><a href="https://www.garden.ne.jp/index.php?action=public_showcase_search_execute&amp;max_cost=50" rel="noopener">https://www.garden.ne.jp/index.php?action=public_showcase_search_execute&amp;max_cost=50</a></li>
+<li><a href="https://sotorie.com/works/price/300-400/" rel="noopener">https://sotorie.com/works/price/300-400/</a></li>
+<li><a href="https://www.hanwa-ex.com/service/work/" rel="noopener">https://www.hanwa-ex.com/service/work/</a></li>
+<li><a href="https://famitei.mobi/contents.php/price" rel="noopener">https://famitei.mobi/contents.php/price</a></li>
+<li><a href="https://www.seikatsu-do.com/exterior/carport/marketprice.php" rel="noopener">https://www.seikatsu-do.com/exterior/carport/marketprice.php</a></li>
+<li><a href="https://www.correc.co.jp/reform/gaikou-osusume-sakushi/" rel="noopener">https://www.correc.co.jp/reform/gaikou-osusume-sakushi/</a></li>
+<li><a href="https://www.seikatsu-do.com/reform/kitchen/marketprice.php" rel="noopener">https://www.seikatsu-do.com/reform/kitchen/marketprice.php</a></li>
+<li><a href="https://www.seikatsu-do.com/reform/kitchen/flow/" rel="noopener">https://www.seikatsu-do.com/reform/kitchen/flow/</a></li>
+<li><a href="https://www.sunrefre.jp/faucet/price/" rel="noopener">https://www.sunrefre.jp/faucet/price/</a></li>
+<li><a href="https://www.sunrefre.jp/gas/price/" rel="noopener">https://www.sunrefre.jp/gas/price/</a></li>
+<li><a href="https://crexgroup.com/ja/reform/toilet-reform/cainz-toilet-reform-price-reviews/" rel="noopener">https://crexgroup.com/ja/reform/toilet-reform/cainz-toilet-reform-price-reviews/</a></li>
+<li><a href="https://crexgroup.com/ja/reform/diningroom-reform/yamada-denki-kitchen-reform-cost-reviews/" rel="noopener">https://crexgroup.com/ja/reform/diningroom-reform/yamada-denki-kitchen-reform-cost-reviews/</a></li>
+<li><a href="https://www.komeri.com/contents/reform/details/carport_list.html" rel="noopener">https://www.komeri.com/contents/reform/details/carport_list.html</a></li>
+<li><a href="https://suumo.jp/remodel/tokyo/" rel="noopener">https://suumo.jp/remodel/tokyo/</a></li>
+<li><a href="https://www.yano.co.jp/press-release/show/press_id/3877" rel="noopener">https://www.yano.co.jp/press-release/show/press_id/3877</a></li>
+<li><a href="https://www.correc.co.jp/reform/toilet-reform-hiyou" rel="noopener">https://www.correc.co.jp/reform/toilet-reform-hiyou</a></li>
+<li><a href="https://curama.jp/magazine/767/" rel="noopener">https://curama.jp/magazine/767/</a></li>
+<li><a href="https://meetsmore.com/services/toilet-remodel/media/119429" rel="noopener">https://meetsmore.com/services/toilet-remodel/media/119429</a></li>
+<li><a href="https://meetsmore.com/services/bathroom-remodel/media/255393" rel="noopener">https://meetsmore.com/services/bathroom-remodel/media/255393</a></li>
+<li><a href="https://crexgroup.com/ja/reform/bath-reform/traditional-bathroom-reform-cost/" rel="noopener">https://crexgroup.com/ja/reform/bath-reform/traditional-bathroom-reform-cost/</a></li>
+<li><a href="https://toushi.homes.co.jp/column/?p=12006" rel="noopener">https://toushi.homes.co.jp/column/?p=12006</a></li>
+<li><a href="https://crexgroup.com/ja/reform/renovation/kitchen-reform-cost-examples/" rel="noopener">https://crexgroup.com/ja/reform/renovation/kitchen-reform-cost-examples/</a></li>
+<li><a href="https://allabout.co.jp/gm/gl/2597/2/" rel="noopener">https://allabout.co.jp/gm/gl/2597/2/</a></li>
+<li><a href="https://meetsmore.com/services/faucet-exchange/media/182656" rel="noopener">https://meetsmore.com/services/faucet-exchange/media/182656</a></li>
+<li><a href="https://curama.jp/magazine/2157/" rel="noopener">https://curama.jp/magazine/2157/</a></li>
+<li><a href="https://meetsmore.com/services/water-heater-exchange/media/106467" rel="noopener">https://meetsmore.com/services/water-heater-exchange/media/106467</a></li>
+<li><a href="https://meetsmore.com/services/wall-paper-exchange/media/228834" rel="noopener">https://meetsmore.com/services/wall-paper-exchange/media/228834</a></li>
+<li><a href="https://curama.jp/magazine/732/" rel="noopener">https://curama.jp/magazine/732/</a></li>
+<li><a href="https://crexgroup.com/ja/reform/renovation/interior-reform-cost-tips/" rel="noopener">https://crexgroup.com/ja/reform/renovation/interior-reform-cost-tips/</a></li>
+<li><a href="https://crexgroup.com/ja/reform/japanese-room-reform/washitsu-flooring-reform-cost/" rel="noopener">https://crexgroup.com/ja/reform/japanese-room-reform/washitsu-flooring-reform-cost/</a></li>
+<li><a href="https://meetsmore.com/services/outdoor-wall-painting/media/93293" rel="noopener">https://meetsmore.com/services/outdoor-wall-painting/media/93293</a></li>
+<li><a href="https://curama.jp/magazine/2071/" rel="noopener">https://curama.jp/magazine/2071/</a></li>
+<li><a href="https://crexgroup.com/ja/reform/roof-reform/roof-exterior-wall-reform-cost-2/" rel="noopener">https://crexgroup.com/ja/reform/roof-reform/roof-exterior-wall-reform-cost-2/</a></li>
+<li><a href="https://meetsmore.com/services/roof-changing/media/246809" rel="noopener">https://meetsmore.com/services/roof-changing/media/246809</a></li>
+<li><a href="https://meetsmore.com/t/exterior/media/127834" rel="noopener">https://meetsmore.com/t/exterior/media/127834</a></li>
+<li><a href="https://crexgroup.com/ja/reform/?p=11688" rel="noopener">https://crexgroup.com/ja/reform/?p=11688</a></li>
+<li><a href="https://2ndlabo.com/article/694/" rel="noopener">https://2ndlabo.com/article/694/</a></li>
+<li><a href="https://crexgroup.com/ja/reform/?p=747" rel="noopener">https://crexgroup.com/ja/reform/?p=747</a></li>
+<li><a href="https://diamond-fudosan.jp/articles/-/1111428" rel="noopener">https://diamond-fudosan.jp/articles/-/1111428</a></li>
+<li><a href="https://www.city.imizu.toyama.jp/appupload/EDIT/082/082240.pdf" rel="noopener">https://www.city.imizu.toyama.jp/appupload/EDIT/082/082240.pdf</a></li>
+<li><a href="https://kaigo.homes.co.jp/tayorini/article/005/" rel="noopener">https://kaigo.homes.co.jp/tayorini/article/005/</a></li>
+<li><a href="https://meetsmore.com/services/screen-door-exchange/niigata/agano" rel="noopener">https://meetsmore.com/services/screen-door-exchange/niigata/agano</a></li>
+<li><a href="https://meetsmore.com/services/door-repair/tokyo/kodaira" rel="noopener">https://meetsmore.com/services/door-repair/tokyo/kodaira</a></li>
+<li><a href="https://www.techwyse.com/news/ai-search/google-faq-rich-results-deprecated-2026" rel="noopener">https://www.techwyse.com/news/ai-search/google-faq-rich-results-deprecated-2026</a></li>
+<li><a href="https://www.issoh.co.jp/md/column/4874" rel="noopener">https://www.issoh.co.jp/md/column/4874</a></li>
+<li><a href="https://schema.org/HomeAndConstructionBusiness" rel="noopener">https://schema.org/HomeAndConstructionBusiness</a></li>
+<li><a href="https://rdrr.io/github/cboettig/schemar/man/HomeAndConstructionBusiness.html" rel="noopener">https://rdrr.io/github/cboettig/schemar/man/HomeAndConstructionBusiness.html</a></li>
+<li><a href="https://www.schema.org/UnitPriceSpecification" rel="noopener">https://www.schema.org/UnitPriceSpecification</a></li></ol></div></details>
+<details class="code"><summary>Agent3 キーワード（33件）</summary><div><ol class="srclist"><li><a href="https://www.searchenginejournal.com/google-title-links/422926" rel="noopener">https://www.searchenginejournal.com/google-title-links/422926</a></li>
+<li><a href="https://www.straightnorth.com/blog/title-tags-and-meta-descriptions-how-to-write-and-optimize-them-in-2026/" rel="noopener">https://www.straightnorth.com/blog/title-tags-and-meta-descriptions-how-to-write-and-optimize-them-in-2026/</a></li>
+<li><a href="https://www.shiftflow.app/playbook/how-to-write-title-tags-and-meta-descriptions" rel="noopener">https://www.shiftflow.app/playbook/how-to-write-title-tags-and-meta-descriptions</a></li>
+<li><a href="https://localo.com/local-seo-course/module-3/quick-wins-title-tags-descriptions-headers" rel="noopener">https://localo.com/local-seo-course/module-3/quick-wins-title-tags-descriptions-headers</a></li>
+<li><a href="https://developers.google.com/search/docs/advanced/crawling/special-tags" rel="noopener">https://developers.google.com/search/docs/advanced/crawling/special-tags</a></li>
+<li><a href="https://developers.google.com/search/blog/2009/09/google-does-not-use-keywords-meta-tag?hl=it" rel="noopener">https://developers.google.com/search/blog/2009/09/google-does-not-use-keywords-meta-tag?hl=it</a></li>
+<li><a href="https://jsonld.com/google-faq-rich-results-deprecated/" rel="noopener">https://jsonld.com/google-faq-rich-results-deprecated/</a></li>
+<li><a href="https://ppc.land/google-kills-faq-rich-results-what-seos-saw-coming-since-2019/" rel="noopener">https://ppc.land/google-kills-faq-rich-results-what-seos-saw-coming-since-2019/</a></li>
+<li><a href="https://ppc.land/doorway-pages/" rel="noopener">https://ppc.land/doorway-pages/</a></li>
+<li><a href="https://www.ritnerdigital.com/blog/stop-building-doorway-pages-why-thin-location-pages-are-killing-your-local-seo" rel="noopener">https://www.ritnerdigital.com/blog/stop-building-doorway-pages-why-thin-location-pages-are-killing-your-local-seo</a></li>
+<li><a href="https://digitalshiftmedia.com/search-intelligence/google-june-2026-spam-update-home-services/" rel="noopener">https://digitalshiftmedia.com/search-intelligence/google-june-2026-spam-update-home-services/</a></li>
+<li><a href="https://www.mlit.go.jp/report/press/house04_hh_001335.html" rel="noopener">https://www.mlit.go.jp/report/press/house04_hh_001335.html</a></li>
+<li><a href="https://www.env.go.jp/content/000356796.pdf" rel="noopener">https://www.env.go.jp/content/000356796.pdf</a></li>
+<li><a href="https://www.meti.go.jp/press/2025/11/20251128004/20251128004-1.pdf" rel="noopener">https://www.meti.go.jp/press/2025/11/20251128004/20251128004-1.pdf</a></li>
+<li><a href="https://www.shigyo.co.jp/search_post/housing-subsidy/housing_energy_saving2026/summary/" rel="noopener">https://www.shigyo.co.jp/search_post/housing-subsidy/housing_energy_saving2026/summary/</a></li>
+<li><a href="https://www.ac.daikin.co.jp/jutakushoene/2026" rel="noopener">https://www.ac.daikin.co.jp/jutakushoene/2026</a></li>
+<li><a href="https://www.sunrefre.jp/information/jutaku-shoene2026/mado_renovation/" rel="noopener">https://www.sunrefre.jp/information/jutaku-shoene2026/mado_renovation/</a></li>
+<li><a href="https://www2.biz-lixil.com/files/user/hojyokin_handbook_madomirai26.pdf" rel="noopener">https://www2.biz-lixil.com/files/user/hojyokin_handbook_madomirai26.pdf</a></li>
+<li><a href="https://jutaku-shoene2026.mlit.go.jp/assets/doc/kyuto_jigyosyuchichirashi.pdf" rel="noopener">https://jutaku-shoene2026.mlit.go.jp/assets/doc/kyuto_jigyosyuchichirashi.pdf</a></li>
+<li><a href="https://kadenfan.hitachi.co.jp/kyutou/hojokin/" rel="noopener">https://kadenfan.hitachi.co.jp/kyutou/hojokin/</a></li>
+<li><a href="https://www.mitsubishielectric.co.jp/ldg/ja/information/subsidy/kyutou-shoene/pdf/2026/kyuutou_syoene2026-2.pdf" rel="noopener">https://www.mitsubishielectric.co.jp/ldg/ja/information/subsidy/kyutou-shoene/pdf/2026/kyuutou_syoene2026-2.pdf</a></li>
+<li><a href="https://jutaku-shoene2026.mlit.go.jp/" rel="noopener">https://jutaku-shoene2026.mlit.go.jp/</a></li>
+<li><a href="https://www.city.yokohama.lg.jp/kenko-iryo-fukushi/fukushi-kaigo/koreisha-kaigo/kaigo-hoken/kaishuhi/juukai.html" rel="noopener">https://www.city.yokohama.lg.jp/kenko-iryo-fukushi/fukushi-kaigo/koreisha-kaigo/kaigo-hoken/kaishuhi/juukai.html</a></li>
+<li><a href="https://www.city.bunkyo.lg.jp/tetsuzuki/kaigo/serviceriyou/riyoudekiruservice/zaitaku/jutakukaishushoukanbarai.html" rel="noopener">https://www.city.bunkyo.lg.jp/tetsuzuki/kaigo/serviceriyou/riyoudekiruservice/zaitaku/jutakukaishushoukanbarai.html</a></li>
+<li><a href="https://www.city.hiroshima.lg.jp/site/kaigo/2311.html" rel="noopener">https://www.city.hiroshima.lg.jp/site/kaigo/2311.html</a></li>
+<li><a href="https://www.city.ota.tokyo.jp/seikatsu/fukushi/kourei/sumai/kaigojyutaku.html" rel="noopener">https://www.city.ota.tokyo.jp/seikatsu/fukushi/kourei/sumai/kaigojyutaku.html</a></li>
+<li><a href="https://hojyokin-portal.jp/subsidies/83207" rel="noopener">https://hojyokin-portal.jp/subsidies/83207</a></li>
+<li><a href="https://hojokin-agent.jp/subsidy/76597" rel="noopener">https://hojokin-agent.jp/subsidy/76597</a></li>
+<li><a href="https://hojyokin-portal.jp/subsidies/84604" rel="noopener">https://hojyokin-portal.jp/subsidies/84604</a></li>
+<li><a href="https://hojyokin-portal.jp/subsidies/80661" rel="noopener">https://hojyokin-portal.jp/subsidies/80661</a></li>
+<li><a href="https://j-net21.smrj.go.jp/snavi2/articles/179521" rel="noopener">https://j-net21.smrj.go.jp/snavi2/articles/179521</a></li>
+<li><a href="https://www.city.joetsu.niigata.jp/uploaded/attachment/281916.pdf" rel="noopener">https://www.city.joetsu.niigata.jp/uploaded/attachment/281916.pdf</a></li>
+<li><a href="https://www.city.osaka.lg.jp/kankyo/cmsfiles/contents/0000679/679117/jyutakutirasi.pdf" rel="noopener">https://www.city.osaka.lg.jp/kankyo/cmsfiles/contents/0000679/679117/jyutakutirasi.pdf</a></li></ol></div></details>
+<details class="code"><summary>Agent4 ローカルSEO・GBP（32件）</summary><div><ol class="srclist"><li><a href="https://support.google.com/business/answer/3038177" rel="noopener">https://support.google.com/business/answer/3038177</a></li>
+<li><a href="https://www.centricdxb.com/insights/local-seo-ranking-factors" rel="noopener">https://www.centricdxb.com/insights/local-seo-ranking-factors</a></li>
+<li><a href="https://thestacc.com/blog/local-seo-ranking-factors/" rel="noopener">https://thestacc.com/blog/local-seo-ranking-factors/</a></li>
+<li><a href="https://developers.google.com/search/blog/2019/09/making-review-rich-results-more-helpful" rel="noopener">https://developers.google.com/search/blog/2019/09/making-review-rich-results-more-helpful</a></li>
+<li><a href="https://ppc.land/google-discontinues-business-profile-q-a-api-effective-november-3/" rel="noopener">https://ppc.land/google-discontinues-business-profile-q-a-api-effective-november-3/</a></li>
+<li><a href="https://whitespark.ca/blog/with-google-qa-gone-you-need-a-maps-ask-a-question-strategy/" rel="noopener">https://whitespark.ca/blog/with-google-qa-gone-you-need-a-maps-ask-a-question-strategy/</a></li>
+<li><a href="https://slashpost.ai/blogs/google-business-profile/google-business-profile-qa-removed-2026" rel="noopener">https://slashpost.ai/blogs/google-business-profile/google-business-profile-qa-removed-2026</a></li>
+<li><a href="https://support.google.com/business/answer/2853879" rel="noopener">https://support.google.com/business/answer/2853879</a></li>
+<li><a href="https://support.google.com/business/answer/10514137" rel="noopener">https://support.google.com/business/answer/10514137</a></li>
+<li><a href="https://0120.co.jp/blog/shobai-ai-51/" rel="noopener">https://0120.co.jp/blog/shobai-ai-51/</a></li>
+<li><a href="https://www.truefuturemedia.com/articles/google-business-profile-optimization-checklist-2026" rel="noopener">https://www.truefuturemedia.com/articles/google-business-profile-optimization-checklist-2026</a></li>
+<li><a href="https://wiremo.co/blog/google-business-profile-posts-best-practices/" rel="noopener">https://wiremo.co/blog/google-business-profile-posts-best-practices/</a></li>
+<li><a href="https://support.google.com/business/answer/14114287?hl=ja" rel="noopener">https://support.google.com/business/answer/14114287?hl=ja</a></li>
+<li><a href="https://netshop.impress.co.jp/node/10165" rel="noopener">https://netshop.impress.co.jp/node/10165</a></li>
+<li><a href="https://www.dacgroup.com/?p=159133" rel="noopener">https://www.dacgroup.com/?p=159133</a></li>
+<li><a href="https://www.pinmeto.com/news/google-incentivized-reviews-penalty-2026/" rel="noopener">https://www.pinmeto.com/news/google-incentivized-reviews-penalty-2026/</a></li>
+<li><a href="https://www.footbridgemedia.com/marketing-tips/google-shutting-down-gbp-q-a" rel="noopener">https://www.footbridgemedia.com/marketing-tips/google-shutting-down-gbp-q-a</a></li>
+<li><a href="https://www.sungrove.co.jp/meo-citation/" rel="noopener">https://www.sungrove.co.jp/meo-citation/</a></li>
+<li><a href="https://schema.org" rel="noopener">https://schema.org</a></li>
+<li><a href="https://keiyaku-watch.jp/?p=24160" rel="noopener">https://keiyaku-watch.jp/?p=24160</a></li>
+<li><a href="https://www.businesslawyers.jp/practices/1119" rel="noopener">https://www.businesslawyers.jp/practices/1119</a></li>
+<li><a href="https://www.caa.go.jp/policies/policy/representation/fair_labeling/faq/stealth_marketing/" rel="noopener">https://www.caa.go.jp/policies/policy/representation/fair_labeling/faq/stealth_marketing/</a></li>
+<li><a href="https://www.medicalonline.jp/cmsdata/000/014/850/column_202605_01.pdf" rel="noopener">https://www.medicalonline.jp/cmsdata/000/014/850/column_202605_01.pdf</a></li>
+<li><a href="https://www.advertimes.com/20241209/article482069/2/" rel="noopener">https://www.advertimes.com/20241209/article482069/2/</a></li>
+<li><a href="https://www.techwyse.com/news/search-news/google-review-snippet-structured-data-incentivized-reviews" rel="noopener">https://www.techwyse.com/news/search-news/google-review-snippet-structured-data-incentivized-reviews</a></li>
+<li><a href="https://www.city.tsubame.niigata.jp/material/files/group/20/R6_rifo-mu.pdf" rel="noopener">https://www.city.tsubame.niigata.jp/material/files/group/20/R6_rifo-mu.pdf</a></li>
+<li><a href="https://www.city.hikone.lg.jp/material/files/group/95/r7tebiki.pdf" rel="noopener">https://www.city.hikone.lg.jp/material/files/group/95/r7tebiki.pdf</a></li>
+<li><a href="https://www.city.tsuchiura.lg.jp/data/doc/1711608050_doc_31_0.pdf" rel="noopener">https://www.city.tsuchiura.lg.jp/data/doc/1711608050_doc_31_0.pdf</a></li>
+<li><a href="https://www.mlit.go.jp/report/press/house04_hh_000849.html" rel="noopener">https://www.mlit.go.jp/report/press/house04_hh_000849.html</a></li>
+<li><a href="https://www.mlit.go.jp/jutakukentiku/jutaku-kentiku.files/kashitanpocorner/consumer/reform_business_search.html" rel="noopener">https://www.mlit.go.jp/jutakukentiku/jutaku-kentiku.files/kashitanpocorner/consumer/reform_business_search.html</a></li>
+<li><a href="https://www.mlit.go.jp/common/001058022.pdf" rel="noopener">https://www.mlit.go.jp/common/001058022.pdf</a></li>
+<li><a href="https://www.onamae.com/business/article/38935/" rel="noopener">https://www.onamae.com/business/article/38935/</a></li></ol></div></details>
+<details class="code"><summary>Agent5 構造化データ（16件）</summary><div><ol class="srclist"><li><a href="https://developers.google.com/search/docs/appearance/structured-data/local-business" rel="noopener">https://developers.google.com/search/docs/appearance/structured-data/local-business</a></li>
+<li><a href="https://developers.google.com/search/docs/appearance/structured-data/organization" rel="noopener">https://developers.google.com/search/docs/appearance/structured-data/organization</a></li>
+<li><a href="https://gigazine.net/gsc_news/en/20250124-google-mobile-search-url-breadcrumb" rel="noopener">https://gigazine.net/gsc_news/en/20250124-google-mobile-search-url-breadcrumb</a></li>
+<li><a href="https://www.cmlabs.co/en/news/google-now-simplifies-url-display-in-mobile-search-results" rel="noopener">https://www.cmlabs.co/en/news/google-now-simplifies-url-display-in-mobile-search-results</a></li>
+<li><a href="https://developers.google.com/search/docs/appearance/structured-data/image-license-metadata" rel="noopener">https://developers.google.com/search/docs/appearance/structured-data/image-license-metadata</a></li>
+<li><a href="https://developers.google.com/search/docs/appearance/structured-data/profile-page" rel="noopener">https://developers.google.com/search/docs/appearance/structured-data/profile-page</a></li>
+<li><a href="https://developers.google.com/search/updates" rel="noopener">https://developers.google.com/search/updates</a></li>
+<li><a href="https://developers.google.com/search/blog/2023/08/howto-faq-changes" rel="noopener">https://developers.google.com/search/blog/2023/08/howto-faq-changes</a></li>
+<li><a href="https://developers.google.com/search/docs/appearance/structured-data/review-snippet" rel="noopener">https://developers.google.com/search/docs/appearance/structured-data/review-snippet</a></li>
+<li><a href="https://whitespark.ca/blog/local-businesses-say-goodbye-to-review-snippets-in-google/" rel="noopener">https://whitespark.ca/blog/local-businesses-say-goodbye-to-review-snippets-in-google/</a></li>
+<li><a href="https://developers.google.com/search/blog/2025/06/simplifying-search-results" rel="noopener">https://developers.google.com/search/blog/2025/06/simplifying-search-results</a></li>
+<li><a href="https://developers.google.com/search/blog/2025/11/update-on-our-efforts" rel="noopener">https://developers.google.com/search/blog/2025/11/update-on-our-efforts</a></li>
+<li><a href="https://developers.google.com/search/docs/appearance/structured-data/search-gallery" rel="noopener">https://developers.google.com/search/docs/appearance/structured-data/search-gallery</a></li>
+<li><a href="https://developers.google.com/search/docs/appearance/structured-data/sd-policies" rel="noopener">https://developers.google.com/search/docs/appearance/structured-data/sd-policies</a></li>
+<li><a href="https://search.google.com/test/rich-results" rel="noopener">https://search.google.com/test/rich-results</a></li>
+<li><a href="https://validator.schema.org/" rel="noopener">https://validator.schema.org/</a></li></ol></div></details>
+<details class="code"><summary>Agent6 信頼性・E-E-A-T（24件）</summary><div><ol class="srclist"><li><a href="https://www.issoh.co.jp/md/column/4622" rel="noopener">https://www.issoh.co.jp/md/column/4622</a></li>
+<li><a href="https://webtan.impress.co.jp/n/2022/12/16/44023" rel="noopener">https://webtan.impress.co.jp/n/2022/12/16/44023</a></li>
+<li><a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" rel="noopener">https://developers.google.com/search/docs/fundamentals/creating-helpful-content</a></li>
+<li><a href="https://www.mlit.go.jp/common/001132800.pdf" rel="noopener">https://www.mlit.go.jp/common/001132800.pdf</a></li>
+<li><a href="https://www.mlit.go.jp/report/press/tochi_fudousan_kensetsugyo13_hh_000001_00317.html" rel="noopener">https://www.mlit.go.jp/report/press/tochi_fudousan_kensetsugyo13_hh_000001_00317.html</a></li>
+<li><a href="https://biz.moneyforward.com/construction/basic/70852/" rel="noopener">https://biz.moneyforward.com/construction/basic/70852/</a></li>
+<li><a href="https://pubref.jp/guide/kensetsu-kyoka-kingaku.html" rel="noopener">https://pubref.jp/guide/kensetsu-kyoka-kingaku.html</a></li>
+<li><a href="https://genba-base.jp/article/hitorioyakata-kensetsu-kyoka-nashi-genkai-kingaku-2026/" rel="noopener">https://genba-base.jp/article/hitorioyakata-kensetsu-kyoka-nashi-genkai-kingaku-2026/</a></li>
+<li><a href="https://www.pref.okayama.jp/page/detail-46636.html" rel="noopener">https://www.pref.okayama.jp/page/detail-46636.html</a></li>
+<li><a href="https://www.kkr.mlit.go.jp/kensei/kensetugyo/pdf/16.pdf" rel="noopener">https://www.kkr.mlit.go.jp/kensei/kensetugyo/pdf/16.pdf</a></li>
+<li><a href="https://www.city.shimotsuke.lg.jp/manage/contents/upload/6743b9fd1dfdb.pdf" rel="noopener">https://www.city.shimotsuke.lg.jp/manage/contents/upload/6743b9fd1dfdb.pdf</a></li>
+<li><a href="https://www.ownly.jp/sslab/stealth-marketing-regulation" rel="noopener">https://www.ownly.jp/sslab/stealth-marketing-regulation</a></li>
+<li><a href="https://www.mlit.go.jp/jutakukentiku/jutaku-kentiku.files/kashitanpocorner/consumer/reform_insurance.html" rel="noopener">https://www.mlit.go.jp/jutakukentiku/jutaku-kentiku.files/kashitanpocorner/consumer/reform_insurance.html</a></li>
+<li><a href="https://www.kashihoken.or.jp/" rel="noopener">https://www.kashihoken.or.jp/</a></li>
+<li><a href="https://www.mlit.go.jp/jutakukentiku/house/jutakukentiku_house_tk4_000090.html" rel="noopener">https://www.mlit.go.jp/jutakukentiku/house/jutakukentiku_house_tk4_000090.html</a></li>
+<li><a href="https://www.j-reform.com/reform-dantai/pdf/dantai_pamph.pdf" rel="noopener">https://www.j-reform.com/reform-dantai/pdf/dantai_pamph.pdf</a></li>
+<li><a href="https://j-reform.com/publish/pdf/dantai-profile26.pdf" rel="noopener">https://j-reform.com/publish/pdf/dantai-profile26.pdf</a></li>
+<li><a href="https://www.jerco.or.jp/wp/wp-content/uploads/1_press-release-_expert.pdf" rel="noopener">https://www.jerco.or.jp/wp/wp-content/uploads/1_press-release-_expert.pdf</a></li>
+<li><a href="https://www.pref.miyagi.jp/soshiki/juutaku/zoukaichikusoudanin.html" rel="noopener">https://www.pref.miyagi.jp/soshiki/juutaku/zoukaichikusoudanin.html</a></li>
+<li><a href="https://www.eloan.co.jp/reform/fp/696/" rel="noopener">https://www.eloan.co.jp/reform/fp/696/</a></li>
+<li><a href="https://www.chord.or.jp/" rel="noopener">https://www.chord.or.jp/</a></li>
+<li><a href="https://crexgroup.com/ja/reform/?p=2463" rel="noopener">https://crexgroup.com/ja/reform/?p=2463</a></li>
+<li><a href="https://atsoho.com/blog/consent-form-how-to-make" rel="noopener">https://atsoho.com/blog/consent-form-how-to-make</a></li>
+<li><a href="https://biz.moneyforward.com/contract/basic/17759/" rel="noopener">https://biz.moneyforward.com/contract/basic/17759/</a></li></ol></div></details>
+<details class="code"><summary>Agent7 問い合わせ導線（39件）</summary><div><ol class="srclist"><li><a href="https://sienca.jp/video/sp-lpo/" rel="noopener">https://sienca.jp/video/sp-lpo/</a></li>
+<li><a href="https://crexgroup.com/ja/home-building/service-other/home-builder-line-marketing-tips/" rel="noopener">https://crexgroup.com/ja/home-building/service-other/home-builder-line-marketing-tips/</a></li>
+<li><a href="https://library.libecity.com/articles/01KZE73Q3M0QGND3G9R7DVDE0G" rel="noopener">https://library.libecity.com/articles/01KZE73Q3M0QGND3G9R7DVDE0G</a></li>
+<li><a href="https://developers.line.biz/ja/docs/messaging-api/sharing-bot/" rel="noopener">https://developers.line.biz/ja/docs/messaging-api/sharing-bot/</a></li>
+<li><a href="https://lme.jp/media/line/homepage" rel="noopener">https://lme.jp/media/line/homepage</a></li>
+<li><a href="https://www.sunrefre.jp/site_guide/use/line.html" rel="noopener">https://www.sunrefre.jp/site_guide/use/line.html</a></li>
+<li><a href="https://workspace.google.com/intl/ja/resources/appointment-scheduling" rel="noopener">https://workspace.google.com/intl/ja/resources/appointment-scheduling</a></li>
+<li><a href="https://www.jicoo.com/magazine/blog/google-calender-embed" rel="noopener">https://www.jicoo.com/magazine/blog/google-calender-embed</a></li>
+<li><a href="https://www.lycbiz.com/jp/column/ly-ads/marketing/cta/" rel="noopener">https://www.lycbiz.com/jp/column/ly-ads/marketing/cta/</a></li>
+<li><a href="https://wcag.dock.codes/documentation/wcag258" rel="noopener">https://wcag.dock.codes/documentation/wcag258</a></li>
+<li><a href="https://a11y-guidelines.freee.co.jp/en/explanations/target-size.html" rel="noopener">https://a11y-guidelines.freee.co.jp/en/explanations/target-size.html</a></li>
+<li><a href="https://honichi.com/news/2025/05/14/efo/" rel="noopener">https://honichi.com/news/2025/05/14/efo/</a></li>
+<li><a href="https://jinrai.co.jp/blog/2026/04/14/contact-form-improvement/" rel="noopener">https://jinrai.co.jp/blog/2026/04/14/contact-form-improvement/</a></li>
+<li><a href="https://www.cross-m.co.jp/glossary/digital-marketing/entry-form-optimization" rel="noopener">https://www.cross-m.co.jp/glossary/digital-marketing/entry-form-optimization</a></li>
+<li><a href="https://w3.org/WAI/GL/WCAG3/2021/methods/required-inputs-indicated" rel="noopener">https://w3.org/WAI/GL/WCAG3/2021/methods/required-inputs-indicated</a></li>
+<li><a href="https://www.issoh.co.jp/column/details/17288/" rel="noopener">https://www.issoh.co.jp/column/details/17288/</a></li>
+<li><a href="https://developer.mozilla.org/docs/Web/HTML/Attributes/autocomplete" rel="noopener">https://developer.mozilla.org/docs/Web/HTML/Attributes/autocomplete</a></li>
+<li><a href="https://it.wordpress.org/plugins/?p=238803" rel="noopener">https://it.wordpress.org/plugins/?p=238803</a></li>
+<li><a href="https://gist.github.com/takunagai/28979a23115d743e2c42acd3dfcc7ad2" rel="noopener">https://gist.github.com/takunagai/28979a23115d743e2c42acd3dfcc7ad2</a></li>
+<li><a href="https://web.dev/learn/forms/design-basics?hl=ja" rel="noopener">https://web.dev/learn/forms/design-basics?hl=ja</a></li>
+<li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G178.html" rel="noopener">https://www.w3.org/WAI/WCAG22/Techniques/general/G178.html</a></li>
+<li><a href="https://webtan.impress.co.jp/e/2016/01/21/21867" rel="noopener">https://webtan.impress.co.jp/e/2016/01/21/21867</a></li>
+<li><a href="https://www.digitalservice.metro.tokyo.lg.jp/documents/d/digitalservice/inputform_guidance_v11" rel="noopener">https://www.digitalservice.metro.tokyo.lg.jp/documents/d/digitalservice/inputform_guidance_v11</a></li>
+<li><a href="https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/79b783f4-5265-4044-a374-f8f6ccd6e5da/5b510767/20260806_meeting_Overview-and-Features-of-DADS_outline_03.pdf" rel="noopener">https://www.digital.go.jp/assets/contents/node/basic_page/field_ref_resources/79b783f4-5265-4044-a374-f8f6ccd6e5da/5b510767/20260806_meeting_Overview-and-Features-of-DADS_outline_03.pdf</a></li>
+<li><a href="https://webtan.impress.co.jp/e/2024/06/06/47132" rel="noopener">https://webtan.impress.co.jp/e/2024/06/06/47132</a></li>
+<li><a href="https://blogs.itmedia.co.jp/agile/2025/05/GTM100DAY_DAY67.html" rel="noopener">https://blogs.itmedia.co.jp/agile/2025/05/GTM100DAY_DAY67.html</a></li>
+<li><a href="https://krmdigital.uk/blog/email-tel-clicks/" rel="noopener">https://krmdigital.uk/blog/email-tel-clicks/</a></li>
+<li><a href="https://toolradar.com/compare/formspree-vs-tally" rel="noopener">https://toolradar.com/compare/formspree-vs-tally</a></li>
+<li><a href="https://agentdeals.dev/vendor/formspree" rel="noopener">https://agentdeals.dev/vendor/formspree</a></li>
+<li><a href="https://www.jetadmin.io/blog/tally-pricing/" rel="noopener">https://www.jetadmin.io/blog/tally-pricing/</a></li>
+<li><a href="https://capterra.com/p/10032029/Tally/" rel="noopener">https://capterra.com/p/10032029/Tally/</a></li>
+<li><a href="https://boxil.jp/service/1059/reviews/3234/" rel="noopener">https://boxil.jp/service/1059/reviews/3234/</a></li>
+<li><a href="https://www.wmtips.com/technologies/compare/formspree-vs-google-forms" rel="noopener">https://www.wmtips.com/technologies/compare/formspree-vs-google-forms</a></li>
+<li><a href="https://splitforms.com/blog/add-contact-form-to-cloudflare-pages" rel="noopener">https://splitforms.com/blog/add-contact-form-to-cloudflare-pages</a></li>
+<li><a href="https://developers.cloudflare.com/turnstile/tutorials/login-pages/" rel="noopener">https://developers.cloudflare.com/turnstile/tutorials/login-pages/</a></li>
+<li><a href="https://www.xserver.ne.jp/bizhp/cloudflare-turnstile/" rel="noopener">https://www.xserver.ne.jp/bizhp/cloudflare-turnstile/</a></li>
+<li><a href="https://docs.cloud.google.com/recaptcha/docs/migration-overview" rel="noopener">https://docs.cloud.google.com/recaptcha/docs/migration-overview</a></li>
+<li><a href="https://wpforms.com/google-recaptcha-changes-in-2025/" rel="noopener">https://wpforms.com/google-recaptcha-changes-in-2025/</a></li>
+<li><a href="https://www.fatbeehive.com/say-goodbye-to-spam-hello-cloudflare-turnstile/" rel="noopener">https://www.fatbeehive.com/say-goodbye-to-spam-hello-cloudflare-turnstile/</a></li></ol></div></details>
+<details class="code"><summary>Agent8 デザイン（24件）</summary><div><ol class="srclist"><li><a href="https://www.vistaprint.com/hub/pantone-color-of-the-year" rel="noopener">https://www.vistaprint.com/hub/pantone-color-of-the-year</a></li>
+<li><a href="https://office-watch.com/2025/pantone-2026-color-cloud-dancer-office/" rel="noopener">https://office-watch.com/2025/pantone-2026-color-cloud-dancer-office/</a></li>
+<li><a href="https://www.gotta-ride.com/blog/5349.html" rel="noopener">https://www.gotta-ride.com/blog/5349.html</a></li>
+<li><a href="https://www.ntttp-dlead.com/homepage-sakusei-blog/homepage-sakusei/seisaku-kiso-chisiki/komuten-homepage.html" rel="noopener">https://www.ntttp-dlead.com/homepage-sakusei-blog/homepage-sakusei/seisaku-kiso-chisiki/komuten-homepage.html</a></li>
+<li><a href="https://ppc-master.jp/autohp/guide/home-builder-web-guide/" rel="noopener">https://ppc-master.jp/autohp/guide/home-builder-web-guide/</a></li>
+<li><a href="https://i-sheep.jp/blog/koumutensinrai-hp/" rel="noopener">https://i-sheep.jp/blog/koumutensinrai-hp/</a></li>
+<li><a href="https://www.ionos.com/digitalguide/websites/web-design/webdesign-trends.md" rel="noopener">https://www.ionos.com/digitalguide/websites/web-design/webdesign-trends.md</a></li>
+<li><a href="https://colorwhistle.com/website-design-trends/" rel="noopener">https://colorwhistle.com/website-design-trends/</a></li>
+<li><a href="https://sayt.uz/en/blog/core-web-vitals-2026" rel="noopener">https://sayt.uz/en/blog/core-web-vitals-2026</a></li>
+<li><a href="https://enterno.io/en/articles/web-vitals-2026-guide" rel="noopener">https://enterno.io/en/articles/web-vitals-2026-guide</a></li>
+<li><a href="https://g7cloud.com/resources/core-web-vitals-guide-for-wordpress" rel="noopener">https://g7cloud.com/resources/core-web-vitals-guide-for-wordpress</a></li>
+<li><a href="https://odphp.health.gov/healthliteracyonline/design-easy-scanning/use-readable-font-thats-least-16-pixels" rel="noopener">https://odphp.health.gov/healthliteracyonline/design-easy-scanning/use-readable-font-thats-least-16-pixels</a></li>
+<li><a href="https://acsport.net/works/works_type/house-builders/" rel="noopener">https://acsport.net/works/works_type/house-builders/</a></li>
+<li><a href="https://www.infocreate.co.jp/jis-db/2295/en/8/1.4.3.html" rel="noopener">https://www.infocreate.co.jp/jis-db/2295/en/8/1.4.3.html</a></li>
+<li><a href="https://www.jreast.co.jp/web_accessibility/2025/02/2/1.4.3.html" rel="noopener">https://www.jreast.co.jp/web_accessibility/2025/02/2/1.4.3.html</a></li>
+<li><a href="https://doaj.org/article/677c536e353c4aa2ae6bc8b847c86c46" rel="noopener">https://doaj.org/article/677c536e353c4aa2ae6bc8b847c86c46</a></li>
+<li><a href="https://odphp.health.gov/healthliteracyonline/" rel="noopener">https://odphp.health.gov/healthliteracyonline/</a></li>
+<li><a href="https://www.env.go.jp/other/gyosei-johoka/web_gl/02_2.html" rel="noopener">https://www.env.go.jp/other/gyosei-johoka/web_gl/02_2.html</a></li>
+<li><a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html" rel="noopener">https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html</a></li>
+<li><a href="https://www.w3.org/WAI/WCAG22/Techniques/css/C39.html" rel="noopener">https://www.w3.org/WAI/WCAG22/Techniques/css/C39.html</a></li>
+<li><a href="https://passiro.com/web-accessibility/designers/animation-motion" rel="noopener">https://passiro.com/web-accessibility/designers/animation-motion</a></li>
+<li><a href="https://suac.repo.nii.ac.jp/record/1635/" rel="noopener">https://suac.repo.nii.ac.jp/record/1635/</a></li>
+<li><a href="https://bricksextras.com/docs/before-after-image/" rel="noopener">https://bricksextras.com/docs/before-after-image/</a></li>
+<li><a href="https://oit.caes.uga.edu/wordpress-caes-before-after-slider/" rel="noopener">https://oit.caes.uga.edu/wordpress-caes-before-after-slider/</a></li></ol></div></details>
+<details class="code"><summary>Agent9 技術SEO（27件）</summary><div><ol class="srclist"><li><a href="https://web.dev/articles/vitals" rel="noopener">https://web.dev/articles/vitals</a></li>
+<li><a href="https://www.vitalsentinel.com/glossary/core-web-vitals-thresholds" rel="noopener">https://www.vitalsentinel.com/glossary/core-web-vitals-thresholds</a></li>
+<li><a href="https://eseospace.com/blog/core-web-vitals-in-2026-what-changed-what-still-matters-and-how-to-pass/" rel="noopener">https://eseospace.com/blog/core-web-vitals-in-2026-what-changed-what-still-matters-and-how-to-pass/</a></li>
+<li><a href="https://rgb.ir/en/blog/core-web-vitals-thresholds-2026/" rel="noopener">https://rgb.ir/en/blog/core-web-vitals-thresholds-2026/</a></li>
+<li><a href="https://ppc.land/core-web-vitals/" rel="noopener">https://ppc.land/core-web-vitals/</a></li>
+<li><a href="https://developer.chrome.com/docs/modern-web-guidance/guides/performance/optimize-image-priority" rel="noopener">https://developer.chrome.com/docs/modern-web-guidance/guides/performance/optimize-image-priority</a></li>
+<li><a href="https://unlighthouse.dev/learn-lighthouse/lcp/lazy-loading-above-fold" rel="noopener">https://unlighthouse.dev/learn-lighthouse/lcp/lazy-loading-above-fold</a></li>
+<li><a href="https://modpagespeed.com/blog/avif-vs-webp-2026/" rel="noopener">https://modpagespeed.com/blog/avif-vs-webp-2026/</a></li>
+<li><a href="https://caniuse.com/avif" rel="noopener">https://caniuse.com/avif</a></li>
+<li><a href="https://uhiyama-lab.com/en/blog/webdev/optimize-subset-fonttools/" rel="noopener">https://uhiyama-lab.com/en/blog/webdev/optimize-subset-fonttools/</a></li>
+<li><a href="https://claudecode-lab.com/en/blog/claude-code-font-optimization/" rel="noopener">https://claudecode-lab.com/en/blog/claude-code-font-optimization/</a></li>
+<li><a href="https://developers.google.com/search/docs/appearance/title-link" rel="noopener">https://developers.google.com/search/docs/appearance/title-link</a></li>
+<li><a href="https://developers.google.com/search/docs/appearance/favicon-in-search" rel="noopener">https://developers.google.com/search/docs/appearance/favicon-in-search</a></li>
+<li><a href="https://searchengineland.com/google-rolling-out-site-names-and-updated-favicon-logos-in-search-results-388714" rel="noopener">https://searchengineland.com/google-rolling-out-site-names-and-updated-favicon-logos-in-search-results-388714</a></li>
+<li><a href="https://developers.google.com/search/blog/2022/10/introducing-site-names-on-search" rel="noopener">https://developers.google.com/search/blog/2022/10/introducing-site-names-on-search</a></li>
+<li><a href="https://developers.google.cn/search/blog/2023/06/sitemaps-lastmod-ping?hl=ja" rel="noopener">https://developers.google.cn/search/blog/2023/06/sitemaps-lastmod-ping?hl=ja</a></li>
+<li><a href="https://www.relevantaudience.com/seo/google-search-off-the-record-do-sitemaps-still-matter/" rel="noopener">https://www.relevantaudience.com/seo/google-search-off-the-record-do-sitemaps-still-matter/</a></li>
+<li><a href="https://developers.google.com/search/docs/crawling-indexing/url-structure" rel="noopener">https://developers.google.com/search/docs/crawling-indexing/url-structure</a></li>
+<li><a href="https://sitebulb.com/resources/guides/breadcrumbs-in-seo-what-googles-mobile-change-actually-means/" rel="noopener">https://sitebulb.com/resources/guides/breadcrumbs-in-seo-what-googles-mobile-change-actually-means/</a></li>
+<li><a href="https://schema.org/GeneralContractor" rel="noopener">https://schema.org/GeneralContractor</a></li>
+<li><a href="https://bootstrap.build/articles/cloudflare-pages-alternatives/" rel="noopener">https://bootstrap.build/articles/cloudflare-pages-alternatives/</a></li>
+<li><a href="https://bootstrap.build/articles/netlify-alternatives/" rel="noopener">https://bootstrap.build/articles/netlify-alternatives/</a></li>
+<li><a href="https://playcode.io/blog/where-to-host-a-static-website" rel="noopener">https://playcode.io/blog/where-to-host-a-static-website</a></li>
+<li><a href="https://support.google.com/webmasters/answer/34592?hl=ja" rel="noopener">https://support.google.com/webmasters/answer/34592?hl=ja</a></li>
+<li><a href="https://seocrawl.ai/ja/blog/google-search-console-domain-vs-url-prefix" rel="noopener">https://seocrawl.ai/ja/blog/google-search-console-domain-vs-url-prefix</a></li>
+<li><a href="https://support.google.com/analytics/answer/9304153" rel="noopener">https://support.google.com/analytics/answer/9304153</a></li>
+<li><a href="https://seoquick.com.ua/en/google-analytics/" rel="noopener">https://seoquick.com.ua/en/google-analytics/</a></li></ol></div></details>
+<details class="code"><summary>Agent10 AI検索（29件）</summary><div><ol class="srclist"><li><a href="https://developers.google.com/search/blog/2026/05/a-new-resource-for-optimizing" rel="noopener">https://developers.google.com/search/blog/2026/05/a-new-resource-for-optimizing</a></li>
+<li><a href="https://practicalecommerce.com/google-says-ai-optimization-is-just-seo" rel="noopener">https://practicalecommerce.com/google-says-ai-optimization-is-just-seo</a></li>
+<li><a href="https://seo-day.de/news/article/google-publishes-guide-to-optimizing-for-generative-ai?lang=en" rel="noopener">https://seo-day.de/news/article/google-publishes-guide-to-optimizing-for-generative-ai?lang=en</a></li>
+<li><a href="https://developers.google.com/search/docs/appearance/ai-features" rel="noopener">https://developers.google.com/search/docs/appearance/ai-features</a></li>
+<li><a href="https://developers.google.com/search/docs/appearance/ai-overviews?hl=ja" rel="noopener">https://developers.google.com/search/docs/appearance/ai-overviews?hl=ja</a></li>
+<li><a href="https://blog.google/intl/ja-jp/products/explore-get-answers/ai-mode-search/" rel="noopener">https://blog.google/intl/ja-jp/products/explore-get-answers/ai-mode-search/</a></li>
+<li><a href="https://webtan.impress.co.jp/n/2025/09/09/50037" rel="noopener">https://webtan.impress.co.jp/n/2025/09/09/50037</a></li>
+<li><a href="https://gori.me/google/google-news/168769" rel="noopener">https://gori.me/google/google-news/168769</a></li>
+<li><a href="https://honichi.com/news/2026/03/18/googlemap-askmaps-immersivenavigation/" rel="noopener">https://honichi.com/news/2026/03/18/googlemap-askmaps-immersivenavigation/</a></li>
+<li><a href="https://jetstream.blog/?p=221630" rel="noopener">https://jetstream.blog/?p=221630</a></li>
+<li><a href="https://llmpulse.ai/blog/how-to-rank-in-google-ai-overviews/" rel="noopener">https://llmpulse.ai/blog/how-to-rank-in-google-ai-overviews/</a></li>
+<li><a href="https://www.radiantelephant.com/?p=51451" rel="noopener">https://www.radiantelephant.com/?p=51451</a></li>
+<li><a href="https://www.brightlocal.com/learn/local-seo/uncovering-chatgpt-search-sources/" rel="noopener">https://www.brightlocal.com/learn/local-seo/uncovering-chatgpt-search-sources/</a></li>
+<li><a href="https://s10500.lovable.app/insights/chatgpt-local-business-recommendations-2026" rel="noopener">https://s10500.lovable.app/insights/chatgpt-local-business-recommendations-2026</a></li>
+<li><a href="https://thinkprofits.com/digital-news/google-business-profile-optimization-checklist-2026/" rel="noopener">https://thinkprofits.com/digital-news/google-business-profile-optimization-checklist-2026/</a></li>
+<li><a href="https://0120.co.jp/blog/shobai-ai-148/" rel="noopener">https://0120.co.jp/blog/shobai-ai-148/</a></li>
+<li><a href="https://developers.google.com/search/docs/appearance/structured-data/faqpage?hl=ja" rel="noopener">https://developers.google.com/search/docs/appearance/structured-data/faqpage?hl=ja</a></li>
+<li><a href="https://www.issoh.co.jp/column/details/4874" rel="noopener">https://www.issoh.co.jp/column/details/4874</a></li>
+<li><a href="https://seocrawl.ai/blog/faq-structured-data-google-2026" rel="noopener">https://seocrawl.ai/blog/faq-structured-data-google-2026</a></li>
+<li><a href="https://nogood.io/blog/content-freshness-ai-citations/" rel="noopener">https://nogood.io/blog/content-freshness-ai-citations/</a></li>
+<li><a href="https://www.kukui.com/ai-and-your-google-business-profile" rel="noopener">https://www.kukui.com/ai-and-your-google-business-profile</a></li>
+<li><a href="https://llmpulse.ai/blog/optimize-for-google-ai-overviews/" rel="noopener">https://llmpulse.ai/blog/optimize-for-google-ai-overviews/</a></li>
+<li><a href="https://nexterwp.com/blog/oai-searchbot-wordpress/" rel="noopener">https://nexterwp.com/blog/oai-searchbot-wordpress/</a></li>
+<li><a href="https://www.anagram.ai/blog/ai-crawler-user-agent-list-2026-14-bots-and-robotstxt-tokens-to-know" rel="noopener">https://www.anagram.ai/blog/ai-crawler-user-agent-list-2026-14-bots-and-robotstxt-tokens-to-know</a></li>
+<li><a href="https://guptadeepak.com/the-geo-measurement-study-50000-ai-citations-in-90-days-what-actually-moves-citation-share/" rel="noopener">https://guptadeepak.com/the-geo-measurement-study-50000-ai-citations-in-90-days-what-actually-moves-citation-share/</a></li>
+<li><a href="https://ppc.land/llms-txt-adoption-rises-8-8x-but-97-of-files-get-zero-ai-requests/" rel="noopener">https://ppc.land/llms-txt-adoption-rises-8-8x-but-97-of-files-get-zero-ai-requests/</a></li>
+<li><a href="https://guptadeepak.com/llms-txt-meta-keywords-2026/" rel="noopener">https://guptadeepak.com/llms-txt-meta-keywords-2026/</a></li>
+<li><a href="https://superblog.ai/blog/ai-crawlers-guide.md" rel="noopener">https://superblog.ai/blog/ai-crawlers-guide.md</a></li>
+<li><a href="https://hojyokin-portal.jp/columns/senshintki_mado_renovation" rel="noopener">https://hojyokin-portal.jp/columns/senshintki_mado_renovation</a></li></ol></div></details>
+</section>
+
+<footer class="end">
+<p>工務店HP 調査報告書・制作仕様書／作成：2026年10月30日／司令塔＋調査担当10名の結果をまとめ役が統合。価格・制度の数値は調査時点の目安であり、公開前に一次情報で確認してください。</p>
+</footer>
+</main>
+</div>
+<script>
+(function(){
+  // theme toggle
+  var root=document.documentElement, btn=document.getElementById('themeBtn');
+  var modes=['auto','light','dark'], labels={auto:'表示：自動',light:'表示：ライト',dark:'表示：ダーク'};
+  function get(k){try{return localStorage.getItem(k)}catch(e){return null}}
+  function set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+  function apply(m){if(m==='auto'){root.removeAttribute('data-theme')}else{root.setAttribute('data-theme',m)}btn.textContent=labels[m]}
+  var cur=get('kr-theme')||'auto'; if(modes.indexOf(cur)<0)cur='auto'; apply(cur);
+  btn.addEventListener('click',function(){cur=modes[(modes.indexOf(cur)+1)%3];apply(cur);set('kr-theme',cur)});
+
+  // checklists
+  var saved={}; try{saved=JSON.parse(get('kr-checks')||'{}')||{}}catch(e){saved={}}
+  var boxes=document.querySelectorAll('.check input[type=checkbox]');
+  function refresh(){
+    document.querySelectorAll('[data-progress]').forEach(function(p){
+      var g=p.getAttribute('data-progress');
+      var all=document.querySelectorAll('.check[data-group="'+g+'"] input');
+      var n=0; all.forEach(function(b){if(b.checked)n++});
+      p.textContent='進捗：'+n+' / '+all.length+' 項目';
+    });
+  }
+  boxes.forEach(function(b){
+    if(saved[b.id]){b.checked=true;b.closest('li').classList.add('done')}
+    b.addEventListener('change',function(){
+      saved[b.id]=b.checked; b.closest('li').classList.toggle('done',b.checked);
+      set('kr-checks',JSON.stringify(saved)); refresh();
+    });
+  });
+  refresh();
+
+  // TOC: collapse on mobile by default, active link
+  var td=document.getElementById('toc-details');
+  if(window.matchMedia('(max-width:999px)').matches){td.removeAttribute('open')}
+  document.querySelectorAll('.toc a').forEach(function(a){
+    a.addEventListener('click',function(){if(window.matchMedia('(max-width:999px)').matches){td.removeAttribute('open')}});
+  });
+  if('IntersectionObserver' in window){
+    var links={}; document.querySelectorAll('.toc a').forEach(function(a){links[a.getAttribute('href').slice(1)]=a});
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){
+      Object.keys(links).forEach(function(k){links[k].classList.remove('active')});
+      var l=links[e.target.id]; if(l)l.classList.add('active');
+    }})},{rootMargin:'0px 0px -70% 0px'});
+    document.querySelectorAll('section.chap').forEach(function(s){io.observe(s)});
+  }
+
+  // print: open all details
+  var opened=[];
+  window.addEventListener('beforeprint',function(){
+    document.querySelectorAll('main details:not([open])').forEach(function(d){d.setAttribute('open','');opened.push(d)});
+  });
+  window.addEventListener('afterprint',function(){opened.forEach(function(d){d.removeAttribute('open')});opened=[]});
+})();
+</script>
+</body>
+</html>
