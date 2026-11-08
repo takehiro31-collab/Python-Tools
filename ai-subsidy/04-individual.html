@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>個人向け支援制度</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<nav class="top"><a href="index.html">← 総合目次</a></nav>
+
+<header class="page">
+  <h1>AI講習会を受講する個人が使える給付・支援制度</h1>
+  <p class="meta">対象: 生成AI・データサイエンス等の講座を自分で受ける在職者・離職者・求職者 / 調査日: 2026-11-08</p>
+</header>
+
+<div class="note">
+  <strong>情報は2026年11月時点の調査です。最新の内容は必ず公式で確認してください。</strong>
+  厚生労働省・経済産業省の公式ページはこの調査環境から直接開けなかったため、多くの数値は検索結果（労働局PDF、厚労省FAQ、民間解説）を照合して整理しています。確認しきれなかった点は「要確認」と書いています。最終的な判断は管轄のハローワーク・各事業の窓口が行います。
+</div>
+
+<h2 id="overview">概要</h2>
+<div class="card">
+  <p>AI講習会の受講で個人が使える支援は、大きく次の5系統です。</p>
+  <ol>
+    <li><strong>雇用保険の教育訓練給付制度（厚労省）</strong>: 厚生労働大臣が指定した講座を修了すると、受講費用の一部がハローワークから支給されます。<em>指定講座でないAI講習会は対象外</em>です。種類は「専門実践」「特定一般」「一般」の3つです。2024年10月から専門実践は最大80%、特定一般は最大50%に引き上げられました。</li>
+    <li><strong>第四次産業革命スキル習得講座（Reスキル講座、経産省認定）</strong>: AI・データサイエンス・セキュリティなどITSSレベル4相当をめざす講座を経産省が認定しています。厚労省の指定も受けた講座は「専門実践教育訓練」の対象になり、最大80%の給付を受けられます。</li>
+    <li><strong>リスキリングを通じたキャリアアップ支援事業（経産省）</strong>: 在職者向けに「キャリア相談 → 講座受講 → 転職支援」を一体で提供します。補助金は個人ではなく採択事業者に入り、受講料が割り引かれる仕組みです（修了時1/2・上限40万円、転職して1年継続すると追加1/5・上限16万円、合計上限56万円）。</li>
+    <li><strong>ハロートレーニング（公共職業訓練・求職者支援訓練）</strong>: 離職者・求職者向けの無料訓練です（テキスト代等は自己負担）。デジタル分野のコースが拡充され、「生成AI」を含む委託訓練も開講されています。求職者支援訓練では、収入等の要件を満たすと<strong>職業訓練受講給付金（月10万円＋通所手当）</strong>を受けられます。</li>
+    <li><strong>自治体のリスキリング支援</strong>: 都道府県・市区町村が独自に行う受講料補助や無料講座です。企業向けの制度（例: 東京都DXリスキリング助成金）が中心で、<em>個人向けの生成AI受講料補助は地域差が大きく、一般化できる制度は確認できませんでした（要確認）</em>。</li>
+  </ol>
+  <p>関連して、在職者が無給の教育訓練休暇を取るときの<strong>教育訓練休暇給付金</strong>（2025年10月創設）と、専門実践を受講する離職者の<strong>教育訓練支援給付金</strong>（2025年4月から基本手当日額の60%）もあります。</p>
+</div>
+
+<h2 id="compare">制度比較表</h2>
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>制度</th><th>対象者</th><th>支援内容・給付率</th><th>上限</th><th>AI講座との関係</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>専門実践教育訓練給付金</strong></td>
+      <td>雇用保険の被保険者期間3年以上（初回は2年以上）。離職者は離職後1年以内</td>
+      <td>基本50%（受講中に6か月ごとに支給）<br>＋資格取得等をして就職すると20%追加で70%<br>＋賃金が受講前より5%以上上がるとさらに10%追加で最大80%（2024年10月以降に受講を始めた人）</td>
+      <td>年40万円 → 年56万円 → 年64万円（訓練期間は最長原則3年）</td>
+      <td>Reスキル講座のうち厚労省指定を受けたAI・データサイエンス講座など</td>
+    </tr>
+    <tr>
+      <td><strong>特定一般教育訓練給付金</strong></td>
+      <td>被保険者期間3年以上（初回は1年以上）。離職者は離職後1年以内</td>
+      <td>基本40%<br>＋資格取得等をして就職すると10%追加で最大50%（2024年10月から）</td>
+      <td>20万円 → 25万円</td>
+      <td>早期のキャリア形成に役立つ講座（IT系資格講座など）。AI講座があるかは講座検索で確認</td>
+    </tr>
+    <tr>
+      <td><strong>一般教育訓練給付金</strong></td>
+      <td>被保険者期間3年以上（初回は1年以上）。離職者は離職後1年以内</td>
+      <td>20%（変更なし）</td>
+      <td>10万円（4,000円以下は支給なし）</td>
+      <td>G検定・E資格対策やPython・データ分析の講座などが候補。個別の指定状況は<strong>要確認</strong></td>
+    </tr>
+    <tr>
+      <td><strong>リスキリングを通じたキャリアアップ支援事業</strong>（経産省）</td>
+      <td>主に在職者（正社員・非正規等）。雇用保険の加入要件はない</td>
+      <td>受講修了で受講費用（税別）の1/2<br>転職して1年継続就業すると追加1/5<br>キャリア相談・転職支援は無料で提供</td>
+      <td>40万円＋16万円＝合計56万円</td>
+      <td>生成AI・データ活用講座を扱う採択事業者もある。補助率は公募回で変わる（六次公募から変更の注記あり）ので<strong>要確認</strong>。事業は令和8年度末（2027年3月）までの予定</td>
+    </tr>
+    <tr>
+      <td><strong>公共職業訓練（離職者訓練）</strong></td>
+      <td>主に雇用保険受給者。ハローワークで求職申込みが必要</td>
+      <td>受講料無料（テキスト代等は自己負担）。受講中は基本手当の給付延長や受講手当等あり</td>
+      <td>―</td>
+      <td>デジタル分野コースを拡充中。生成AIを含む委託訓練（例: 愛知労働局2026年7月資料の「生成AI×事務パソコン科」等）</td>
+    </tr>
+    <tr>
+      <td><strong>求職者支援訓練＋職業訓練受講給付金</strong></td>
+      <td>雇用保険を受給できない求職者（自営業廃業者・フリーランス・非正規等）</td>
+      <td>受講料無料。要件を満たすと月10万円＋通所手当</td>
+      <td>月10万円</td>
+      <td>IT・Web・データ分析系コースあり。地域・時期で変わる</td>
+    </tr>
+    <tr>
+      <td><strong>教育訓練休暇給付金</strong>（2025年10月創設）</td>
+      <td>在職者。被保険者期間が休暇前2年に12か月以上、通算5年以上</td>
+      <td>連続30日以上の無給の教育訓練休暇に、基本手当相当額を支給</td>
+      <td>給付日数90/120/150日（加入期間5年/10年/20年以上）</td>
+      <td>勤務先の就業規則等に休暇制度があることが前提。休暇中にAI講座で学ぶ場合に使える</td>
+    </tr>
+    <tr>
+      <td><strong>教育訓練支援給付金</strong></td>
+      <td>初めて専門実践を受ける45歳未満の離職者など</td>
+      <td>基本手当日額の60%（2025年3月31日以前に受講を始めた人は80%）</td>
+      <td>令和8年度末（2027年3月末）までに受講を始めた人が対象の暫定措置</td>
+      <td>昼間通学のAI・データサイエンス専門実践講座を受ける離職者向け</td>
+    </tr>
+    <tr>
+      <td><strong>自治体のリスキリング支援</strong></td>
+      <td>地域の住民・在勤者など（制度ごとに違う）</td>
+      <td>受講料補助、無料のデジタル講座、相談窓口など</td>
+      <td>制度ごとに違う（<strong>要確認</strong>）</td>
+      <td>住所地・勤務地の自治体の産業振興・雇用担当で確認</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p class="meta">補足: 教育訓練給付の3種類は同じ講座で重ねて受けられません。前回の受給から一定期間（原則3年）は次の受給ができません。専門実践の80%は「資格取得等をして就職」と「賃金5%以上の上昇」の両方が条件です。</p>
+
+<h2 id="checklist">受給要件チェックリスト</h2>
+<div class="card">
+  <h3>教育訓練給付（専門実践・特定一般・一般）</h3>
+  <ul>
+    <li>☐ 受けたいAI講座が<strong>厚生労働大臣の指定講座</strong>か（講座名と指定番号を教育訓練講座検索システムで確認）</li>
+    <li>☐ 受講開始日に雇用保険の被保険者である。離職者は<strong>離職日の翌日から受講開始日まで1年以内</strong>（妊娠・出産・育児・病気等で延長すると最大20年）</li>
+    <li>☐ 支給要件期間が<strong>3年以上</strong>ある（初めての場合: 専門実践は2年以上、特定一般・一般は1年以上）</li>
+    <li>☐ 前回の教育訓練給付の受講開始日から3年以上たっている（初めてなら不要）</li>
+    <li>☐ 専門実践・特定一般では、受講前に<strong>訓練対応キャリアコンサルタントによるキャリアコンサルティング</strong>を受け、ジョブ・カードを作った</li>
+    <li>☐ 専門実践・特定一般では、<strong>受講開始日の前に</strong>ハローワークで受給資格確認の手続きをした（期限は「1か月前まで」とする資料と「原則2週間前まで」とする資料がある。<strong>要確認</strong>）</li>
+    <li>☐ 講座を修了した（出席率・修了試験の基準を満たした）</li>
+    <li>☐ 追加給付を受けるなら、修了後1年以内に資格取得等をして就職したか、賃金が5%以上上がったか（専門実践）</li>
+    <li>☐ 支給申請の期限（修了日の翌日から1か月以内）を守る</li>
+  </ul>
+  <h3>経産省 リスキリング支援事業</h3>
+  <ul>
+    <li>☐ 在職中である（対象の雇用形態は事業者ごとに確認）</li>
+    <li>☐ 採択事業者のキャリア相談を受け、その事業者の対象講座を受講する</li>
+    <li>☐ 講座を修了する（1/2補助）。追加補助には転職し、転職先で1年継続して働くことが必要</li>
+    <li>☐ 教育訓練給付など他の公的補助との併用可否を事業者に確認した（<strong>要確認</strong>）</li>
+  </ul>
+  <h3>求職者支援訓練の職業訓練受講給付金</h3>
+  <ul>
+    <li>☐ 雇用保険を受給できない。ハローワークに求職申込みをしている</li>
+    <li>☐ 本人収入が月8万円以下（シフト制で働く人などは月12万円以下の特例）</li>
+    <li>☐ 世帯収入が月25万円以下（月30万円以下とする労働局資料もあり。<strong>要確認</strong>）</li>
+    <li>☐ 世帯の金融資産が300万円以下。現住所以外に土地・建物を持っていない</li>
+    <li>☐ 全ての訓練日に出席する（やむを得ない欠席でも8割以上の出席が必要）</li>
+    <li>☐ 同じ世帯で同時に受給している人がいない。過去3年以内に不正受給をしていない</li>
+  </ul>
+</div>
+
+<h2 id="search">講座の探し方</h2>
+<div class="card">
+  <h3>1. 教育訓練講座検索システム（厚労省）</h3>
+  <p>教育訓練給付の指定講座を探す公式の検索システムです。給付の種類（専門実践・特定一般・一般）、地域、通学かオンラインか、キーワードで絞り込めます。キーワードの例: 「生成AI」「AI」「データサイエンス」「機械学習」「Python」「G検定」「E資格」。2026年4月1日時点で特定一般教育訓練の指定講座は約1,188講座とされています。</p>
+  <p><a href="https://www.kyufu.mhlw.go.jp/kensaku/">https://www.kyufu.mhlw.go.jp/kensaku/</a></p>
+  <h3>2. Reスキル講座の認定講座一覧（経産省）</h3>
+  <p>AI・データサイエンス・クラウド・セキュリティなど、ITSSレベル4相当をめざす講座の一覧です。令和7年10月時点で324講座が認定されています。2026年4月1日には第18回の申請受付が始まりました（対象: DX推進分野、IT利活用分野。基礎・初級は対象外）。給付を受けたいときは、一覧で見つけた講座を上の検索システムでも検索し、専門実践の指定があるか確かめます。</p>
+  <p><a href="https://www.meti.go.jp/policy/economy/jinzai/reskillprograms/index.html">https://www.meti.go.jp/policy/economy/jinzai/reskillprograms/index.html</a></p>
+  <h3>3. リスキリング支援事業の公式サイト（経産省）</h3>
+  <p>採択事業者と、その事業者が扱う講座・キャリア相談の窓口が掲載されています。</p>
+  <p><a href="https://careerup.reskilling.go.jp/">https://careerup.reskilling.go.jp/</a></p>
+  <h3>4. ハロートレーニング（公共職業訓練・求職者支援訓練）</h3>
+  <p>都道府県労働局・ハローワーク・各都道府県の職業能力開発の窓口で、地域ごとのコースを探せます。月ごとの募集案内（PDF）に「生成AI」「DX」「Webデザイン」「データ分析」などのコース名が載ります。</p>
+  <p><a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/jinzaikaihatsu/hellotraining/index.html">ハロートレーニング（厚労省）</a></p>
+  <h3>5. 自治体の制度</h3>
+  <p>住所地・勤務地の都道府県と市区町村のサイトで「リスキリング」「デジタル人材」「受講料補助」を検索するか、産業振興課・雇用担当の窓口に問い合わせます。東京都は「Tokyo支援ナビ」などのポータルがあります。</p>
+</div>
+
+<h2 id="flow">手続きの流れ</h2>
+<div class="card">
+  <h3>専門実践・特定一般教育訓練の場合</h3>
+  <ol>
+    <li>教育訓練講座検索システムで指定講座を選ぶ</li>
+    <li>ハローワークで支給要件の照会をする（自分の被保険者期間を確認）</li>
+    <li>訓練対応キャリアコンサルタントの<strong>訓練前キャリアコンサルティング</strong>を受け、ジョブ・カードを作る</li>
+    <li>受講開始前の期限までに、ハローワークで受給資格確認の手続きをする（受給資格確認票・ジョブ・カード・本人確認書類など。期限は<strong>要確認</strong>）</li>
+    <li>受講する。専門実践は6か月ごとに支給申請する</li>
+    <li>修了後1か月以内に支給申請する（領収書・修了証明書など）</li>
+    <li>資格取得等をして就職した、または賃金が上がったときは、追加給付を申請する</li>
+  </ol>
+  <h3>一般教育訓練の場合</h3>
+  <ol>
+    <li>指定講座を選び、受講する（事前の手続きは原則不要）</li>
+    <li>修了後1か月以内に、ハローワークで支給申請する</li>
+  </ol>
+  <h3>経産省 リスキリング支援事業の場合</h3>
+  <ol>
+    <li>公式サイトで採択事業者を選び、キャリア相談を申し込む</li>
+    <li>キャリア相談で、受講する講座（生成AI・データ活用など）を決める</li>
+    <li>補助を差し引いた受講料で受講し、修了する</li>
+    <li>必要に応じて転職支援を受け、転職して1年継続すると追加補助（事業者経由）</li>
+  </ol>
+  <h3>ハロートレーニングの場合</h3>
+  <ol>
+    <li>ハローワークで求職申込みをし、職業相談を受ける</li>
+    <li>募集中のIT・AI系コースに応募する（選考あり）</li>
+    <li>求職者支援訓練で給付金を受けるときは、受講開始前に給付金の事前審査を申し込む</li>
+    <li>受講中と修了後3か月は、月1回ハローワークで就職支援を受ける</li>
+  </ol>
+</div>
+
+<h2 id="sources">出典</h2>
+<div class="sources">
+  <p>確認日はすべて2026-11-08です。公式ドメイン（mhlw.go.jp、meti.go.jp）はこの調査環境から直接開けなかったため、検索結果に出た記載で照合しています。</p>
+  <ul>
+    <li>厚生労働省「専門実践教育訓練給付金に関するよくあるご質問」 <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000077164.html">https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000077164.html</a></li>
+    <li>厚生労働省 教育訓練給付制度（制度ページ） <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/jinzaikaihatsu/kyouiku.html">https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/jinzaikaihatsu/kyouiku.html</a></li>
+    <li>厚生労働省 教育訓練講座検索システム <a href="https://www.kyufu.mhlw.go.jp/kensaku/">https://www.kyufu.mhlw.go.jp/kensaku/</a></li>
+    <li>厚生労働省 指定講座数等の資料（2026年4月1日時点） <a href="https://www.mhlw.go.jp/content/11804000/001662018.pdf">https://www.mhlw.go.jp/content/11804000/001662018.pdf</a></li>
+    <li>厚生労働省 専門実践教育訓練の指定講座（第四次産業革命スキル習得講座の区分） <a href="https://www.mhlw.go.jp/content/11601000/001070836.pdf">https://www.mhlw.go.jp/content/11601000/001070836.pdf</a></li>
+    <li>厚生労働省 雇用保険法改正資料（教育訓練支援給付金60%・令和8年度末まで） <a href="https://www.mhlw.go.jp/content/11601000/001253533.pdf">https://www.mhlw.go.jp/content/11601000/001253533.pdf</a></li>
+    <li>大阪労働局 教育訓練支援給付金の案内 <a href="https://jsite.mhlw.go.jp/osaka-roudoukyoku/content/contents/002356473.pdf">https://jsite.mhlw.go.jp/osaka-roudoukyoku/content/contents/002356473.pdf</a></li>
+    <li>労働新聞社「賃金上昇で追加給付 専門実践訓練見直し 雇保則改正」 <a href="https://www.rodo.co.jp/news/178950/">https://www.rodo.co.jp/news/178950/</a></li>
+    <li>企業実務サポート「教育訓練給付金の拡充に関する雇用保険法施行規則等の一部改正（令和6年8月13日公布）」 <a href="https://www.kaiketsu-j.com/compliance/13228">https://www.kaiketsu-j.com/compliance/13228</a></li>
+    <li>関西キャリアコンサルタント協会 資料（提出期限「原則2週間前」の記載） <a href="https://kansai.counselor.or.jp/wp-content/uploads/2025/02/463a9e25b356752772de3ea05df5fffc.pdf">https://kansai.counselor.or.jp/wp-content/uploads/2025/02/463a9e25b356752772de3ea05df5fffc.pdf</a></li>
+    <li>第一生命経済研究所「教育訓練休暇給付金」解説 <a href="https://www.dlri.co.jp/report/ld/565464.html">https://www.dlri.co.jp/report/ld/565464.html</a></li>
+    <li>経済産業省 第四次産業革命スキル習得講座認定制度 <a href="https://www.meti.go.jp/policy/economy/jinzai/reskillprograms/index.html">https://www.meti.go.jp/policy/economy/jinzai/reskillprograms/index.html</a></li>
+    <li>経済産業省 Reスキル講座 制度説明資料（2025年10月） <a href="https://www.meti.go.jp/policy/economy/jinzai/reskillprograms/202510-01seido_setsumei_shiryo.pdf">https://www.meti.go.jp/policy/economy/jinzai/reskillprograms/202510-01seido_setsumei_shiryo.pdf</a></li>
+    <li>経済産業省 リスキリングを通じたキャリアアップ支援事業 公式サイト <a href="https://careerup.reskilling.go.jp/">https://careerup.reskilling.go.jp/</a></li>
+    <li>補助金ポータル「リスキリングを通じたキャリアアップ支援事業」（補助率の公募回ごとの変更） <a href="https://hojyokin-portal.jp/columns/reskilling_careerup_hojyokin">https://hojyokin-portal.jp/columns/reskilling_careerup_hojyokin</a></li>
+    <li>埼玉労働局 職業訓練受講給付金の案内 <a href="https://jsite.mhlw.go.jp/saitama-roudoukyoku/library/saitama-roudoukyoku/seido/shushoku/kunren/kyufu-kin.pdf">https://jsite.mhlw.go.jp/saitama-roudoukyoku/library/saitama-roudoukyoku/seido/shushoku/kunren/kyufu-kin.pdf</a></li>
+    <li>山形労働局 求職者支援制度の案内 <a href="https://jsite.mhlw.go.jp/yamagata-roudoukyoku/content/contents/000738614.pdf">https://jsite.mhlw.go.jp/yamagata-roudoukyoku/content/contents/000738614.pdf</a></li>
+    <li>愛知労働局 公共職業訓練（委託）案内 2026年7月 <a href="https://jsite.mhlw.go.jp/aichi-roudoukyoku/content/contents/002723280.pdf">https://jsite.mhlw.go.jp/aichi-roudoukyoku/content/contents/002723280.pdf</a></li>
+    <li>厚生労働省 デジタル分野の訓練コース委託費上乗せ資料 <a href="https://www.mhlw.go.jp/content/11801000/001198654.pdf">https://www.mhlw.go.jp/content/11801000/001198654.pdf</a></li>
+    <li>東京都 雇用就業 有識者会議資料（2026年7月） <a href="https://www.hataraku.metro.tokyo.lg.jp/plan/04_20260721_yuushikisha_roudoukyoku_1.pdf">https://www.hataraku.metro.tokyo.lg.jp/plan/04_20260721_yuushikisha_roudoukyoku_1.pdf</a></li>
+  </ul>
+</div>
+</main>
+</body>
+</html>
